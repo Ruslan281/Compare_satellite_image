@@ -7,7 +7,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 
 <link rel="stylesheet" href="https://js.arcgis.com/4.30/esri/themes/light/main.css"/>
 <script src="https://js.arcgis.com/4.30/"></script>
@@ -16,91 +16,99 @@
 </head>
 <body>
 
-<!-- ══════ HEADER ══════ -->
+<!-- ═══ BAŞLIQ ═══ -->
 <header class="hdr">
-  <div class="hdr-brand">
-    <svg class="mark" width="18" height="18" viewBox="0 0 18 18" fill="none">
-      <rect x="1" y="1" width="16" height="16" rx="1.5" stroke="currentColor" stroke-width="1.3"/>
-      <path d="M9 1v16" stroke="currentColor" stroke-width="1.3"/>
-      <path d="M1 9h16" stroke="currentColor" stroke-width="1.3" stroke-dasharray="2 2"/>
+  <div class="brand">
+    <svg class="brand-mark" width="16" height="16" viewBox="0 0 16 16" fill="none">
+      <rect x=".8" y=".8" width="14.4" height="14.4" rx="1.2" stroke="currentColor" stroke-width="1.2"/>
+      <path d="M8 .8v14.4" stroke="currentColor" stroke-width="1.2"/>
     </svg>
-    <span class="wordmark">GeoSlice</span>
+    <span class="brand-text">GeoSlice</span>
   </div>
 
-  <div class="hdr-readout">
-    <span class="ro"><i>φ</i><b id="cLat">—</b></span>
-    <span class="ro"><i>λ</i><b id="cLon">—</b></span>
-    <span class="ro"><i>z</i><b id="cZoom">—</b></span>
+  <div class="readout">
+    <span class="rd"><em>φ</em><b id="cLat">—</b></span>
+    <span class="rd"><em>λ</em><b id="cLon">—</b></span>
+    <span class="rd"><em>z</em><b id="cZoom">—</b></span>
   </div>
 
-  <div class="hdr-tools">
+  <div class="tools">
     <button class="tool" id="btnHome" title="Görüntüyə qayıt">
       <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
-        <path d="M2.5 6.8L8 2.5l5.5 4.3V13a.8.8 0 01-.8.8H3.3a.8.8 0 01-.8-.8V6.8z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+        <path d="M2.6 6.9L8 2.6l5.4 4.3v6.1a.7.7 0 01-.7.7H3.3a.7.7 0 01-.7-.7V6.9z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
       </svg>
     </button>
     <button class="tool" id="btnPanel" title="Panel">
       <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
-        <rect x="2" y="2" width="12" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/>
-        <path d="M2 6.5h12" stroke="currentColor" stroke-width="1.3"/>
+        <rect x="1.6" y="2.4" width="12.8" height="11.2" rx="1.3" stroke="currentColor" stroke-width="1.25"/>
+        <path d="M9.6 2.4v11.2" stroke="currentColor" stroke-width="1.25"/>
       </svg>
     </button>
     <button class="tool" id="btnFull" title="Tam ekran">
       <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
-        <path d="M2 5.5V2.5h3M14 5.5V2.5h-3M2 10.5v3h3M14 10.5v3h-3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M2.2 5.8V2.6h3.2M13.8 5.8V2.6h-3.2M2.2 10.2v3.2h3.2M13.8 10.2v3.2h-3.2" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </button>
   </div>
 </header>
 
-<!-- ══════ XƏRİTƏ ══════ -->
+<!-- ═══ XƏRİTƏ ═══ -->
 <div id="viewDiv"></div>
 
-<!-- Yan nişanlar -->
-<div class="tag tag-l" id="tagL">—</div>
-<div class="tag tag-r" id="tagR">—</div>
+<!-- ═══ PANEL (sağ yuxarı) ═══ -->
+<aside class="panel" id="panel">
 
-<!-- ══════ NƏZARƏT KARTI ══════ -->
-<section class="ctrl" id="ctrl">
-
-  <div class="ctrl-row">
-    <div class="ctrl-head">
-      <span class="ctrl-label">Sol</span>
-      <button class="eye" id="eyeL" title="Görünürlük"></button>
-    </div>
-    <div class="seg" id="segL"></div>
+  <div class="panel-top">
+    <span class="panel-title">Təbəqələr</span>
+    <button class="panel-x" id="panelX" aria-label="Bağla">
+      <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
+        <path d="M3.2 3.2l7.6 7.6M10.8 3.2l-7.6 7.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      </svg>
+    </button>
   </div>
 
-  <div class="ctrl-row">
-    <div class="ctrl-head">
-      <span class="ctrl-label">Sağ</span>
-      <button class="eye" id="eyeR" title="Görünürlük"></button>
-    </div>
-    <div class="seg" id="segR"></div>
-  </div>
+  <section class="src" id="srcL">
+    <header class="src-top">
+      <span class="src-bar"></span>
+      <div class="src-id">
+        <span class="src-name" id="nameL">—</span>
+        <span class="src-meta" id="metaL">—</span>
+      </div>
+      <button class="vis" id="visL" aria-label="Görünürlük"></button>
+    </header>
+    <div class="opts" id="optsL"></div>
+  </section>
 
-  <div class="ctrl-rule"></div>
+  <section class="src" id="srcR">
+    <header class="src-top">
+      <span class="src-bar"></span>
+      <div class="src-id">
+        <span class="src-name" id="nameR">—</span>
+        <span class="src-meta" id="metaR">—</span>
+      </div>
+      <button class="vis" id="visR" aria-label="Görünürlük"></button>
+    </header>
+    <div class="opts" id="optsR"></div>
+  </section>
 
-  <div class="ctrl-row">
-    <div class="ctrl-head">
-      <span class="ctrl-label">Altlıq</span>
-    </div>
-    <div class="chips" id="chipsBase"></div>
-  </div>
+  <section class="base">
+    <div class="base-lbl">Altlıq xəritə</div>
+    <div class="base-row" id="baseRow"></div>
+  </section>
 
-</section>
+</aside>
 
-<!-- ══════ YÜKLƏNMƏ ══════ -->
+<!-- ═══ YÜKLƏNMƏ ═══ -->
 <div class="load" id="load">
-  <div class="load-inner">
-    <div class="load-mark">
-      <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
-        <circle cx="17" cy="17" r="15" stroke="currentColor" stroke-width="1.5" opacity=".15"/>
-        <path d="M17 2a15 15 0 0115 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+  <div class="load-in">
+    <div class="load-spin">
+      <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+        <circle cx="15" cy="15" r="13" stroke="currentColor" stroke-width="1.6" opacity=".14"/>
+        <path d="M15 2a13 13 0 0113 13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
       </svg>
     </div>
-    <div class="load-t" id="loadT">Servis açılır</div>
-    <div class="load-s" id="loadS">ArcGIS Online</div>
+    <div class="load-t" id="loadT">Yüklənir</div>
+    <div class="load-s" id="loadS">servis oxunur</div>
   </div>
 </div>
 
