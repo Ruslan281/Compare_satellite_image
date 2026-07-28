@@ -416,3 +416,56 @@ html, body {
     top: calc(var(--hdr) + 12px);
   }
 }
+
+
+
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  flex-shrink: 0;
+}
+
+.brand-logo {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  background: #FFFFFF;
+  padding: 3px;
+  flex-shrink: 0;
+  transition: transform .16s ease;
+}
+.brand-logo:hover { transform: scale(1.05); }
+
+.brand-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.brand-sep {
+  width: 1px;
+  height: 18px;
+  background: rgba(255,255,255,.14);
+}
+
+.brand-text {
+  font-size: 15.5px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--w-1);
+}
+
+
+
+
+
+
+
+
+
+
