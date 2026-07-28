@@ -60,7 +60,7 @@ require([
     center: [48.88, 39.80],
     zoom: 11,
     spatialReference: { wkid: 3857 },
-    constraints: { snapToZoom: true, rotationEnabled: false },
+    constraints: { snapToZoom: false, rotationEnabled: false },
   });
 
   function paintBase(on) {
@@ -89,6 +89,19 @@ require([
 
     view.constraints.minScale = 0;
     await view.goTo(t, { animate: !!animate });
+
+    // ── Qalıq boşluğu təmizlə ──────────────────────
+    // Zoom pilləsi və ya yuvarlaqlaşma səbəbindən kənarda
+    // ağ zolaq qalarsa, görünən sahə görüntünün içinə
+    // tam sığana qədər addım-addım yaxınlaşdır.
+    for (let i = 0; i < 6; i++) {
+      const ve = view.extent;
+      if (!ve) break;
+      const wide = ve.width  > extent.width;
+      const tall = ve.height > extent.height;
+      if (!wide && !tall) break;
+      await view.goTo({ scale: view.scale * 0.93 }, { animate: false });
+    }
 
     if (LOCK_ZOOM_OUT) view.constraints.minScale = view.scale;
     if (LOCK_PAN)      bindPan();
