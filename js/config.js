@@ -10,11 +10,11 @@
 ──────────────────────────────────────────────────────── */
 const SOURCES = {
   left: {
-    name: "Sentinel-2",
+    name: "Sentinel-2 (sol tərəf)",
     meta: "10 m / piksel",
   },
   right: {
-    name: "Superrezolusiya",
+    name: "Ayırdetmə qabiliyyəti artırılmış görüntü (sağ tərəf)",
     meta: "1 m / piksel",
   },
 };
