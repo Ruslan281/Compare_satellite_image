@@ -1,0 +1,434 @@
+/* ══════════════════════════════════════════════
+   GeoSolver — məlumat sənədi
+══════════════════════════════════════════════ */
+:root {
+  --paper:   #FBFAF8;
+  --paper-2: #F2EFEA;
+  --card:    #FFFFFF;
+
+  --chrome:   #17191D;
+  --chrome-2: #1F2228;
+  --chrome-3: #282C34;
+
+  --ink:   #16181C;
+  --ink-2: #4A4F58;
+  --ink-3: #868C96;
+
+  --line:   #E5E1D9;
+  --line-2: #D2CCC2;
+
+  --acc:      #C8901A;
+  --acc-soft: rgba(200,144,26,0.10);
+  --acc-line: rgba(200,144,26,0.32);
+
+  --w-1: #F4F5F7;
+  --w-2: #A8AEB9;
+  --w-3: #6E757F;
+
+  --ok:  #2E7D5B;
+  --mid: #B07A1E;
+  --low: #B0472E;
+
+  --sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --hdr: 56px;
+  --r:   10px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--hdr) + 20px); }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ══════════ BAŞLIQ ══════════ */
+.hdr {
+  position: sticky; top: 0;
+  height: var(--hdr);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 18px;
+  background: rgba(23,25,29,.96);
+  backdrop-filter: blur(16px);
+  z-index: 100;
+}
+
+.brand { display: flex; align-items: center; gap: 11px; }
+.brand-logo {
+  display: grid; place-items: center;
+  width: 34px; height: 34px;
+  border-radius: 9px;
+  background: #fff; padding: 3px;
+  flex-shrink: 0;
+  transition: transform .16s;
+}
+.brand-logo:hover { transform: scale(1.05); }
+.brand-logo img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.brand-sep { width: 1px; height: 18px; background: rgba(255,255,255,.14); }
+.brand-text { font-size: 15px; font-weight: 600; color: var(--w-1); letter-spacing: -.015em; }
+
+.back-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 7px 13px 7px 10px;
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: var(--r);
+  color: var(--w-2);
+  text-decoration: none;
+  font-size: 13px; font-weight: 500;
+  transition: all .16s;
+}
+.back-btn:hover { background: var(--chrome-2); color: var(--w-1); border-color: rgba(255,255,255,.24); }
+
+/* ══════════ LAYOUT ══════════ */
+.wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: 216px minmax(0, 1fr);
+  gap: 48px;
+  align-items: start;
+}
+
+/* ══════════ MÜNDƏRİCAT ══════════ */
+.toc {
+  position: sticky;
+  top: calc(var(--hdr) + 28px);
+  padding: 4px 0;
+  border-left: 1px solid var(--line);
+}
+.toc-lbl {
+  font-size: 10px; font-weight: 600;
+  letter-spacing: .16em; text-transform: uppercase;
+  color: var(--ink-3);
+  padding: 0 0 10px 16px;
+}
+.toc a {
+  display: block;
+  padding: 6px 0 6px 16px;
+  margin-left: -1px;
+  border-left: 2px solid transparent;
+  color: var(--ink-3);
+  text-decoration: none;
+  font-size: 12.5px;
+  line-height: 1.45;
+  transition: color .15s, border-color .15s;
+}
+.toc a:hover { color: var(--ink-2); }
+.toc a.on {
+  color: var(--acc);
+  border-left-color: var(--acc);
+  font-weight: 500;
+}
+
+/* ══════════ SƏNƏD ══════════ */
+.doc { padding: 40px 0 80px; min-width: 0; }
+
+.doc-head { margin-bottom: 52px; }
+.doc-kicker {
+  display: inline-block;
+  font-size: 10px; font-weight: 600;
+  letter-spacing: .16em; text-transform: uppercase;
+  color: var(--acc);
+  background: var(--acc-soft);
+  border: 1px solid var(--acc-line);
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-bottom: 16px;
+}
+.doc-head h1 {
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: -.03em;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+.doc-lead {
+  font-size: 16.5px;
+  color: var(--ink-2);
+  line-height: 1.65;
+  max-width: 62ch;
+}
+
+section { margin-bottom: 56px; scroll-margin-top: calc(var(--hdr) + 24px); }
+
+h2 {
+  font-size: 22px;
+  font-weight: 650;
+  letter-spacing: -.02em;
+  margin-bottom: 18px;
+  padding-bottom: 11px;
+  border-bottom: 1px solid var(--line);
+}
+h3 {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -.01em;
+  margin: 28px 0 11px;
+}
+h4 {
+  font-size: 14.5px;
+  font-weight: 600;
+  letter-spacing: -.01em;
+  margin-bottom: 7px;
+}
+
+p { margin-bottom: 14px; max-width: 68ch; }
+p:last-child { margin-bottom: 0; }
+
+ul, ol { margin: 0 0 16px 20px; max-width: 68ch; }
+li { margin-bottom: 7px; }
+li::marker { color: var(--ink-3); }
+
+b { font-weight: 600; color: var(--ink); }
+
+a { color: var(--acc); }
+
+code {
+  font-family: var(--mono);
+  font-size: 12.5px;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  padding: 1.5px 6px;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+/* ── Qeyd blokları ── */
+.note, .warn {
+  border-radius: var(--r);
+  padding: 14px 16px;
+  font-size: 14px;
+  line-height: 1.65;
+  margin: 18px 0;
+  max-width: 68ch;
+}
+.note {
+  background: var(--paper-2);
+  border-left: 3px solid var(--line-2);
+  color: var(--ink-2);
+}
+.warn {
+  background: var(--acc-soft);
+  border-left: 3px solid var(--acc);
+  color: var(--ink-2);
+}
+
+/* ── Spesifikasiya şəbəkəsi ── */
+.specs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(158px, 1fr));
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  overflow: hidden;
+  margin: 20px 0;
+}
+.spec {
+  background: var(--card);
+  padding: 13px 15px;
+  display: flex; flex-direction: column; gap: 3px;
+}
+.spec-k { font-size: 11px; color: var(--ink-3); letter-spacing: .01em; }
+.spec-v { font-family: var(--mono); font-size: 14px; font-weight: 500; color: var(--ink); }
+
+/* ── Cədvəllər ── */
+.tbl {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 18px 0;
+  font-size: 13.5px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  overflow: hidden;
+}
+.tbl th {
+  text-align: left;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  padding: 11px 14px;
+  background: var(--paper-2);
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+}
+.tbl td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+.tbl tr:last-child td { border-bottom: none; }
+.tbl td.b { font-family: var(--mono); font-size: 12.5px; font-weight: 500; white-space: nowrap; }
+.tbl-bands tr.hi { background: var(--acc-soft); }
+.tbl-idx code { font-size: 11.5px; }
+.tbl-use td.ok  { color: var(--ok);  font-weight: 500; }
+.tbl-use td.mid { color: var(--mid); font-weight: 500; }
+.tbl-use td.low { color: var(--low); font-weight: 500; }
+
+/* ── Kompozisiyalar ── */
+.comps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(272px, 1fr));
+  gap: 12px;
+  margin: 20px 0;
+}
+.comp {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  padding: 15px 16px;
+}
+.comp-h {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 10px; margin-bottom: 8px; flex-wrap: wrap;
+}
+.comp-n { font-size: 14px; font-weight: 600; letter-spacing: -.01em; }
+.comp code {
+  font-size: 11.5px;
+  background: var(--chrome);
+  border-color: var(--chrome);
+  color: var(--acc);
+}
+.comp p { font-size: 13.5px; color: var(--ink-2); margin: 0; line-height: 1.6; }
+
+/* ── Düstur ── */
+.formula {
+  font-family: var(--mono);
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+  padding: 20px 16px;
+  background: var(--chrome);
+  color: var(--acc);
+  border-radius: var(--r);
+  margin: 18px 0;
+  letter-spacing: .01em;
+}
+
+/* ── GeoSolver bölməsi ── */
+.gs-section h2 {
+  border-bottom-color: var(--acc-line);
+}
+
+.kpi {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(152px, 1fr));
+  gap: 1px;
+  background: var(--chrome-3);
+  border-radius: var(--r);
+  overflow: hidden;
+  margin: 22px 0;
+}
+.kpi-i {
+  background: var(--chrome);
+  padding: 18px 16px;
+  display: flex; flex-direction: column; gap: 4px;
+}
+.kpi-v {
+  font-family: var(--mono);
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--acc);
+  letter-spacing: -.02em;
+}
+.kpi-l { font-size: 11.5px; color: var(--w-3); }
+
+/* ── Tətbiq kartları ── */
+.apps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(272px, 1fr));
+  gap: 12px;
+  margin: 20px 0;
+}
+.app {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  padding: 16px 18px;
+}
+.app h4 { color: var(--acc); margin-bottom: 9px; }
+.app ul { margin: 0 0 0 17px; }
+.app li { font-size: 13.5px; color: var(--ink-2); margin-bottom: 5px; }
+
+/* ── Məhdudiyyətlər ── */
+.lims { display: flex; flex-direction: column; gap: 10px; margin: 20px 0; }
+.lim {
+  display: flex; gap: 15px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  padding: 16px 18px;
+}
+.lim-n {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--acc);
+  flex-shrink: 0;
+  padding-top: 1px;
+}
+.lim-b { min-width: 0; }
+.lim-b h4 { margin-bottom: 5px; }
+.lim-b p { font-size: 13.5px; color: var(--ink-2); margin: 0; line-height: 1.6; }
+
+/* ── Alt hissə ── */
+.doc-foot {
+  margin-top: 64px;
+  padding-top: 26px;
+  border-top: 1px solid var(--line);
+}
+.doc-foot p {
+  font-size: 13px;
+  color: var(--ink-3);
+  margin-bottom: 8px;
+}
+.foot-back {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 10px 18px;
+  background: var(--chrome);
+  color: var(--w-1);
+  border-radius: var(--r);
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 500;
+  transition: background .16s;
+}
+.foot-back:hover { background: var(--chrome-2); }
+
+/* ══════════ KİÇİK EKRAN ══════════ */
+@media (max-width: 900px) {
+  .wrap { grid-template-columns: 1fr; gap: 0; padding: 0 18px; }
+  .toc {
+    position: static;
+    border-left: none;
+    border-bottom: 1px solid var(--line);
+    padding: 20px 0 16px;
+    display: flex; flex-wrap: wrap; gap: 4px;
+  }
+  .toc-lbl { width: 100%; padding-left: 0; }
+  .toc a {
+    padding: 5px 11px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-size: 12px;
+    margin-left: 0;
+  }
+  .toc a.on { border-color: var(--acc); background: var(--acc-soft); }
+  .doc-head h1 { font-size: 27px; }
+  .doc-lead { font-size: 15.5px; }
+  .doc { padding: 32px 0 64px; }
+  h2 { font-size: 19.5px; }
+}
