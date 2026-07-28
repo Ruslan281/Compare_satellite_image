@@ -104,8 +104,10 @@ const BASEMAP_DEFAULT  = "gray-vector";
 const BASEMAP_ON_START = false;
 
 /* ── GÖRÜNÜŞ ───────────────────────────────────────────── */
-// Görüntü ekranı nə qədər doldursun (kənarda boşluq qalırsa artır)
-const COVER_ZOOM    = 1.18;
+// Görüntü ekranı nə qədər doldursun.
+// 1.0 = tam kənara qədər · 1.15 = bir az artıq yaxın
+// Kənarda boşluq avtomatik təmizlənir, bu yalnız əlavə ehtiyatdır.
+const COVER_ZOOM    = 1.10;
 // Başlanğıc miqyasdan geri zoom etmək olmasın
 const LOCK_ZOOM_OUT = true;
 // Görüntü sərhədindən kənara sürüşmək olmasın
