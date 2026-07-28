@@ -14,7 +14,7 @@ const SOURCES = {
     meta: "10 m / piksel",
   },
   right: {
-    name: "Ayırdetmə qabiliyyəti artırılmış görüntü (sağ tərəf)",
+    name: "GeoSolver Satellite (sağ tərəf)",
     meta: "1 m / piksel",
   },
 };
