@@ -19,9 +19,9 @@
 <!-- ═══ BAŞLIQ ═══ -->
 <header class="hdr">
   <div class="brand">
-    <svg class="brand-mark" width="16" height="16" viewBox="0 0 16 16" fill="none">
-      <rect x=".8" y=".8" width="14.4" height="14.4" rx="1.2" stroke="currentColor" stroke-width="1.2"/>
-      <path d="M8 .8v14.4" stroke="currentColor" stroke-width="1.2"/>
+    <svg width="17" height="17" viewBox="0 0 16 16" fill="none">
+      <rect x=".9" y=".9" width="14.2" height="14.2" rx="1.4" stroke="currentColor" stroke-width="1.3"/>
+      <path d="M8 .9v14.2" stroke="currentColor" stroke-width="1.3"/>
     </svg>
     <span class="brand-text">GeoSlice</span>
   </div>
@@ -34,19 +34,19 @@
 
   <div class="tools">
     <button class="tool" id="btnHome" title="Görüntüyə qayıt">
-      <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
-        <path d="M2.6 6.9L8 2.6l5.4 4.3v6.1a.7.7 0 01-.7.7H3.3a.7.7 0 01-.7-.7V6.9z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M2.6 6.9L8 2.6l5.4 4.3v6.1a.7.7 0 01-.7.7H3.3a.7.7 0 01-.7-.7V6.9z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
       </svg>
     </button>
     <button class="tool" id="btnPanel" title="Panel">
-      <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
-        <rect x="1.6" y="2.4" width="12.8" height="11.2" rx="1.3" stroke="currentColor" stroke-width="1.25"/>
-        <path d="M9.6 2.4v11.2" stroke="currentColor" stroke-width="1.25"/>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <rect x="1.7" y="2.5" width="12.6" height="11" rx="1.4" stroke="currentColor" stroke-width="1.3"/>
+        <path d="M9.5 2.5v11" stroke="currentColor" stroke-width="1.3"/>
       </svg>
     </button>
     <button class="tool" id="btnFull" title="Tam ekran">
-      <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
-        <path d="M2.2 5.8V2.6h3.2M13.8 5.8V2.6h-3.2M2.2 10.2v3.2h3.2M13.8 10.2v3.2h-3.2" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M2.3 5.9V2.7h3.2M13.7 5.9V2.7h-3.2M2.3 10.1v3.2h3.2M13.7 10.1v3.2h-3.2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </button>
   </div>
@@ -55,56 +55,60 @@
 <!-- ═══ XƏRİTƏ ═══ -->
 <div id="viewDiv"></div>
 
-<!-- ═══ PANEL (sağ yuxarı) ═══ -->
+<!-- ═══ PANEL ═══ -->
 <aside class="panel" id="panel">
 
-  <div class="panel-top">
-    <span class="panel-title">Təbəqələr</span>
-    <button class="panel-x" id="panelX" aria-label="Bağla">
-      <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
-        <path d="M3.2 3.2l7.6 7.6M10.8 3.2l-7.6 7.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+  <div class="p-head">
+    <div class="p-title">
+      <span class="p-dot"></span>
+      Təbəqələr
+    </div>
+    <button class="p-x" id="panelX" aria-label="Bağla">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <path d="M3.4 3.4l7.2 7.2M10.6 3.4l-7.2 7.2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
       </svg>
     </button>
   </div>
 
-  <section class="src" id="srcL">
-    <header class="src-top">
-      <span class="src-bar"></span>
-      <div class="src-id">
-        <span class="src-name" id="nameL">—</span>
-        <span class="src-meta" id="metaL">—</span>
+  <div class="p-body">
+
+    <section class="grp" id="grpL">
+      <div class="grp-head">
+        <div class="grp-id">
+          <div class="grp-name" id="nameL">—</div>
+          <div class="grp-meta" id="metaL">—</div>
+        </div>
+        <button class="sw" id="visL" aria-label="Görünürlük"></button>
       </div>
-      <button class="vis" id="visL" aria-label="Görünürlük"></button>
-    </header>
-    <div class="opts" id="optsL"></div>
-  </section>
+      <div class="opts" id="optsL"></div>
+    </section>
 
-  <section class="src" id="srcR">
-    <header class="src-top">
-      <span class="src-bar"></span>
-      <div class="src-id">
-        <span class="src-name" id="nameR">—</span>
-        <span class="src-meta" id="metaR">—</span>
+    <section class="grp" id="grpR">
+      <div class="grp-head">
+        <div class="grp-id">
+          <div class="grp-name" id="nameR">—</div>
+          <div class="grp-meta" id="metaR">—</div>
+        </div>
+        <button class="sw" id="visR" aria-label="Görünürlük"></button>
       </div>
-      <button class="vis" id="visR" aria-label="Görünürlük"></button>
-    </header>
-    <div class="opts" id="optsR"></div>
-  </section>
+      <div class="opts" id="optsR"></div>
+    </section>
 
-  <section class="base">
-    <div class="base-lbl">Altlıq xəritə</div>
-    <div class="base-row" id="baseRow"></div>
-  </section>
+    <section class="grp grp-base">
+      <div class="grp-label">Altlıq xəritə</div>
+      <div class="chips" id="baseRow"></div>
+    </section>
 
+  </div>
 </aside>
 
 <!-- ═══ YÜKLƏNMƏ ═══ -->
 <div class="load" id="load">
   <div class="load-in">
     <div class="load-spin">
-      <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
-        <circle cx="15" cy="15" r="13" stroke="currentColor" stroke-width="1.6" opacity=".14"/>
-        <path d="M15 2a13 13 0 0113 13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="1.7" opacity=".16"/>
+        <path d="M16 2a14 14 0 0114 14" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
       </svg>
     </div>
     <div class="load-t" id="loadT">Yüklənir</div>
