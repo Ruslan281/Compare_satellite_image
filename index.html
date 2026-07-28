@@ -1,118 +1,110 @@
 <!DOCTYPE html>
 <html lang="az">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>GeoSlice</title>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>GeoSlice</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 
-  <!-- ArcGIS Maps SDK for JavaScript -->
-  <link rel="stylesheet" href="https://js.arcgis.com/4.30/esri/themes/light/main.css"/>
-  <script src="https://js.arcgis.com/4.30/"></script>
+<link rel="stylesheet" href="https://js.arcgis.com/4.30/esri/themes/light/main.css"/>
+<script src="https://js.arcgis.com/4.30/"></script>
 
-  <link rel="stylesheet" href="css/style.css"/>
+<link rel="stylesheet" href="css/style.css"/>
 </head>
 <body>
 
-  <!-- ══ HEADER ══════════════════════════════════ -->
-  <header class="header">
-    <div class="header-brand">
-      <div class="brand-icon">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-          <rect x="1" y="1" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/>
-          <line x1="10" y1="1" x2="10" y2="19" stroke="currentColor" stroke-width="1.5"/>
-          <circle cx="10" cy="10" r="2.5" fill="currentColor"/>
-        </svg>
-      </div>
-      <span class="brand-name">GeoSlice</span>
-    </div>
-
-    <div class="header-coords">
-      <span class="coord-item"><span class="coord-key">LAT</span><span class="coord-val" id="cLat">—</span></span>
-      <span class="coord-divider"></span>
-      <span class="coord-item"><span class="coord-key">LON</span><span class="coord-val" id="cLon">—</span></span>
-      <span class="coord-divider"></span>
-      <span class="coord-item"><span class="coord-key">Z</span><span class="coord-val" id="cZoom">—</span></span>
-    </div>
-
-    <div class="header-actions">
-      <button class="hbtn" id="btnHome" title="Görüntüyə qayıt">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <path d="M2 6.5L8 2l6 4.5V14a1 1 0 01-1 1H3a1 1 0 01-1-1V6.5z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
-        </svg>
-      </button>
-      <button class="hbtn" id="btnBasemap" title="Altlıq xəritə">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <rect x="1" y="1" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.4"/>
-          <rect x="9" y="1" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.4"/>
-          <rect x="1" y="9" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.4"/>
-          <rect x="9" y="9" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.4"/>
-        </svg>
-      </button>
-      <button class="hbtn" id="btnFullscreen" title="Tam ekran">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <path d="M1 1h4M1 1v4M15 1h-4M15 1v4M1 15h4M1 15v-4M15 15h-4M15 15v-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
-        </svg>
-      </button>
-    </div>
-  </header>
-
-  <!-- ══ LAYER PANEL ══════════════════════════════ -->
-  <aside class="panel" id="layerPanel">
-    <div class="panel-head">
-      <span class="panel-title">Laylar</span>
-      <button class="panel-close" id="panelClose">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-          <path d="M3 3l8 8M11 3l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
-      </button>
-    </div>
-
-    <div class="panel-body">
-      <div class="panel-section">
-        <div class="section-label">Sol görüntü</div>
-        <div class="layer-list" id="leftLayers"></div>
-      </div>
-
-      <div class="panel-section">
-        <div class="section-label">Sağ görüntü</div>
-        <div class="layer-list" id="rightLayers"></div>
-      </div>
-
-      <div class="panel-section">
-        <div class="section-label">Altlıq xəritə</div>
-        <div class="layer-list" id="basemapList"></div>
-      </div>
-    </div>
-  </aside>
-
-  <button class="panel-open-btn" id="panelOpenBtn" style="display:none">
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-      <rect x="1" y="3" width="14" height="1.5" rx=".75" fill="currentColor"/>
-      <rect x="1" y="7.25" width="14" height="1.5" rx=".75" fill="currentColor"/>
-      <rect x="1" y="11.5" width="14" height="1.5" rx=".75" fill="currentColor"/>
+<!-- ══════ HEADER ══════ -->
+<header class="hdr">
+  <div class="hdr-brand">
+    <svg class="mark" width="18" height="18" viewBox="0 0 18 18" fill="none">
+      <rect x="1" y="1" width="16" height="16" rx="1.5" stroke="currentColor" stroke-width="1.3"/>
+      <path d="M9 1v16" stroke="currentColor" stroke-width="1.3"/>
+      <path d="M1 9h16" stroke="currentColor" stroke-width="1.3" stroke-dasharray="2 2"/>
     </svg>
-  </button>
-
-  <!-- ══ XƏRİTƏ ═══════════════════════════════════ -->
-  <div id="viewDiv"></div>
-
-  <!-- Yan etiketlər -->
-  <div class="map-badge left-badge"  id="leftBadge">Sol</div>
-  <div class="map-badge right-badge" id="rightBadge">Sağ</div>
-
-  <!-- ══ LOADING ══════════════════════════════════ -->
-  <div class="loading" id="loading">
-    <div class="loading-box">
-      <div class="loading-ring"></div>
-      <div class="loading-label" id="loadingLabel">Yüklənir…</div>
-      <div class="loading-sub" id="loadingSub">COG faylı oxunur</div>
-    </div>
+    <span class="wordmark">GeoSlice</span>
   </div>
 
-  <script src="js/config.js"></script>
-  <script src="js/app.js"></script>
+  <div class="hdr-readout">
+    <span class="ro"><i>φ</i><b id="cLat">—</b></span>
+    <span class="ro"><i>λ</i><b id="cLon">—</b></span>
+    <span class="ro"><i>z</i><b id="cZoom">—</b></span>
+  </div>
+
+  <div class="hdr-tools">
+    <button class="tool" id="btnHome" title="Görüntüyə qayıt">
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
+        <path d="M2.5 6.8L8 2.5l5.5 4.3V13a.8.8 0 01-.8.8H3.3a.8.8 0 01-.8-.8V6.8z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    <button class="tool" id="btnPanel" title="Panel">
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
+        <rect x="2" y="2" width="12" height="12" rx="1.5" stroke="currentColor" stroke-width="1.3"/>
+        <path d="M2 6.5h12" stroke="currentColor" stroke-width="1.3"/>
+      </svg>
+    </button>
+    <button class="tool" id="btnFull" title="Tam ekran">
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
+        <path d="M2 5.5V2.5h3M14 5.5V2.5h-3M2 10.5v3h3M14 10.5v3h-3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<!-- ══════ XƏRİTƏ ══════ -->
+<div id="viewDiv"></div>
+
+<!-- Yan nişanlar -->
+<div class="tag tag-l" id="tagL">—</div>
+<div class="tag tag-r" id="tagR">—</div>
+
+<!-- ══════ NƏZARƏT KARTI ══════ -->
+<section class="ctrl" id="ctrl">
+
+  <div class="ctrl-row">
+    <div class="ctrl-head">
+      <span class="ctrl-label">Sol</span>
+      <button class="eye" id="eyeL" title="Görünürlük"></button>
+    </div>
+    <div class="seg" id="segL"></div>
+  </div>
+
+  <div class="ctrl-row">
+    <div class="ctrl-head">
+      <span class="ctrl-label">Sağ</span>
+      <button class="eye" id="eyeR" title="Görünürlük"></button>
+    </div>
+    <div class="seg" id="segR"></div>
+  </div>
+
+  <div class="ctrl-rule"></div>
+
+  <div class="ctrl-row">
+    <div class="ctrl-head">
+      <span class="ctrl-label">Altlıq</span>
+    </div>
+    <div class="chips" id="chipsBase"></div>
+  </div>
+
+</section>
+
+<!-- ══════ YÜKLƏNMƏ ══════ -->
+<div class="load" id="load">
+  <div class="load-inner">
+    <div class="load-mark">
+      <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
+        <circle cx="17" cy="17" r="15" stroke="currentColor" stroke-width="1.5" opacity=".15"/>
+        <path d="M17 2a15 15 0 0115 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="load-t" id="loadT">Servis açılır</div>
+    <div class="load-s" id="loadS">ArcGIS Online</div>
+  </div>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>
