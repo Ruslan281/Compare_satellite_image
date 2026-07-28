@@ -1,100 +1,110 @@
 /**
- * config.js — YALNIZ BU FAYЛИ DƏYİŞ
- * ════════════════════════════════════════════════════
+ * config.js — KONFİQURASİYA
+ * ══════════════════════════════════════════════════════
+ * Yalnız bu faylı dəyiş.
  *
- * src       — COG faylının URL-i
- * bandIds   — göstəriləcək bandlar, 0-dan başlayır!
- *               RGB (1,2,3 bandları) → [0, 1, 2]
- *               Tək band            → [0]
- * stretch   — "percent-clip" | "min-max" | "standard-deviation" | "none"
- *               percent-clip ən yaxşı nəticə verir (avtomatik parlaqlıq)
- * default   — true olan lay başlanğıcda aktiv olur
- * ════════════════════════════════════════════════════
+ * Hər lay üçün:
+ *   id       — unikal ad
+ *   label    — seqment düyməsində görünən qısa ad (2-5 hərf yaxşıdır)
+ *   url      — ArcGIS Online ImageServer URL-i
+ *   tag      — xəritənin yuxarısındakı nişan mətni
+ *   default  — true olan lay başlanğıcda açılır
+ *
+ * İSTƏYƏ GÖRƏ:
+ *   renderer — verilməzsə servisin öz görünüşü işlədilir (tövsiyə)
+ *              NDVI kimi tək bandlı laylar üçün rəng rampası verilir
+ *   bandIds  — verilməzsə servisin öz band sırası işlədilir
+ * ══════════════════════════════════════════════════════
  */
 
-// Repo bazası — GitHub Pages üçün nisbi yol
-const BASE = "assets/";
+// NDVI üçün rəng rampası: qonur → sarı → yaşıl
+const NDVI_RENDERER = {
+  type: "raster-stretch",
+  stretchType: "percent-clip",
+  minPercent: 2,
+  maxPercent: 2,
+  dynamicRangeAdjustment: true,
+  colorRamp: {
+    type: "multipart",
+    colorRamps: [
+      { type: "algorithmic", fromColor: [166,  97,  26], toColor: [242, 238, 197], algorithm: "hsv" },
+      { type: "algorithmic", fromColor: [242, 238, 197], toColor: [ 20, 110,  52], algorithm: "hsv" },
+    ],
+  },
+};
 
 const LAYERS = {
 
   left: [
     {
-      id:      "left_tci",
-      label:   "TCI — True Color",
-      src:     BASE + "left_TCI_web.tif",
-      bandIds: [0, 1, 2],
-      stretch: "percent-clip",
-      badge:   "Əvvəl · TCI",
-      meta:    "RGB",
+      id:      "l_tci",
+      label:   "TCI",
+      url:     "https://tiledimageservices8.arcgis.com/ZfW6BM2PrMRnWp6w/arcgis/rest/services/left_tci/ImageServer",
+      tag:     "Əvvəl · True Color",
       default: true,
     },
     {
-      id:      "left_irp",
-      label:   "IRP — İnfraqırmızı",
-      src:     BASE + "left_IRP_web.tif",
-      bandIds: [0, 1, 2],
-      stretch: "percent-clip",
-      badge:   "Əvvəl · IRP",
-      meta:    "NIR",
-      default: false,
+      id:      "l_irp",
+      label:   "IRP",
+      url:     "https://tiledimageservices8.arcgis.com/ZfW6BM2PrMRnWp6w/arcgis/rest/services/left_irp/ImageServer",
+      tag:     "Əvvəl · İnfraqırmızı",
     },
     {
-      id:      "left_ndvi",
-      label:   "NDVI",
-      src:     BASE + "left_NDVI_web.tif",
-      bandIds: [0],
-      stretch: "percent-clip",
-      colorRamp: "ndvi",
-      badge:   "Əvvəl · NDVI",
-      meta:    "Bitki",
-      default: false,
+      id:       "l_ndvi",
+      label:    "NDVI",
+      url:      "https://tiledimageservices8.arcgis.com/ZfW6BM2PrMRnWp6w/arcgis/rest/services/left_ndvi/ImageServer",
+      tag:      "Əvvəl · NDVI",
+      renderer: NDVI_RENDERER,
+      bandIds:  [0],
     },
   ],
 
   right: [
     {
-      id:      "right_tci",
-      label:   "TCI — True Color",
-      src:     BASE + "right_TCI_web.tif",
-      bandIds: [0, 1, 2],
-      stretch: "percent-clip",
-      badge:   "Sonra · TCI",
-      meta:    "RGB",
+      id:      "r_tci",
+      label:   "TCI",
+      url:     "https://tiledimageservices8.arcgis.com/ZfW6BM2PrMRnWp6w/arcgis/rest/services/right_tci/ImageServer",
+      tag:     "Sonra · True Color",
       default: true,
     },
     {
-      id:      "right_irp",
-      label:   "IRP — İnfraqırmızı",
-      src:     BASE + "right_IRP_web.tif",
-      bandIds: [0, 1, 2],
-      stretch: "percent-clip",
-      badge:   "Sonra · IRP",
-      meta:    "NIR",
-      default: false,
+      id:      "r_irp",
+      label:   "IRP",
+      url:     "https://tiledimageservices8.arcgis.com/ZfW6BM2PrMRnWp6w/arcgis/rest/services/right_irp/ImageServer",
+      tag:     "Sonra · İnfraqırmızı",
     },
     {
-      id:      "right_ndvi",
-      label:   "NDVI",
-      src:     BASE + "right_NDVI_web.tif",
-      bandIds: [0],
-      stretch: "percent-clip",
-      colorRamp: "ndvi",
-      badge:   "Sonra · NDVI",
-      meta:    "Bitki",
-      default: false,
+      id:       "r_ndvi",
+      label:    "NDVI",
+      url:      "https://tiledimageservices8.arcgis.com/ZfW6BM2PrMRnWp6w/arcgis/rest/services/right_ndvi/ImageServer",
+      tag:      "Sonra · NDVI",
+      renderer: NDVI_RENDERER,
+      bandIds:  [0],
     },
   ],
+
 };
 
-// ── Altlıq xəritələr ─────────────────────────────────
+// ── Altlıq xəritələr ──────────────────────────────────
 const BASEMAPS = [
-  { id: "satellite",         label: "Satellite" },
-  { id: "hybrid",            label: "Hybrid" },
-  { id: "topo-vector",       label: "Topoqrafik" },
-  { id: "gray-vector",       label: "Boz" },
+  { id: "satellite",   label: "Peyk" },
+  { id: "hybrid",      label: "Hibrid" },
+  { id: "topo-vector", label: "Topo" },
+  { id: "gray-vector", label: "Boz" },
 ];
 
-const DEFAULT_BASEMAP = "satellite";
+const BASEMAP_DEFAULT = "gray-vector";
 
-// Başlanğıc altlıq xəritə görünsünmü
-const BASEMAP_VISIBLE_ON_START = false;
+// Altlıq başlanğıcda görünsünmü
+const BASEMAP_ON_START = false;
+
+// ── Görünüş ───────────────────────────────────────────
+// Görüntü ekranı nə qədər doldursun.
+// Kənarlarda boşluq qalırsa artır: 1.25 · 1.35 · 1.5
+const COVER_ZOOM = 1.18;
+
+// Başlanğıc miqyasdan geri zoom etmək olmasın
+const LOCK_ZOOM_OUT = true;
+
+// Görüntünün sərhədindən kənara sürüşdürmək olmasın
+const LOCK_PAN = true;
