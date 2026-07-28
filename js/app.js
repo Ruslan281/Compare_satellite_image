@@ -1,34 +1,34 @@
 /**
- * app.js — GeoSlice (ArcGIS Maps SDK)
- * ════════════════════════════════════════════════
- * Minimal modul siyahısı + görünən xəta mesajları
- * ════════════════════════════════════════════════
+ * app.js — GeoSlice
+ * ══════════════════════════════════════════════
+ * ArcGIS Maps SDK · ImageryTileLayer · Swipe
+ * Konfiqurasiya config.js faylındadır.
+ * ══════════════════════════════════════════════
  */
 
-// ── Xəta ekranda göstər ────────────────────────
-function showError(title, detail) {
-  const box = document.getElementById("loading");
-  box.classList.remove("hidden");
-  box.innerHTML = `
-    <div class="loading-box" style="max-width:520px;text-align:left">
-      <div style="font-size:15px;font-weight:600;color:#B4351E;margin-bottom:8px">${title}</div>
-      <div style="font-size:12px;font-family:var(--mono);color:var(--ink-2);
-                  background:var(--white);border:1px solid var(--border);
-                  border-radius:8px;padding:12px;white-space:pre-wrap;
-                  max-height:300px;overflow:auto">${detail}</div>
+/* ── Xəta ekranı ──────────────────────────── */
+function fail(title, detail) {
+  const el = document.getElementById("load");
+  el.classList.remove("hide");
+  el.classList.add("err");
+  el.innerHTML = `
+    <div class="load-inner">
+      <div class="load-mark">
+        <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
+          <circle cx="17" cy="17" r="15" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M17 10v9M17 23.5v.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="load-t">${title}</div>
+      <div class="err-box">${detail}</div>
     </div>`;
 }
 
-// Yükləmə çox uzun sürərsə xəbərdarlıq
-const stuckTimer = setTimeout(() => {
-  const l = document.getElementById("loading");
-  if (l && !l.classList.contains("hidden")) {
-    document.getElementById("loadingSub").textContent =
-      "Uzun çəkir… F12 → Console-a baxın";
-  }
-}, 15000);
+window.addEventListener("unhandledrejection", e => {
+  console.error("Promise xətası:", e.reason);
+});
 
-// ── AMD modulları ──────────────────────────────
+/* ── AMD ──────────────────────────────────── */
 require([
   "esri/Map",
   "esri/views/MapView",
@@ -36,363 +36,297 @@ require([
   "esri/widgets/Swipe",
 ], function (Map, MapView, ImageryTileLayer, Swipe) {
 
-  // ── State ────────────────────────────────────
-  const state = {
-    left:  { activeId: LAYERS.left.find(l => l.default)?.id  || LAYERS.left[0].id,  visible: true, layer: null },
-    right: { activeId: LAYERS.right.find(l => l.default)?.id || LAYERS.right[0].id, visible: true, layer: null },
+  /* ── Vəziyyət ───────────────────────────── */
+  const S = {
+    left:  { id: pick("left"),  on: true, layer: null },
+    right: { id: pick("right"), on: true, layer: null },
   };
-
-  let activeBasemap  = DEFAULT_BASEMAP;
-  let basemapVisible = BASEMAP_VISIBLE_ON_START;
-  let swipe          = null;
-  let fittedOnce     = false;
-
-  // ── Xəritə ───────────────────────────────────
-  // Xəritə HƏMİŞƏ basemap ilə yaradılır — view-in hazır olması üçün vacibdir
-  const map = new Map({
-    basemap: activeBasemap,
-  });
-
-  const view = new MapView({
-    container: "viewDiv",
-    map: map,
-    ui: { components: ["zoom", "attribution"] },
-    center: [48.88, 39.80],
-    zoom: 11,
-    spatialReference: { wkid: 3857 },   // açıq SR — view mütləq hazır olur
-    constraints: { snapToZoom: true },   // overview səviyyələrinə yapış — çox sürətli
-  });
-
-  // Basemap görünürlüyünü layer səviyyəsində idarə et (map.basemap = null ETMƏ!)
-  function setBasemapVisible(vis) {
-    if (!map.basemap) return;
-    map.basemap.baseLayers.forEach(l => l.visible = vis);
-    map.basemap.referenceLayers?.forEach(l => l.visible = vis);
+  function pick(side) {
+    return (LAYERS[side].find(l => l.default) || LAYERS[side][0]).id;
+  }
+  function cfgOf(side) {
+    return LAYERS[side].find(l => l.id === S[side].id);
   }
 
-  // ── Görüntünü EKRANI TAM DOLDURACAQ şəkildə yerləşdir ──
-  // "sığdır" (contain) əvəzinə "doldur" (cover) rejimi.
-  // COVER_ZOOM > 1 olduqca daha çox yaxınlaşır — kənarlarda boşluq qalmır.
-  // Kənarda hələ boşluq görünürsə bu ədədi artır (1.25, 1.35 …)
-  const COVER_ZOOM = 1.18;
+  let baseId    = BASEMAP_DEFAULT;
+  let baseOn    = BASEMAP_ON_START;
+  let swipe     = null;
+  let framed    = false;
 
-  async function fitCover(extent, animate) {
+  /* ── Xəritə ─────────────────────────────── */
+  const map = new Map({ basemap: baseId });
+
+  const view = new MapView({
+    container:   "viewDiv",
+    map:         map,
+    ui:          { components: ["zoom", "attribution"] },
+    center:      [48.88, 39.80],
+    zoom:        11,
+    spatialReference: { wkid: 3857 },
+    constraints: { snapToZoom: true, rotationEnabled: false },
+  });
+
+  /* ── Altlıq görünürlüyü ─────────────────── */
+  function paintBase(on) {
+    if (!map.basemap) return;
+    map.basemap.baseLayers.forEach(l => l.visible = on);
+    map.basemap.referenceLayers?.forEach(l => l.visible = on);
+  }
+
+  /* ── Ekranı doldur ──────────────────────── */
+  async function frame(extent, animate) {
     if (!extent || !view.width || !view.height) return;
 
-    const viewAspect  = view.width / view.height;
-    const imageAspect = extent.width / extent.height;
+    const va = view.width / view.height;
+    const ia = extent.width / extent.height;
 
     let w, h;
-    if (imageAspect > viewAspect) {
-      h = extent.height;
-      w = h * viewAspect;
-    } else {
-      w = extent.width;
-      h = w / viewAspect;
-    }
+    if (ia > va) { h = extent.height; w = h * va; }
+    else         { w = extent.width;  h = w / va; }
 
-    // Sahəni kiçilt → xəritə daha çox yaxınlaşır → boşluq qalmır
     w /= COVER_ZOOM;
     h /= COVER_ZOOM;
 
     const cx = (extent.xmin + extent.xmax) / 2;
     const cy = (extent.ymin + extent.ymax) / 2;
 
-    const target = extent.clone();
-    target.xmin = cx - w / 2;
-    target.xmax = cx + w / 2;
-    target.ymin = cy - h / 2;
-    target.ymax = cy + h / 2;
+    const t = extent.clone();
+    t.xmin = cx - w/2;  t.xmax = cx + w/2;
+    t.ymin = cy - h/2;  t.ymax = cy + h/2;
 
-    // Kilidi müvəqqəti aç ki, goTo sərbəst işləsin
     view.constraints.minScale = 0;
+    await view.goTo(t, { animate: !!animate });
 
-    await view.goTo(target, { animate: !!animate });
-
-    // ── ZOOM OUT KİLİDİ ──
-    // Bu miqyasdan daha uzağa çıxmaq olmaz
-    view.constraints.minScale = view.scale;
-
-    // Pan sərhədini qur
-    updatePanBounds();
+    if (LOCK_ZOOM_OUT) view.constraints.minScale = view.scale;
+    if (LOCK_PAN)      bindPan();
   }
 
-  // ── PAN MƏHDUDİYYƏTİ ──────────────────────────
-  // Xəritəni görüntünün kənarından kənara sürükləmək olmaz.
-  // Sərhəd zoom səviyyəsinə görə dinamik hesablanır:
-  // mərkəz elə yerə qədər gedə bilir ki, ekranın kənarı
-  // görüntünün kənarına çatsın — o vaxt dayanır.
-  function updatePanBounds() {
-    const ext = state.left.layer?.fullExtent;
+  /* ── Pan sərhədi ────────────────────────── */
+  function bindPan() {
+    const ext = S.left.layer?.fullExtent;
     if (!ext || !view.extent) return;
 
-    const halfW = view.extent.width  / 2;
-    const halfH = view.extent.height / 2;
+    const hw = view.extent.width  / 2;
+    const hh = view.extent.height / 2;
     const cx = (ext.xmin + ext.xmax) / 2;
     const cy = (ext.ymin + ext.ymax) / 2;
 
     const g = ext.clone();
-    g.xmin = Math.min(ext.xmin + halfW, cx);
-    g.xmax = Math.max(ext.xmax - halfW, cx);
-    g.ymin = Math.min(ext.ymin + halfH, cy);
-    g.ymax = Math.max(ext.ymax - halfH, cy);
+    g.xmin = Math.min(ext.xmin + hw, cx);
+    g.xmax = Math.max(ext.xmax - hw, cx);
+    g.ymin = Math.min(ext.ymin + hh, cy);
+    g.ymax = Math.max(ext.ymax - hh, cy);
 
     view.constraints.geometry = g;
   }
+  view.watch("scale", () => { if (LOCK_PAN) bindPan(); });
 
-  // Zoom dəyişdikcə sərhədi yenilə
-  view.watch("scale", () => updatePanBounds());
+  /* ── Lay yüklə ──────────────────────────── */
+  async function mount(side) {
+    const st  = S[side];
+    const cfg = cfgOf(side);
 
-  // Başlanğıc vəziyyət
-  view.when(() => setBasemapVisible(basemapVisible));
+    loading(true, cfg.tag || cfg.label, "servis oxunur");
 
-  // ── NDVI rəng rampası — autocast (modul lazım deyil) ──
-  const NDVI_RAMP = {
-    type: "multipart",
-    colorRamps: [
-      { type: "algorithmic", fromColor: [166,  97,  26], toColor: [245, 245, 200], algorithm: "hsv" },
-      { type: "algorithmic", fromColor: [245, 245, 200], toColor: [ 26, 120,  50], algorithm: "hsv" },
-    ],
-  };
+    if (st.layer) { map.remove(st.layer); st.layer = null; }
 
-  // ── Lay qur ──────────────────────────────────
-  function buildLayer(cfg) {
-    const renderer = {
-      type: "raster-stretch",
-      stretchType: cfg.stretch || "percent-clip",
-      dynamicRangeAdjustment: true,
-      minPercent: 0.5,
-      maxPercent: 0.5,
-    };
-    if (cfg.colorRamp === "ndvi") renderer.colorRamp = NDVI_RAMP;
+    const opts = { url: cfg.url, title: cfg.label, opacity: 1 };
+    if (cfg.renderer) opts.renderer = cfg.renderer;
+    if (cfg.bandIds)  opts.bandIds  = cfg.bandIds;
 
-    return new ImageryTileLayer({
-      url:           cfg.src,
-      bandIds:       cfg.bandIds,
-      renderer:      renderer,
-      title:         cfg.label,
-      opacity:       1,
-      interpolation: "nearest",   // "bilinear"-dan sürətlidir
-      blendMode:     "normal",
-    });
-  }
-
-  // ── Lay yüklə ────────────────────────────────
-  async function loadLayer(side) {
-    const s   = state[side];
-    const cfg = LAYERS[side].find(l => l.id === s.activeId);
-
-    setLoading(true, cfg.label, cfg.src.split("/").pop());
-
-    if (s.layer) { map.remove(s.layer); s.layer = null; }
-
-    const layer = buildLayer(cfg);
-    s.layer = layer;
+    const layer = new ImageryTileLayer(opts);
+    st.layer = layer;
     map.add(layer, side === "left" ? 0 : 1);
-    layer.visible = s.visible;
+    layer.visible = st.on;
 
     try {
       await layer.load();
       await view.whenLayerView(layer);
-
-      if (!fittedOnce && layer.fullExtent) {
-        await fitCover(layer.fullExtent, false);
-        fittedOnce = true;
+      if (!framed && layer.fullExtent) {
+        await frame(layer.fullExtent, false);
+        framed = true;
       }
     } catch (err) {
-      console.error("Lay yüklənmədi:", cfg.src, err);
-      showError(
-        "Lay yüklənmədi: " + cfg.label,
-        "URL: " + cfg.src + "\n\n" +
-        (err?.message || err) + "\n\n" +
-        (err?.details ? JSON.stringify(err.details, null, 2) : "")
+      const m = err?.message || String(err);
+      const auth = /token|auth|403|permission|not authorized/i.test(m);
+      fail(
+        auth ? "Servis public deyil" : "Servis açılmadı",
+        (auth
+          ? "Bu lay ArcGIS Online-da 'Everyone (public)' kimi paylaşılmayıb.\n" +
+            "Lay səhifəsi → Share → Everyone → yadda saxla.\n\n"
+          : "") +
+        "URL:\n" + cfg.url + "\n\n" + m
       );
       return;
     }
 
-    document.getElementById(side === "left" ? "leftBadge" : "rightBadge")
-            .textContent = cfg.badge || "";
+    document.getElementById(side === "left" ? "tagL" : "tagR").textContent = cfg.tag || cfg.label;
 
-    setupSwipe();
-    setLoading(false);
-    renderPanel();
+    joinSwipe();
+    loading(false);
+    draw();
   }
 
-  // ── Swipe ────────────────────────────────────
-  function setupSwipe() {
-    if (!state.left.layer || !state.right.layer) return;
+  /* ── Swipe ──────────────────────────────── */
+  function joinSwipe() {
+    if (!S.left.layer || !S.right.layer) return;
 
     if (swipe) {
       swipe.leadingLayers.removeAll();
       swipe.trailingLayers.removeAll();
-      swipe.leadingLayers.add(state.left.layer);
-      swipe.trailingLayers.add(state.right.layer);
+      swipe.leadingLayers.add(S.left.layer);
+      swipe.trailingLayers.add(S.right.layer);
       return;
     }
 
     swipe = new Swipe({
-      view: view,
-      leadingLayers:  [state.left.layer],
-      trailingLayers: [state.right.layer],
+      view,
+      leadingLayers:  [S.left.layer],
+      trailingLayers: [S.right.layer],
       position: 50,
       direction: "horizontal",
     });
     view.ui.add(swipe);
 
-    swipe.watch("position", pos => {
-      const b = document.getElementById("rightBadge");
-      b.style.left = `calc(${pos}% + 20px)`;
-      b.style.transform = "none";
+    swipe.watch("position", p => {
+      const t = document.getElementById("tagR");
+      t.style.left = p + "%";
     });
   }
 
-  // ── Panel ────────────────────────────────────
-  const eyeOn  = `<svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M1 8s2.5-5 7-5 7 5 7 5-2.5 5-7 5-7-5-7-5z" stroke="currentColor" stroke-width="1.4"/><circle cx="8" cy="8" r="2.5" stroke="currentColor" stroke-width="1.4"/></svg>`;
-  const eyeOff = `<svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M2 2l12 12M1 8s2.5-5 7-5M15 8s-1 2-3 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>`;
+  /* ── İnterfeys ──────────────────────────── */
+  const EYE_ON  = `<svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M1.3 8S3.9 3.4 8 3.4 14.7 8 14.7 8 12.1 12.6 8 12.6 1.3 8 1.3 8z" stroke="currentColor" stroke-width="1.25"/><circle cx="8" cy="8" r="2.2" stroke="currentColor" stroke-width="1.25"/></svg>`;
+  const EYE_OFF = `<svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M2.4 2.4l11.2 11.2" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/><path d="M6.3 6.5A2.2 2.2 0 009.5 9.6M1.3 8S3.9 3.4 8 3.4c.9 0 1.8.2 2.5.6M14.7 8s-.9 1.6-2.4 2.9" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/></svg>`;
 
-  function renderPanel() {
-    renderSide("left",  "leftLayers");
-    renderSide("right", "rightLayers");
-    renderBasemaps();
+  function draw() {
+    side("left",  "segL", "eyeL");
+    side("right", "segR", "eyeR");
+    chips();
   }
 
-  function renderSide(side, listId) {
-    const el = document.getElementById(listId);
-    const s  = state[side];
-    el.innerHTML = "";
+  function side(which, segId, eyeId) {
+    const st  = S[which];
+    const seg = document.getElementById(segId);
+    const eye = document.getElementById(eyeId);
 
-    const toggle = document.createElement("button");
-    toggle.className = "visibility-btn " + (s.visible ? "on" : "off");
-    toggle.innerHTML = (s.visible ? eyeOn : eyeOff) + (s.visible ? " Görünür" : " Gizli");
-    toggle.addEventListener("click", () => {
-      s.visible = !s.visible;
-      if (s.layer) s.layer.visible = s.visible;
-      renderSide(side, listId);
-    });
-    el.appendChild(toggle);
+    seg.innerHTML = "";
+    seg.classList.toggle("dim", !st.on);
 
-    LAYERS[side].forEach(cfg => {
-      const btn = document.createElement("button");
-      btn.className = "layer-btn" + (cfg.id === s.activeId ? " active" : "");
-      btn.innerHTML = `
-        <span class="layer-dot"></span>
-        <span>${cfg.label}</span>
-        ${cfg.meta ? `<span class="layer-meta">${cfg.meta}</span>` : ""}`;
-      btn.addEventListener("click", () => {
-        if (cfg.id === s.activeId) return;
-        s.activeId = cfg.id;
-        s.visible  = true;
-        renderSide(side, listId);
-        loadLayer(side);
-      });
-      el.appendChild(btn);
+    LAYERS[which].forEach(cfg => {
+      const b = document.createElement("button");
+      b.textContent = cfg.label;
+      b.className = cfg.id === st.id ? "on" : "";
+      b.onclick = () => {
+        if (cfg.id === st.id) return;
+        st.id = cfg.id;
+        st.on = true;
+        draw();
+        mount(which);
+      };
+      seg.appendChild(b);
     });
+
+    eye.innerHTML = st.on ? EYE_ON : EYE_OFF;
+    eye.className = "eye" + (st.on ? " on" : "");
+    eye.onclick = () => {
+      st.on = !st.on;
+      if (st.layer) st.layer.visible = st.on;
+      draw();
+    };
   }
 
-  function renderBasemaps() {
-    const el = document.getElementById("basemapList");
-    el.innerHTML = "";
+  function chips() {
+    const box = document.getElementById("chipsBase");
+    box.innerHTML = "";
 
-    const toggle = document.createElement("button");
-    toggle.className = "visibility-btn " + (basemapVisible ? "on" : "off");
-    toggle.innerHTML = (basemapVisible ? eyeOn : eyeOff) + (basemapVisible ? " Görünür" : " Gizli");
-    toggle.addEventListener("click", toggleBasemap);
-    el.appendChild(toggle);
+    const off = document.createElement("button");
+    off.className = "chip" + (!baseOn ? " on" : "");
+    off.textContent = "Yoxdur";
+    off.onclick = () => { baseOn = false; paintBase(false); chips(); syncTool(); };
+    box.appendChild(off);
 
     BASEMAPS.forEach(bm => {
-      const btn = document.createElement("button");
-      btn.className = "layer-btn" + (bm.id === activeBasemap && basemapVisible ? " active" : "");
-      btn.innerHTML = `<span class="layer-dot"></span><span>${bm.label}</span>`;
-      btn.addEventListener("click", () => {
-        activeBasemap  = bm.id;
-        basemapVisible = true;
+      const c = document.createElement("button");
+      c.className = "chip" + (baseOn && bm.id === baseId ? " on" : "");
+      c.textContent = bm.label;
+      c.onclick = () => {
+        baseId = bm.id;
+        baseOn = true;
         map.basemap = bm.id;
-        view.when(() => setBasemapVisible(true));
-        updateBasemapBtn();
-        renderBasemaps();
-      });
-      el.appendChild(btn);
+        view.when(() => paintBase(true));
+        chips(); syncTool();
+      };
+      box.appendChild(c);
     });
   }
 
-  function toggleBasemap() {
-    basemapVisible = !basemapVisible;
-    setBasemapVisible(basemapVisible);
-    updateBasemapBtn();
-    renderBasemaps();
+  function syncTool() {
+    // panel düyməsi vəziyyəti nəzarət kartına bağlıdır, altlığa yox
   }
 
-  function updateBasemapBtn() {
-    document.getElementById("btnBasemap").classList.toggle("active", !basemapVisible);
-  }
-
-  // ── Koordinatlar ─────────────────────────────
-  view.on("pointer-move", evt => {
-    const pt = view.toMap({ x: evt.x, y: evt.y });
-    if (!pt) return;
-    document.getElementById("cLat").textContent = pt.latitude?.toFixed(5)  ?? "—";
-    document.getElementById("cLon").textContent = pt.longitude?.toFixed(5) ?? "—";
+  /* ── Oxunuş ─────────────────────────────── */
+  view.on("pointer-move", e => {
+    const p = view.toMap({ x: e.x, y: e.y });
+    if (!p) return;
+    document.getElementById("cLat").textContent = p.latitude?.toFixed(5)  ?? "—";
+    document.getElementById("cLon").textContent = p.longitude?.toFixed(5) ?? "—";
   });
   view.watch("zoom", z => {
     document.getElementById("cZoom").textContent = z.toFixed(1);
   });
 
-  // ── Düymələr ─────────────────────────────────
-  document.getElementById("btnHome").addEventListener("click", () => {
-    const l = state.left.layer;
-    if (l?.fullExtent) fitCover(l.fullExtent, true);
-  });
-  document.getElementById("btnBasemap").addEventListener("click", toggleBasemap);
-  document.getElementById("btnFullscreen").addEventListener("click", () => {
+  /* ── Alətlər ────────────────────────────── */
+  document.getElementById("btnHome").onclick = () => {
+    const e = S.left.layer?.fullExtent;
+    if (e) frame(e, true);
+  };
+
+  const ctrl = document.getElementById("ctrl");
+  const btnPanel = document.getElementById("btnPanel");
+  btnPanel.onclick = () => {
+    const hidden = ctrl.classList.toggle("hide");
+    btnPanel.classList.toggle("on", hidden);
+  };
+
+  document.getElementById("btnFull").onclick = () => {
     if (!document.fullscreenElement) document.documentElement.requestFullscreen?.();
     else document.exitFullscreen?.();
-  });
-  document.getElementById("panelClose").addEventListener("click", () => {
-    document.getElementById("layerPanel").classList.add("hidden");
-    document.getElementById("panelOpenBtn").style.display = "flex";
-  });
-  document.getElementById("panelOpenBtn").addEventListener("click", () => {
-    document.getElementById("layerPanel").classList.remove("hidden");
-    document.getElementById("panelOpenBtn").style.display = "none";
-  });
+  };
 
-  // Pəncərə ölçüsü dəyişəndə görüntünü yenidən doldur
-  let resizeTimer = null;
+  let rz;
   window.addEventListener("resize", () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => {
-      const l = state.left.layer;
-      if (l?.fullExtent) fitCover(l.fullExtent, false);
-    }, 250);
+    clearTimeout(rz);
+    rz = setTimeout(() => {
+      const e = S.left.layer?.fullExtent;
+      if (e) frame(e, false);
+    }, 240);
   });
 
-  function setLoading(show, label = "Yüklənir…", sub = "") {
-    const el = document.getElementById("loading");
-    const lb = document.getElementById("loadingLabel");
-    const sb = document.getElementById("loadingSub");
-    if (lb) lb.textContent = label;
-    if (sb) sb.textContent = sub;
-    el.classList.toggle("hidden", !show);
-    if (!show) clearTimeout(stuckTimer);
+  /* ── Yüklənmə ───────────────────────────── */
+  function loading(show, t = "Yüklənir", s = "") {
+    const el = document.getElementById("load");
+    const T  = document.getElementById("loadT");
+    const Sb = document.getElementById("loadS");
+    if (T)  T.textContent  = t;
+    if (Sb) Sb.textContent = s;
+    el.classList.toggle("hide", !show);
   }
 
-  // ── Başlat ───────────────────────────────────
+  /* ── Başlanğıc ──────────────────────────── */
   view.when(async () => {
-    updateBasemapBtn();
-    renderPanel();
-    await loadLayer("left");
-    await loadLayer("right");
+    paintBase(baseOn);
+    draw();
+    await mount("left");
+    await mount("right");
   }, err => {
-    showError("Xəritə açılmadı", err?.message || String(err));
+    fail("Xəritə açılmadı", err?.message || String(err));
   });
 
 },
-// ── Modul yüklənmə xətası ──────────────────────
 function (err) {
-  clearTimeout(stuckTimer);
-  showError(
+  fail(
     "ArcGIS modulu yüklənmədi",
-    "Modul: " + (err?.requireModules?.join(", ") || "naməlum") + "\n\n" +
+    "Modullar: " + (err?.requireModules?.join(", ") || "?") + "\n\n" +
     (err?.message || String(err))
   );
 });
