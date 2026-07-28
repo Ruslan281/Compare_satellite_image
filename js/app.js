@@ -13,9 +13,9 @@ function fail(title, detail) {
   el.innerHTML = `
     <div class="load-in">
       <div class="load-spin">
-        <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
-          <circle cx="15" cy="15" r="13" stroke="currentColor" stroke-width="1.6"/>
-          <path d="M15 8.5v8M15 20.5v.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="1.7"/>
+          <path d="M16 9v8.5M16 21.5v.6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
         </svg>
       </div>
       <div class="load-t">${title}</div>
@@ -23,11 +23,7 @@ function fail(title, detail) {
     </div>`;
 }
 
-/* ── Mənbə rənglərini CSS-ə ötür ──────────── */
-document.documentElement.style.setProperty("--c-left",  SOURCES.left.color);
-document.documentElement.style.setProperty("--c-right", SOURCES.right.color);
-document.getElementById("srcL").style.setProperty("--c", SOURCES.left.color);
-document.getElementById("srcR").style.setProperty("--c", SOURCES.right.color);
+/* ── Mənbə başlıqları ─────────────────────── */
 document.getElementById("nameL").textContent = SOURCES.left.name;
 document.getElementById("metaL").textContent = SOURCES.left.meta;
 document.getElementById("nameR").textContent = SOURCES.right.name;
@@ -172,22 +168,19 @@ require([
   }
 
   /* ── İnterfeys ──────────────────────────── */
-  const EYE_ON  = `<svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M1.3 8S3.9 3.5 8 3.5 14.7 8 14.7 8 12.1 12.5 8 12.5 1.3 8 1.3 8z" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="8" r="2.1" stroke="currentColor" stroke-width="1.3"/></svg>`;
-  const EYE_OFF = `<svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2.5 2.5l11 11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M6.4 6.6a2.1 2.1 0 003 3M1.3 8S3.9 3.5 8 3.5c.85 0 1.65.2 2.4.55M14.7 8s-.85 1.5-2.3 2.75" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>`;
-
   function render() {
-    part("left",  "srcL", "optsL", "visL");
-    part("right", "srcR", "optsR", "visR");
+    group("left",  "grpL", "optsL", "visL");
+    group("right", "grpR", "optsR", "visR");
     baseChips();
   }
 
-  function part(side, srcId, optsId, visId) {
-    const st   = S[side];
-    const box  = document.getElementById(optsId);
-    const vis  = document.getElementById(visId);
-    const sect = document.getElementById(srcId);
+  function group(side, grpId, optsId, swId) {
+    const st  = S[side];
+    const box = document.getElementById(optsId);
+    const sw  = document.getElementById(swId);
+    const grp = document.getElementById(grpId);
 
-    sect.classList.toggle("off", !st.on);
+    grp.classList.toggle("off", !st.on);
     box.innerHTML = "";
 
     LAYERS[side].forEach(c => {
@@ -207,9 +200,8 @@ require([
       box.appendChild(b);
     });
 
-    vis.innerHTML = st.on ? EYE_ON : EYE_OFF;
-    vis.className = "vis" + (st.on ? " on" : "");
-    vis.onclick = () => {
+    sw.className = "sw" + (st.on ? " on" : "");
+    sw.onclick = () => {
       st.on = !st.on;
       if (st.layer) st.layer.visible = st.on;
       render();
@@ -221,14 +213,14 @@ require([
     row.innerHTML = "";
 
     const off = document.createElement("button");
-    off.className = "bchip" + (!baseOn ? " on" : "");
+    off.className = "chip" + (!baseOn ? " on" : "");
     off.textContent = "Yoxdur";
     off.onclick = () => { baseOn = false; paintBase(false); baseChips(); };
     row.appendChild(off);
 
     BASEMAPS.forEach(bm => {
       const c = document.createElement("button");
-      c.className = "bchip" + (baseOn && bm.id === baseId ? " on" : "");
+      c.className = "chip" + (baseOn && bm.id === baseId ? " on" : "");
       c.textContent = bm.label;
       c.onclick = () => {
         baseId = bm.id; baseOn = true;
