@@ -3,7 +3,7 @@
  * ════════════════════════════════════════════════════
  *
  * src       — COG faylının URL-i
- * bandIds   — göstəriləcək bandlar, 0-dan başlayır!v
+ * bandIds   — göstəriləcək bandlar, 0-dan başlayır!
  *               RGB (1,2,3 bandları) → [0, 1, 2]
  *               Tək band            → [0]
  * stretch   — "percent-clip" | "min-max" | "standard-deviation" | "none"
@@ -21,7 +21,7 @@ const LAYERS = {
     {
       id:      "left_tci",
       label:   "TCI — True Color",
-      src:     BASE + "left_TCI_cog.tif",
+      src:     BASE + "left_TCI_web.tif",
       bandIds: [0, 1, 2],
       stretch: "percent-clip",
       badge:   "Əvvəl · TCI",
@@ -31,7 +31,7 @@ const LAYERS = {
     {
       id:      "left_irp",
       label:   "IRP — İnfraqırmızı",
-      src:     BASE + "left_IRP_cog.tif",
+      src:     BASE + "left_IRP_web.tif",
       bandIds: [0, 1, 2],
       stretch: "percent-clip",
       badge:   "Əvvəl · IRP",
@@ -41,7 +41,7 @@ const LAYERS = {
     {
       id:      "left_ndvi",
       label:   "NDVI",
-      src:     BASE + "left_NDVI_cog.tif",
+      src:     BASE + "left_NDVI_web.tif",
       bandIds: [0],
       stretch: "percent-clip",
       colorRamp: "ndvi",
@@ -55,7 +55,7 @@ const LAYERS = {
     {
       id:      "right_tci",
       label:   "TCI — True Color",
-      src:     BASE + "right_TCI_small.tif",
+      src:     BASE + "right_TCI_web.tif",
       bandIds: [0, 1, 2],
       stretch: "percent-clip",
       badge:   "Sonra · TCI",
@@ -65,7 +65,7 @@ const LAYERS = {
     {
       id:      "right_irp",
       label:   "IRP — İnfraqırmızı",
-      src:     BASE + "right_IRP_small.tif",
+      src:     BASE + "right_IRP_web.tif",
       bandIds: [0, 1, 2],
       stretch: "percent-clip",
       badge:   "Sonra · IRP",
@@ -75,7 +75,7 @@ const LAYERS = {
     {
       id:      "right_ndvi",
       label:   "NDVI",
-      src:     BASE + "right_NDVI_small.tif",
+      src:     BASE + "right_NDVI_web.tif",
       bandIds: [0],
       stretch: "percent-clip",
       colorRamp: "ndvi",
