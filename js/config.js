@@ -6,19 +6,16 @@
  */
 
 /* ── MƏNBƏLƏR ────────────────────────────────────────────
-   Panelin başlığında görünən mətn və hər tərəfin rəngi.
-   Rəng həm panelə, həm slice oxuna tətbiq olunur.
+   Panelin hər bölməsinin başlığı.
 ──────────────────────────────────────────────────────── */
 const SOURCES = {
   left: {
-    name:  "Sentinel-2",
-    meta:  "10 m / piksel",
-    color: "#2D6BA8",          // polad mavi
+    name: "Sentinel-2",
+    meta: "10 m / piksel",
   },
   right: {
-    name:  "Superrezolusiya",
-    meta:  "1 m / piksel",
-    color: "#C4622D",          // terrakota
+    name: "Superrezolusiya",
+    meta: "1 m / piksel",
   },
 };
 
@@ -39,8 +36,8 @@ const NDVI_RENDERER = {
 };
 
 /* ── TƏBƏQƏLƏR ───────────────────────────────────────────
-   name — tam izahat (paneldə solda)
-   abbr — qısaltma (paneldə sağda, mono şriftlə)
+   name — tam izahat
+   abbr — qısaltma (sağda mono şriftlə)
    url  — ArcGIS Online ImageServer ünvanı
 ──────────────────────────────────────────────────────── */
 const LAYERS = {
