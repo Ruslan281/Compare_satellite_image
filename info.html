@@ -3,13 +3,98 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Məlumat — GeoSolver Satellite</title>
+<title>GeoSolver 1 metr — Yüksək ayırdetməli peyk məhsulu</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 
 <link rel="stylesheet" href="css/info.css"/>
+<style>
+  /* Əlavə stillər */
+  .product-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #1a5e2a, #2d8f4a);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+  }
+
+  .highlight-box {
+    background: #f0f8f2;
+    border-left: 4px solid #1a7a3a;
+    padding: 1.2rem 1.5rem;
+    border-radius: 0 8px 8px 0;
+    margin: 1.2rem 0;
+  }
+
+  .comparison-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 1.2rem 0;
+  }
+
+  .comparison-item {
+    background: #f8f9fa;
+    padding: 1rem 1.2rem;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+    text-align: center;
+  }
+
+  .comparison-item .label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #868e96;
+  }
+
+  .comparison-item .value {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1a7a3a;
+    margin-top: 0.3rem;
+  }
+
+  .comparison-item .value.red {
+    color: #c92a2a;
+  }
+
+  .contact-block {
+    background: #f0f8f2;
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    margin: 2rem 0;
+  }
+
+  .contact-block .btn {
+    display: inline-block;
+    background: #1a7a3a;
+    color: #fff;
+    padding: 0.8rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.2s;
+  }
+
+  .contact-block .btn:hover {
+    background: #0f5a2a;
+  }
+
+  .contact-block .sub {
+    color: #495057;
+    margin-top: 0.8rem;
+    font-size: 0.9rem;
+  }
+</style>
 </head>
 <body>
 
@@ -20,7 +105,7 @@
       <img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/geosolver_logo.png" alt="GeoSolver"/>
     </a>
     <span class="brand-sep"></span>
-    <span class="brand-text">Məlumat sənədi</span>
+    <span class="brand-text">1 metrlik məhsul</span>
   </div>
   <a class="back-btn" href="index.html">
     <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
@@ -35,823 +120,335 @@
   <!-- ═══ MÜNDƏRİCAT ═══ -->
   <nav class="toc" id="toc">
     <div class="toc-lbl">Mündəricat</div>
-    <a href="#s1">Sentinel-2A missiyası</a>
-    <a href="#s2">MSI aləti və bandlar</a>
-    <a href="#s3">Bandların izahı</a>
-    <a href="#s4">Azərbaycan üzrə yenilənmə</a>
-    <a href="#s5">Lisenziya və əlçatanlıq</a>
-    <a href="#s6">Band kompozisiyaları</a>
-    <a href="#s7">NIR — yaxın infraqırmızı</a>
-    <a href="#s8">NDVI — bitki indeksi</a>
-    <a href="#s9">NDSI və digər indekslər</a>
-    <a href="#s10">GeoSolver 1 m məhsulu</a>
-    <a href="#s11">Kənd təsərrüfatında tətbiq</a>
-    <a href="#s12">Digər tətbiq sahələri</a>
-    <a href="#s13">Texniki çərçivə</a>
-    <a href="#s14">İş axını</a>
+    <a href="#s1">GeoSolver 1 metrlik məhsul</a>
+    <a href="#s2">Kommersiya peykləri ilə müqayisə</a>
+    <a href="#s3">Tətbiq sahələri</a>
+    <a href="#s4">Sentinel-2A — fon</a>
+    <a href="#s5">Spektral indekslər</a>
+    <a href="#s6">Texniki çərçivə</a>
+    <a href="#s7">İş axını və çatdırılma</a>
+    <a href="#s8">Əlaqə</a>
   </nav>
 
   <!-- ═══ MƏTN ═══ -->
   <main class="doc">
 
     <div class="doc-head">
-      <div class="doc-kicker">Texniki sənəd</div>
-      <h1>Sentinel-2A və 1 metrlik superrezolusiya məhsulu</h1>
+      <span class="product-badge">✦ Kommersiya məhsulu</span>
+      <h1>GeoSolver 1 metrlik yüksək ayırdetməli peyk görüntüsü</h1>
       <p class="doc-lead">
-        Bu sənəd Copernicus Sentinel-2A peykinin texniki imkanlarını, 13 spektral bandını,
-        Azərbaycan ərazisi üzrə görüntüləmə tezliyini və məlumat lisenziyasını izah edir.
-        İkinci hissə GeoSolver-in süni intellekt əsaslı 1 metrlik məhsulunu, onun praktik
-        üstünlüklərini və tətbiq sahələrini ətraflı təsvir edir.
+        <b>Sentinel-2A</b> peykindən alınmış <b>pulsuz 10 metrlik</b> görüntüləri süni intellektlə
+        <b>1 metr piksel ölçüsünə</b> qaldıran məhsul. Kommersiya 1 metrlik peyklərə xərcləmədən,
+        Azərbaycan üzrə 2015-ci ildən bugünə qədər bütün arxivi 1 metr dəqiqlikdə əldə edin.
       </p>
     </div>
 
     <!-- ══════════ 1 ══════════ -->
     <section id="s1">
-      <h2>1 · Sentinel-2A missiyası</h2>
+      <h2>1 · GeoSolver 1 metrlik superrezolyusiya məhsulu</h2>
 
       <p>
-        <b>Sentinel-2A</b> — Avropa İttifaqının <b>Copernicus</b> Yer müşahidə proqramı
-        çərçivəsində Avropa Kosmik Agentliyi (ESA) tərəfindən idarə olunan optik peykdir.
-        <b>23 iyun 2015</b>-ci ildə orbitə çıxarılıb və o vaxtdan fasiləsiz olaraq
-        Yer səthinin çoxspektrli görüntülərini toplayır.
+        <b>GeoSolver 1 metr</b> — Sentinel-2A peykinin 10 metrlik bandlarına tətbiq olunan
+        <b>süni intellekt əsaslı superrezolyusiya</b> alqoritmidir. Çıxışda <b>1 metr piksel ölçüsündə</b>
+        dörd spektral band (B2 mavi, B3 yaşıl, B4 qırmızı, B8 yaxın infraqırmızı) əldə edilir.
       </p>
 
-      <p>
-        Peyk <b>günəş-sinxron orbitdə</b>, 786 km hündürlükdə hərəkət edir. Bu orbit
-        tipi hər keçiddə eyni yerli günəş vaxtını təmin edir — nəticədə fərqli tarixlərdə
-        çəkilmiş görüntülərdə işıqlanma şəraiti oxşar olur və müqayisə düzgün aparılır.
-        Ekvatoru kəsmə vaxtı <b>yerli saat 10:30</b>-dur. Bu vaxt təsadüfi seçilməyib:
-        günorta buludluluğu hələ formalaşmayıb, eyni zamanda günəş kifayət qədər yüksəkdir.
-      </p>
-
-      <div class="specs">
-        <div class="spec"><span class="spec-k">Buraxılış tarixi</span><span class="spec-v">23.06.2015</span></div>
-        <div class="spec"><span class="spec-k">Orbit hündürlüyü</span><span class="spec-v">786 km</span></div>
-        <div class="spec"><span class="spec-k">Orbit meyli</span><span class="spec-v">98.62°</span></div>
-        <div class="spec"><span class="spec-k">Zolağın eni</span><span class="spec-v">290 km</span></div>
-        <div class="spec"><span class="spec-k">Keçid vaxtı</span><span class="spec-v">10:30 yerli</span></div>
-        <div class="spec"><span class="spec-k">Təkrar dövrü</span><span class="spec-v">10 gün</span></div>
-        <div class="spec"><span class="spec-k">Spektral bandlar</span><span class="spec-v">13</span></div>
-        <div class="spec"><span class="spec-k">Ayırdetmə</span><span class="spec-v">10 / 20 / 60 m</span></div>
-        <div class="spec"><span class="spec-k">Radiometrik dərinlik</span><span class="spec-v">12 bit</span></div>
-        <div class="spec"><span class="spec-k">Kütləsi</span><span class="spec-v">1140 kq</span></div>
-        <div class="spec"><span class="spec-k">Layihə müddəti</span><span class="spec-v">7.25 il</span></div>
-        <div class="spec"><span class="spec-k">Yanacaq ehtiyatı</span><span class="spec-v">12 ilə qədər</span></div>
+      <div class="highlight-box">
+        <b>Nəticə:</b> 10 m-lik bir pikselin yerinə 1 m-lik 100 piksel. Hər piksel öz spektral dəyərini saxlayır.
       </div>
-
-      <p>
-        <b>290 kilometrlik görüntüləmə zolağı</b> peykin əsas üstünlüklərindəndir.
-        Bir keçiddə bu qədər geniş ərazi əhatə olunduğu üçün Azərbaycan kimi ölkənin
-        böyük hissəsi cəmi bir-iki səhnə ilə tam örtülür. Bu, həm emal həcmini azaldır,
-        həm də eyni tarixdə vahid şəraitdə çəkilmiş bütöv görüntü əldə etməyə imkan verir.
-      </p>
-
-      <h3>Radiometrik keyfiyyət</h3>
-      <p>
-        Sentinel-2A <b>12 bit</b> radiometrik dərinliklə görüntü toplayır — yəni hər
-        bandda 4096 fərqli parlaqlıq səviyyəsi qeyd olunur. Müqayisə üçün: adi rəqəmsal
-        foto 8 bitdir (256 səviyyə). Bu dərinlik sayəsində eyni görüntüdə həm çox parlaq
-        (qar, beton), həm də çox tünd (su, kölgə) sahələr eyni anda düzgün ölçülür.
-      </p>
-
-      <h3>Məhsul səviyyələri</h3>
-      <table class="tbl">
-        <thead><tr><th>Səviyyə</th><th>Məzmun</th><th>Nə vaxt istifadə olunur</th></tr></thead>
-        <tbody>
-          <tr>
-            <td class="b">Level-1C</td>
-            <td>Atmosferin yuxarı sərhədində əksolunma (TOA). Həndəsi düzəliş edilib,
-                orfoqoral, UTM proyeksiyasında.</td>
-            <td>Vizual baxış, öz atmosfer düzəlişini tətbiq edən istifadəçilər</td>
-          </tr>
-          <tr>
-            <td class="b">Level-2A</td>
-            <td>Səth əksolunması (BOA). Atmosfer düzəlişi tətbiq edilib: Rayleigh
-                səpələnməsi, ozon, oksigen, su buxarı və aerozol təsiri hesablanıb
-                çıxarılıb. Əlavə: buludluluq təsnifatı (SCL), aerozol qalınlığı (AOT),
-                su buxarı (WV) xəritələri.</td>
-            <td>İndeks hesablanması, zaman sırası analizi, təsnifat</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <p class="note">
-        Bitki, su və torpaq indeksləri hesablanarkən mütləq <b>Level-2A</b> istifadə edilməlidir.
-        Atmosfer düzəlişi olmadan fərqli tarixlərdəki NDVI dəyərləri müqayisə oluna bilməz —
-        havanın tozluluğu və rütubəti nəticəni dəyişir.
-      </p>
-
-      <p class="note">
-        Sentinel-2A tək işləmir — eyni tipli digər Sentinel-2 peykləri ilə birlikdə
-        vahid qrup təşkil edir. Aşağıdakı hesablamalarda əsas diqqət Sentinel-2A-nın
-        öz imkanlarına yönəlib; qrup halında ümumi tezlik daha yüksəkdir.
-      </p>
-    </section>
-
-    <!-- ══════════ 2 ══════════ -->
-    <section id="s2">
-      <h2>2 · MSI aləti və 13 spektral band</h2>
-
-      <p>
-        Peykin üzərindəki əsas alət <b>MSI</b>-dir (Multi-Spectral Instrument — Çoxspektrli Alət).
-        Bu alət eyni anda 13 fərqli dalğa uzunluğunda görüntü toplayır. Hər band
-        Yer səthinin fərqli xüsusiyyətinə həssasdır: biri suyu, digəri bitki xlorofilini,
-        üçüncüsü torpaq rütubətini üzə çıxarır.
-      </p>
-
-      <p>
-        MSI itələmə-süpürmə (push-broom) prinsipi ilə işləyir: peyk irəlilədikcə
-        detektor sıraları səthi zolaq-zolaq skan edir. Görünən və yaxın infraqırmızı
-        (VNIR) hissə üçün 12 detektor, qısadalğalı infraqırmızı (SWIR) üçün ayrıca
-        12 detektor iki sıra şəklində düzülüb — bu quruluş 290 km zolaq yaradır.
-      </p>
-
-      <table class="tbl tbl-bands">
-        <thead>
-          <tr><th>Band</th><th>Ad</th><th>λ (nm)</th><th>Eni</th><th>GSD</th><th>Əsas təyinat</th></tr>
-        </thead>
-        <tbody>
-          <tr><td class="b">B1</td><td>Sahil aerozolu</td><td>443</td><td>20 nm</td><td>60 m</td><td>Aerozol, sahil suları</td></tr>
-          <tr class="hi"><td class="b">B2</td><td>Mavi</td><td>490</td><td>65 nm</td><td><b>10 m</b></td><td>Təbii rəng, su dərinliyi</td></tr>
-          <tr class="hi"><td class="b">B3</td><td>Yaşıl</td><td>560</td><td>35 nm</td><td><b>10 m</b></td><td>Təbii rəng, bitki gücü</td></tr>
-          <tr class="hi"><td class="b">B4</td><td>Qırmızı</td><td>665</td><td>30 nm</td><td><b>10 m</b></td><td>Xlorofil udulması</td></tr>
-          <tr><td class="b">B5</td><td>Qırmızı kənar 1</td><td>705</td><td>15 nm</td><td>20 m</td><td>Bitki stresi</td></tr>
-          <tr><td class="b">B6</td><td>Qırmızı kənar 2</td><td>740</td><td>15 nm</td><td>20 m</td><td>Xlorofil miqdarı</td></tr>
-          <tr><td class="b">B7</td><td>Qırmızı kənar 3</td><td>783</td><td>20 nm</td><td>20 m</td><td>Yarpaq strukturu</td></tr>
-          <tr class="hi"><td class="b">B8</td><td>NIR — yaxın İQ</td><td>842</td><td>115 nm</td><td><b>10 m</b></td><td>Biokütlə, NDVI</td></tr>
-          <tr><td class="b">B8A</td><td>Dar NIR</td><td>865</td><td>20 nm</td><td>20 m</td><td>Dəqiq bitki analizi</td></tr>
-          <tr><td class="b">B9</td><td>Su buxarı</td><td>945</td><td>20 nm</td><td>60 m</td><td>Atmosfer düzəlişi</td></tr>
-          <tr><td class="b">B10</td><td>Sirrus</td><td>1375</td><td>30 nm</td><td>60 m</td><td>Nazik bulud aşkarı</td></tr>
-          <tr><td class="b">B11</td><td>SWIR 1</td><td>1610</td><td>90 nm</td><td>20 m</td><td>Rütubət, qar, yanğın</td></tr>
-          <tr><td class="b">B12</td><td>SWIR 2</td><td>2190</td><td>180 nm</td><td>20 m</td><td>Torpaq, geologiya, yanıq</td></tr>
-        </tbody>
-      </table>
-
-      <p class="note">
-        Vurğulanmış dörd sətir — <b>10 metrlik bandlardır</b> (B2 mavi, B3 yaşıl,
-        B4 qırmızı, B8 NIR). Bunlar həm ən yüksək ayırdetməyə malikdir, həm də
-        təbii rəng və NDVI kimi ən çox istifadə olunan məhsulların əsasını təşkil edir.
-        GeoSolver superrezolusiya emalı məhz bu dörd banda tətbiq olunur.
-      </p>
-    </section>
-
-    <!-- ══════════ 3 ══════════ -->
-    <section id="s3">
-      <h2>3 · Bandların ayrı-ayrılıqda izahı</h2>
-
-      <p>
-        Hər bandın öz fiziki mənası və praktik istifadəsi var. Aşağıda bandlar
-        qruplar üzrə izah olunur.
-      </p>
-
-      <h3>Görünən işıq — B2, B3, B4</h3>
-      <p>
-        Bu üç band insan gözünün gördüyü diapazona uyğundur. <b>B4 (qırmızı)</b> xüsusi
-        əhəmiyyət daşıyır: bitki xlorofili məhz bu dalğa uzunluğunu güclü udur. Sağlam
-        yarpaq qırmızı işığın 80–90%-ni udduğu üçün B4-də tünd görünür. <b>B3 (yaşıl)</b>
-        bitkinin ümumi gücünü göstərir — xlorofil yaşılı nisbətən az udur, ona görə
-        bitki bizə yaşıl görünür. <b>B2 (mavi)</b> suyun dərinliyinə və çirklənməsinə
-        həssasdır, həmçinin atmosfer səpələnməsindən ən çox təsirlənən banddır.
-      </p>
-
-      <h3>Qırmızı kənar — B5, B6, B7</h3>
-      <p>
-        Qırmızı ilə NIR arasındakı keçid zonasıdır. Bitki əksolunması burada kəskin
-        yüksəlir — bu sıçrayışın forması bitkinin sağlamlığı haqqında çox məlumat verir.
-        Xlorofil miqdarı azaldıqda sıçrayış qısa dalğalara doğru sürüşür. Bu sürüşmə
-        bitki stresinin <b>gözlə görünən əlamətlərdən əvvəl</b> aşkarlanmasına imkan verir.
-        Kənd təsərrüfatında azot statusunun qiymətləndirilməsi məhz bu bandlara əsaslanır.
-      </p>
-
-      <h3>Yaxın infraqırmızı — B8, B8A</h3>
-      <p>
-        Bitki uzaqdan zondlamasının açarı. <b>B8</b> geniş (115 nm) və 10 metrlik olduğu
-        üçün ən çox istifadə olunan banddır. <b>B8A</b> daha dardır (20 nm) və su buxarı
-        udulmasından təsirlənmir — buna görə dəqiq elmi hesablamalarda üstünlük verilir.
-      </p>
-
-      <h3>Atmosfer bandları — B1, B9, B10</h3>
-      <p>
-        Bu üç band birbaşa səth üçün deyil, <b>atmosfer düzəlişi</b> üçün nəzərdə tutulub.
-        B1 aerozol qalınlığını ölçür, B9 su buxarı miqdarını hesablayır, B10 isə nazik
-        sirrus buludlarını aşkarlayır. 60 metrlik ayırdetmə bu məqsəd üçün kifayətdir,
-        çünki atmosfer parametrləri geniş ərazidə hamar dəyişir.
-      </p>
-
-      <h3>Qısadalğalı infraqırmızı — B11, B12</h3>
-      <p>
-        Su molekulu bu diapazonda güclü udma göstərir — nəticədə <b>B11 və B12 rütubətə
-        həssasdır</b>. Nəm torpaq tünd, quru torpaq parlaq görünür. Eyni prinsiplə qar
-        (buz kristalları su saxlayır) SWIR-də tünd, bulud isə parlaq olur — bu, qarı
-        buluddan ayırmağa imkan verir. Həmçinin yanmış sahələr, mineral tərkib və
-        süxur növləri bu bandlarda fərqlənir.
-      </p>
-    </section>
-
-    <!-- ══════════ 4 ══════════ -->
-    <section id="s4">
-      <h2>4 · Azərbaycan ərazisi üzrə yenilənmə tezliyi</h2>
-
-      <p>
-        Sentinel-2A-nın orbit dövrü <b>10 gündür</b> — yəni peyk eyni nöqtəni tam eyni
-        baxış bucağı ilə hər 10 gündən bir görüntüləyir. Lakin praktikada Azərbaycan
-        üçün faktiki tezlik bundan xeyli yüksəkdir.
-      </p>
-
-      <h3>Niyə daha tez</h3>
-      <p>
-        Səbəb <b>zolaqların üst-üstə düşməsidir</b>. Peyk hər keçiddə 290 km enində
-        zolaq görüntüləyir. Yer kürəsi sferik olduğu üçün enlik artdıqca qonşu orbit
-        zolaqları bir-birinin üstünə daha çox düşür. Ekvatorda üst-üstə düşmə minimaldır,
-        Azərbaycanın yerləşdiyi <b>38°–42° şimal enliyində</b> isə əhəmiyyətlidir.
-      </p>
-
-      <p>
-        Nəticədə ölkənin əksər ərazisi tək Sentinel-2A tərəfindən <b>orta hesabla
-        5 gündən bir</b> görüntülənir — yalnız baxış bucağı fərqli olur. Sərhəd
-        zonalarında və üst-üstə düşmə maksimum olan sahələrdə interval daha da qısalır.
-      </p>
-
-      <table class="tbl">
-        <thead><tr><th>Zona</th><th>Sentinel-2A ilə interval</th></tr></thead>
-        <tbody>
-          <tr><td>Eyni baxış bucağı ilə (nominal)</td><td>10 gün</td></tr>
-          <tr><td>Azərbaycanın əksər ərazisi</td><td><b>~5 gün</b></td></tr>
-          <tr><td>Zolaq üst-üstə düşmə zonaları</td><td><b>3–5 gün</b></td></tr>
-        </tbody>
-      </table>
-
-      <h3>Buludluluğun təsiri</h3>
-      <p>
-        Optik peyk buludun altını görmür. Ona görə <b>faktiki istifadəyə yararlı</b>
-        görüntü sayı təqvim intervalından azdır. Azərbaycan üçün mövsümi mənzərə belədir:
-      </p>
-
-      <table class="tbl">
-        <thead><tr><th>Mövsüm / zona</th><th>Buludsuz görüntü intervalı</th></tr></thead>
-        <tbody>
-          <tr><td>Yay — Kür-Araz ovalığı, Mil-Muğan</td><td>Demək olar hər keçid təmiz</td></tr>
-          <tr><td>Yaz və payız — aran rayonları</td><td>7–12 gün</td></tr>
-          <tr><td>Qış — bütün ölkə</td><td>10–20 gün</td></tr>
-          <tr><td>Dağlıq zonalar (Böyük/Kiçik Qafqaz)</td><td>Daha uzun, mövsümdən asılı</td></tr>
-          <tr><td>Lənkəran-Astara zonası</td><td>Rütubətli iqlim, daha az təmiz keçid</td></tr>
-        </tbody>
-      </table>
-
-      <p class="note">
-        Kənd təsərrüfatı monitorinqi üçün bu tezlik kifayətdir: taxılın vegetasiya
-        dövrü 6–8 ay, pambığın 5–6 aydır. Bu müddətdə onlarla buludsuz görüntü toplanır
-        və tam fenoloji əyri qurulur. Operativ hadisələr üçün (daşqın, yanğın) isə
-        buludluluq risk yaradır — bu hallarda radar peyk məlumatları tamamlayıcı rol oynayır.
-      </p>
-    </section>
-
-    <!-- ══════════ 5 ══════════ -->
-    <section id="s5">
-      <h2>5 · Lisenziya və əlçatanlıq</h2>
-
-      <p>
-        Sentinel-2A məlumatları <b>Copernicus açıq məlumat siyasəti</b> əsasında paylanır.
-        Bu, dünyada ən liberal peyk məlumat siyasətlərindən biridir.
-      </p>
-
-      <table class="tbl">
-        <thead><tr><th>Şərt</th><th>Vəziyyət</th></tr></thead>
-        <tbody>
-          <tr><td>Yükləmə haqqı</td><td class="ok">Pulsuz</td></tr>
-          <tr><td>Lisenziya alışı</td><td class="ok">Tələb olunmur</td></tr>
-          <tr><td>Kommersiya istifadəsi</td><td class="ok">İcazə verilir</td></tr>
-          <tr><td>Emal və dəyişdirmə</td><td class="ok">Sərbəst</td></tr>
-          <tr><td>Törəmə məhsul yaratmaq</td><td class="ok">Sərbəst</td></tr>
-          <tr><td>Yenidən yaymaq / satmaq</td><td class="ok">İcazə verilir</td></tr>
-          <tr><td>Ərazi məhdudiyyəti</td><td class="ok">Yoxdur</td></tr>
-          <tr><td>Mənbənin göstərilməsi</td><td class="mid">Tələb olunur</td></tr>
-        </tbody>
-      </table>
-
-      <p>
-        Yeganə şərt istinaddır. Adətən belə yazılır:
-        <code>Copernicus Sentinel data 2026, processed by GeoSolver</code>
-      </p>
-
-      <h3>Əsas mənbələr</h3>
-      <table class="tbl">
-        <thead><tr><th>Platforma</th><th>Xüsusiyyət</th></tr></thead>
-        <tbody>
-          <tr><td>Copernicus Data Space Ecosystem</td><td>Rəsmi mənbə, tam arxiv 2015-dən, API və S3</td></tr>
-          <tr><td>Copernicus Browser</td><td>Brauzerdən vizual seçim və yükləmə</td></tr>
-          <tr><td>Google Earth Engine</td><td>Bulud emalı, kod ilə kütləvi analiz</td></tr>
-          <tr><td>AWS Open Data</td><td>COG formatı, birbaşa oxuma, yükləmə lazım deyil</td></tr>
-          <tr><td>Microsoft Planetary Computer</td><td>STAC kataloq, Python API</td></tr>
-        </tbody>
-      </table>
-
-      <p class="note">
-        <b>2015-ci ildən bugünə qədər tam arxiv</b> əlçatandır. Bu, Azərbaycan üçün
-        10 illik dəyişiklik analizi aparmağa imkan verir — torpaqdan istifadənin
-        dəyişməsi, şəhər genişlənməsi, əkin sahələrinin dinamikası.
-      </p>
-    </section>
-
-    <!-- ══════════ 6 ══════════ -->
-    <section id="s6">
-      <h2>6 · Band kompozisiyaları</h2>
-
-      <p>
-        Üç bandı R–G–B kanallarına yerləşdirməklə fərqli məlumat açan görüntülər alınır.
-        Eyni səhnə, fərqli band seçimi — tamamilə fərqli mənzərə.
-      </p>
-
-      <div class="comps">
-
-        <div class="comp">
-          <div class="comp-h"><span class="comp-n">Təbii rəng</span><code>B4 · B3 · B2</code></div>
-          <p>İnsan gözünün gördüyü kimi. Ümumi baxış, sənədləşdirmə, hesabat və ictimai
-             təqdimat üçün. Bitki yaşıl, torpaq qonur, su tünd görünür.</p>
-        </div>
-
-        <div class="comp">
-          <div class="comp-h"><span class="comp-n">Yalançı rəng — infraqırmızı</span><code>B8 · B4 · B3</code></div>
-          <p>Klassik kənd təsərrüfatı kompozisiyası. Sağlam bitki <b>parlaq qırmızı</b>,
-             seyrək bitki açıq çəhrayı, su qara, şəhər boz-mavi. Bitki sıxlığını
-             ölçmədən, gözlə dərhal qiymətləndirməyə imkan verir.</p>
-        </div>
-
-        <div class="comp">
-          <div class="comp-h"><span class="comp-n">Kənd təsərrüfatı</span><code>B11 · B8 · B2</code></div>
-          <p>Məhsul növlərini bir-birindən ayırmaq üçün. Sıx bitki tünd yaşıl,
-             yetişmiş taxıl parlaq yaşıl, çılpaq torpaq bənövşəyi-çəhrayı.</p>
-        </div>
-
-        <div class="comp">
-          <div class="comp-h"><span class="comp-n">Sağlam bitki örtüyü</span><code>B8 · B11 · B2</code></div>
-          <p>Bitki stresi və suvarma problemlərini ayırd etmək üçün. Susuz qalmış
-             sahələr rəng tonu ilə seçilir.</p>
-        </div>
-
-        <div class="comp">
-          <div class="comp-h"><span class="comp-n">Şəhər və tikinti</span><code>B12 · B11 · B4</code></div>
-          <p>Asfalt, beton, dam örtükləri aydın seçilir. Şəhər genişlənməsinin
-             və tikinti fəaliyyətinin monitorinqi üçün.</p>
-        </div>
-
-        <div class="comp">
-          <div class="comp-h"><span class="comp-n">Geologiya</span><code>B12 · B11 · B2</code></div>
-          <p>Süxur növləri, litoloji sərhədlər, faylar, dəyişmiş mineral zonaları.
-             Faydalı qazıntı kəşfiyyatında istifadə olunur.</p>
-        </div>
-
-        <div class="comp">
-          <div class="comp-h"><span class="comp-n">Su və rütubət</span><code>B8 · B11 · B4</code></div>
-          <p>Su hövzələrinin sərhədləri, bataqlıqlar, torpaq rütubəti.
-             Suvarma şəbəkəsinin analizi üçün.</p>
-        </div>
-
-        <div class="comp">
-          <div class="comp-h"><span class="comp-n">Yanğın və yanıq</span><code>B12 · B8 · B4</code></div>
-          <p>Aktiv alov zonaları, yanmış sahələr, bərpa prosesi.
-             Yanğından sonrakı zərərin qiymətləndirilməsi.</p>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ══════════ 7 ══════════ -->
-    <section id="s7">
-      <h2>7 · NIR — yaxın infraqırmızı</h2>
-
-      <p>
-        <b>NIR</b> (Near Infrared) insan gözünün görmədiyi, qırmızıdan bir qədər uzun
-        dalğa uzunluğudur. Sentinel-2A-da bu <b>B8 bandıdır</b> — 842 nm, 10 metr ayırdetmə.
-      </p>
-
-      <h3>Fiziki əsas</h3>
-      <p>
-        Bitki yarpağının daxili strukturu — <b>mezofil toxuması</b> — hüceyrələr və hava
-        boşluqlarından ibarətdir. Bu quruluş NIR şüalarını güclü səpələyir və geri qaytarır:
-        sağlam yarpaq NIR-in <b>70–80%-ni əks etdirir</b>. Eyni anda xlorofil qırmızı işığı
-        udur. Bu iki hadisənin birləşməsi bitki örtüyünü digər səthlərdən kəskin ayırır.
-      </p>
-
-      <table class="tbl">
-        <thead><tr><th>Səth</th><th>NIR davranışı</th></tr></thead>
-        <tbody>
-          <tr><td>Sağlam bitki</td><td>Çox yüksək əksolunma</td></tr>
-          <tr><td>Stresli / xəstə bitki</td><td>Əksolunma azalır</td></tr>
-          <tr><td>Quru ot, saman</td><td>Orta əksolunma</td></tr>
-          <tr><td>Çılpaq torpaq</td><td>Orta, rütubətdən asılı</td></tr>
-          <tr><td>Su</td><td>Demək olar tam udur — qara</td></tr>
-          <tr><td>Qar</td><td>Yüksək əksolunma</td></tr>
-        </tbody>
-      </table>
-
-      <h3>Praktik istifadə</h3>
-      <ul>
-        <li><b>Erkən stres aşkarlanması</b> — bitki susuzluqdan və ya xəstəlikdən əziyyət
-            çəkəndə NIR əksolunması <b>gözlə görünən saralmadan əvvəl</b> düşür.
-            Bu, müdaxilə üçün qiymətli vaxt qazandırır.</li>
-        <li><b>Su sərhədinin dəqiq çəkilməsi</b> — su NIR-də ən tünd obyektdir,
-            sahil xətti avtomatik çıxarılır.</li>
-        <li><b>Bitki və qeyri-bitki ayrılması</b> — çox aydın kontrast.</li>
-        <li><b>Biokütlə qiymətləndirməsi</b> — NIR əksolunması yarpaq sahəsi indeksi
-            ilə əlaqəlidir.</li>
-        <li><b>Məhsul növünün təyini</b> — fərqli bitkilər NIR-də fərqli mövsümi
-            profil göstərir.</li>
-      </ul>
-
-      <p class="note">
-        Müqayisə xəritəsindəki <b>İnfraqırmızı (IRP)</b> təbəqəsi məhz bu prinsipə əsaslanır:
-        NIR bandı qırmızı kanala yerləşdirilir, ona görə bitki örtüyü qırmızı görünür.
-        Nə qədər parlaq qırmızıdırsa, bitki bir o qədər sıx və sağlamdır.
-      </p>
-    </section>
-
-    <!-- ══════════ 8 ══════════ -->
-    <section id="s8">
-      <h2>8 · NDVI — normallaşdırılmış bitki indeksi</h2>
-
-      <p>
-        <b>NDVI</b> (Normalized Difference Vegetation Index) uzaqdan zondlamada ən geniş
-        istifadə olunan göstəricidir. NIR və qırmızı bandların nisbətini hesablayır:
-      </p>
-
-      <div class="formula">NDVI = (B8 − B4) / (B8 + B4)</div>
-
-      <p>
-        Nəticə <b>−1</b> ilə <b>+1</b> arasında dəyişir. Normallaşdırma sayəsində ümumi
-        işıqlanma fərqi qismən aradan qalxır — bu, fərqli tarixləri və fərqli əraziləri
-        müqayisə etməyə imkan verir.
-      </p>
-
-      <h3>Dəyərlərin oxunuşu</h3>
-      <table class="tbl">
-        <thead><tr><th>NDVI</th><th>Səth</th></tr></thead>
-        <tbody>
-          <tr><td class="b">−1.0 … −0.1</td><td>Su, qar, bulud</td></tr>
-          <tr><td class="b">−0.1 … 0.1</td><td>Çılpaq torpaq, qum, beton, süxur</td></tr>
-          <tr><td class="b">0.1 … 0.2</td><td>Çox seyrək bitki, quru ot, biçilmiş sahə</td></tr>
-          <tr><td class="b">0.2 … 0.4</td><td>Seyrək bitki, otlaq, cavan əkin</td></tr>
-          <tr><td class="b">0.4 … 0.6</td><td>Orta sıxlıq, inkişaf mərhələsində əkin</td></tr>
-          <tr><td class="b">0.6 … 0.9</td><td>Sıx sağlam bitki, meşə, yetişmiş məhsul</td></tr>
-        </tbody>
-      </table>
-
-      <h3>Fenoloji əyri</h3>
-      <p>
-        NDVI-nin əsas gücü tək bir tarixdə deyil, <b>zaman sırasındadır</b>. Bir mövsüm
-        boyunca NDVI dəyərlərini ardıcıl qeyd etdikdə bitkinin inkişaf əyrisi alınır:
-      </p>
-      <ol>
-        <li><b>Səpin</b> — NDVI aşağı (0.1–0.2), sahə əsasən çılpaq torpaqdır</li>
-        <li><b>Cücərmə</b> — NDVI qalxmağa başlayır</li>
-        <li><b>Aktiv böyümə</b> — sürətli artım, əyri dikləşir</li>
-        <li><b>Maksimum</b> — pik nöqtə (0.7–0.9), yarpaq örtüyü tam</li>
-        <li><b>Yetişmə</b> — NDVI enməyə başlayır, xlorofil azalır</li>
-        <li><b>Biçin</b> — kəskin düşüş, sahə yenidən açılır</li>
-      </ol>
-
-      <p>
-        Bu əyrinin forması, pik nöqtənin vaxtı və yüksəkliyi məhsul növünü, əkin tarixini
-        və gözlənilən məhsuldarlığı göstərir. Taxıl, pambıq, qarğıdalı və üzüm bir-birindən
-        fərqli əyri verir — bu, avtomatik məhsul təsnifatının əsasıdır.
-      </p>
-
-      <h3>NDVI ilə nə etmək olar</h3>
-      <ul>
-        <li><b>Məhsul monitorinqi</b> — inkişaf mərhələlərinin izlənməsi</li>
-        <li><b>Sahədaxili dəyişkənlik</b> — eyni tarlada zəif və güclü zonaların ayrılması</li>
-        <li><b>Dəyişkən dozalı gübrələmə</b> — NDVI xəritəsi əsasında resept xəritəsi</li>
-        <li><b>Quraqlıq monitorinqi</b> — çoxillik ortalamadan sapmanın hesablanması</li>
-        <li><b>Məhsuldarlıq proqnozu</b> — mövsüm NDVI inteqralı ilə güclü korrelyasiya</li>
-        <li><b>Meşə monitorinqi</b> — qırma, xəstəlik, yanğın zərərinin aşkarlanması</li>
-        <li><b>Otlaq idarəçiliyi</b> — otarma yükünün hesablanması</li>
-        <li><b>Sığorta və subsidiya yoxlaması</b> — əkin faktının uzaqdan təsdiqi</li>
-        <li><b>Torpaqdan istifadə təsnifatı</b> — zaman sırası ilə məhsul növünün təyini</li>
-      </ul>
-
-      <p class="note">
-        NDVI sıx bitki örtüyündə <b>doyma</b> effektinə məruz qalır — dəyər 0.8-i keçdikdə
-        biokütlə artımına həssaslıq azalır. Belə hallarda <b>EVI</b> və ya <b>NDRE</b>
-        indeksləri daha informativdir.
-      </p>
-    </section>
-
-    <!-- ══════════ 9 ══════════ -->
-    <section id="s9">
-      <h2>9 · NDSI və digər indekslər</h2>
-
-      <h3>NDSI — qar indeksi</h3>
-      <div class="formula">NDSI = (B3 − B11) / (B3 + B11)</div>
-      <p>
-        <b>NDSI</b> (Normalized Difference Snow Index) qarı buluddan ayırır. Qar yaşıl
-        bandda güclü əks etdirir, SWIR-də isə udur. Bulud hər iki bandda parlaqdır —
-        məhz bu fərq ayırmanı mümkün edir. Adətən <b>NDSI &gt; 0.4</b> qar sayılır.
-      </p>
-
-      <p><b>Azərbaycan üçün tətbiqi:</b></p>
-      <ul>
-        <li>Böyük və Kiçik Qafqaz dağlarında qar örtüyünün sahəsinin ölçülməsi</li>
-        <li>Bahar daşqın riskinin qiymətləndirilməsi — dağdakı qar ehtiyatı çayların
-            yaz axımını müəyyən edir</li>
-        <li>Su ehtiyatlarının planlaşdırılması və suvarma mövsümünə hazırlıq</li>
-        <li>Qar xəttinin illər üzrə yuxarı sürüşməsinin izlənməsi</li>
-        <li>Qış turizm zonalarında qar şəraitinin monitorinqi</li>
-        <li>Bulud maskasının dəqiqləşdirilməsi</li>
-      </ul>
-
-      <h3>Digər faydalı indekslər</h3>
-      <table class="tbl tbl-idx">
-        <thead><tr><th>İndeks</th><th>Düstur</th><th>Təyinatı</th></tr></thead>
-        <tbody>
-          <tr><td class="b">NDWI</td><td><code>(B3−B8)/(B3+B8)</code></td><td>Su hövzələrinin sərhədi, daşqın sahəsi</td></tr>
-          <tr><td class="b">NDMI</td><td><code>(B8−B11)/(B8+B11)</code></td><td>Bitki rütubəti, suvarma ehtiyacı, yanğın riski</td></tr>
-          <tr><td class="b">NDBI</td><td><code>(B11−B8)/(B11+B8)</code></td><td>Tikinti sahələri, şəhər genişlənməsi</td></tr>
-          <tr><td class="b">NDRE</td><td><code>(B8−B5)/(B8+B5)</code></td><td>Xlorofil, azot statusu, sıx bitkidə doyma yoxdur</td></tr>
-          <tr><td class="b">SAVI</td><td><code>1.5·(B8−B4)/(B8+B4+0.5)</code></td><td>Seyrək bitkidə torpaq fonunun təsirini azaldır</td></tr>
-          <tr><td class="b">EVI</td><td><code>2.5·(B8−B4)/(B8+6·B4−7.5·B2+1)</code></td><td>Sıx bitkidə doyma problemini həll edir</td></tr>
-          <tr><td class="b">BSI</td><td><code>((B11+B4)−(B8+B2))/((B11+B4)+(B8+B2))</code></td><td>Çılpaq torpaq, eroziya, şoranlaşma</td></tr>
-          <tr><td class="b">NBR</td><td><code>(B8−B12)/(B8+B12)</code></td><td>Yanğın zərəri, yanıq sahəsinin şiddəti</td></tr>
-        </tbody>
-      </table>
-    </section>
-
-    <!-- ══════════ 10 ══════════ -->
-    <section id="s10" class="gs-section">
-      <h2>10 · GeoSolver 1 metrlik superrezolusiya məhsulu</h2>
-
-      <p>
-        GeoSolver Sentinel-2A-nın 10 metrlik bandlarını öz süni intellekt modeli ilə emal
-        edərək <b>1 metr piksel ölçüsündə</b> məhsul hazırlayır. Emal dörd banda tətbiq
-        olunur — <b>B2 mavi, B3 yaşıl, B4 qırmızı, B8 NIR</b> — və çıxışda eyni dörd band
-        1 metrlik şəbəkədə verilir.
-      </p>
 
       <div class="kpi">
         <div class="kpi-i"><span class="kpi-v">10 m → 1 m</span><span class="kpi-l">Piksel ölçüsü</span></div>
         <div class="kpi-i"><span class="kpi-v">100×</span><span class="kpi-l">Piksel sıxlığı</span></div>
         <div class="kpi-i"><span class="kpi-v">4 band</span><span class="kpi-l">B2 · B3 · B4 · B8</span></div>
-        <div class="kpi-i"><span class="kpi-v">Pulsuz mənbə</span><span class="kpi-l">Lisenziya xərci yoxdur</span></div>
+        <div class="kpi-i"><span class="kpi-v">2015 → bugün</span><span class="kpi-l">Tam arxiv</span></div>
       </div>
+
+      <h3>Texniki əsas</h3>
+      <p>
+        Model <b>dərin öyrənmə (deep learning)</b> arxitekturasına əsaslanır. Yüksək ayırdetməli
+        kommersiya peyk görüntüləri ilə eyni ərazinin Sentinel-2 görüntüləri üzərində öyrədilmişdir.
+        Təlim prosesində model 10 metrlik görüntü ilə 1 metrlik görüntü arasındakı
+        <b>mürəkkəb əlaqəni</b> öyrənir — sərhədlərin kəskinləşməsi, teksturaların bərpası,
+        spektral dəyərlərin düzgün paylanması.
+      </p>
+
+      <p>
+        Nəticədə hər bir 10 metrlik piksel 10×10 ölçülü 1 metrlik bloka çevrilir.
+        Hər bir yeni piksel öz spektral dəyərini saxlayır — yəni <b>NDVI, NDWI və digər indekslər</b>
+        birbaşa 1 metrlik şəbəkədə hesablana bilər.
+      </p>
+
+      <h3>Nə dəyişir?</h3>
+
+      <ul>
+        <li><b>Sərhədlər kəskinləşir</b> — tarla, yol, kanal, meşə zolağı aydın seçilir.</li>
+        <li><b>Qarışıq piksel problemi azalır</b> — hər bir piksel daha vahid ərazini təmsil edir.</li>
+        <li><b>Xırda obyektlər görünür</b> — 3–5 metrlik tikililər, dar yollar, suvarma arxları.</li>
+        <li><b>Sahədaxili analiz mümkün olur</b> — eyni tarlada zəif və güclü zonalar ayrılır.</li>
+        <li><b>Vizual keyfiyyət yüksəlir</b> — hesabatlar, təqdimatlar, GIS layihələri üçün ideal.</li>
+      </ul>
 
       <h3>Əsas üstünlüklər</h3>
 
       <div class="pluses">
 
         <div class="plus">
-          <h4>Sərhədlərin kəskinləşməsi</h4>
+          <h4>Pulsuz mənbə, yüksək nəticə</h4>
           <p>
-            10 metrlik piksel 100 m² sahəni əhatə edir — bu ölçüdə tarla sərhədi
-            2–3 piksellik bulanıq zolağa çevrilir. 1 metrlik şəbəkədə sərhəd xətti
-            aydın çəkilir. Sahə konturlarının rəqəmsallaşdırılması xeyli asanlaşır və
-            avtomatik seqmentasiya alqoritmləri daha dəqiq nəticə verir.
+            Sentinel-2A məlumatları tam pulsuzdur. GeoSolver bu məlumatı 1 metrə qaldıraraq
+            kommersiya keyfiyyətində məhsul təqdim edir — <b>xərc kommersiya peyklərinin
+            fraksiyasıdır</b>.
           </p>
         </div>
 
         <div class="plus">
-          <h4>Qarışıq piksel probleminin azalması</h4>
+          <h4>Dərin arxiv</h4>
           <p>
-            10 metrlik bir piksel eyni anda həm yol, həm əkin, həm ot ola bilər —
-            ölçülən dəyər bunların qarışığıdır. Bu, xüsusilə xırda sahələrdə
-            NDVI hesablamasını təhrif edir. 1 metrlik şəbəkədə bu qarışıqlıq
-            əhəmiyyətli dərəcədə azalır, hər zonanın öz dəyəri aydın oxunur.
+            <b>2015-ci ildən bugünə</b> qədər bütün Sentinel-2A arxivi 1 metrlik formata çevrilə bilər.
+            Bu, 10 illik dəyişiklik analizi, keçmiş hadisələrin araşdırılması və uzunmüddətli
+            trendlərin qurulması deməkdir.
           </p>
         </div>
 
         <div class="plus">
-          <h4>Xətti obyektlərin görünməsi</h4>
+          <h4>Müntəzəm yenilənmə</h4>
           <p>
-            Yollar, suvarma kanalları, arxlar, meşə zolaqları, drenaj sistemləri
-            10 metrdə çox vaxt tamamilə itir. 1 metrlik məhsulda bunlar ayrıca
-            obyekt kimi seçilir — infrastruktur xəritələməsi mümkün olur.
+            Sentinel-2A Azərbaycanı <b>orta hesabla 5 gündən bir</b> görüntüləyir.
+            Bu tezlik dinamik proseslərin — əkin, suvarma, tikinti — izlənməsi üçün kifayətdir.
           </p>
         </div>
 
         <div class="plus">
-          <h4>Xırda təsərrüfatlar üçün yararlılıq</h4>
+          <h4>Vahid spektral əsas</h4>
           <p>
-            Azərbaycanda əkin sahələrinin böyük hissəsi kiçik və orta ölçülüdür.
-            0.5–2 hektarlıq sahə 10 metrlik görüntüdə cəmi 50–200 pikselə düşür —
-            analiz üçün az. 1 metrlik məhsulda eyni sahə 5000–20000 piksel verir,
-            bu isə sahədaxili analiz aparmağa imkan yaradır.
+            Məhsul dörd bandı saxlayır: B2, B3, B4, B8. Bu, NDVI, NDWI, təbii rəng,
+            infraqırmızı kompozisiya və digər indekslərin <b>1 metrlik dəqiqlikdə</b> hesablanması
+            deməkdir.
           </p>
         </div>
 
         <div class="plus">
-          <h4>1 metrlik NDVI və infraqırmızı</h4>
+          <h4>Azərbaycan şəraitinə uyğun</h4>
           <p>
-            NIR bandı çıxışda saxlandığı üçün NDVI, NDWI və infraqırmızı kompozisiya
-            birbaşa 1 metrlik şəbəkədə hesablanır. Tarla daxilində zəif zonaların
-            konturu dəqiq çəkilir, sərhədlərdəki keçid zolağı daralır.
+            Kiçik və orta təsərrüfatlar, xırda sahələr, mürəkkəb relyef — 1 metrlik dəqiqlik
+            bu şəraitdə xüsusilə dəyərlidir. Sahə ölçüsündən asılı olmayaraq keyfiyyət eynidir.
           </p>
         </div>
 
         <div class="plus">
-          <h4>Tarixi arxivə tətbiq</h4>
+          <h4>Çevik çatdırılma</h4>
           <p>
-            Emal 2015-ci ildən bugünə qədər olan bütün Sentinel-2A arxivinə tətbiq oluna bilər.
-            Yəni keçmiş tarixlər üçün də 1 metrlik məhsul almaq mümkündür — kommersiya
-            peykləri ilə bunu etmək ya mümkün deyil, ya da həddindən artıq bahadır.
-          </p>
-        </div>
-
-        <div class="plus">
-          <h4>Xərc üstünlüyü</h4>
-          <p>
-            Kommersiya 1 metrlik peyk görüntüsü kvadrat kilometr başına ödənişlidir və
-            arxiv sifarişi əlavə xərc tələb edir. Sentinel-2A mənbəyi pulsuz olduğu üçün
-            geniş ərazilərin — bütöv rayon, hətta ölkə səviyyəsində — emalı iqtisadi
-            baxımdan mümkündür.
-          </p>
-        </div>
-
-        <div class="plus">
-          <h4>Müntəzəm təkrarlanma</h4>
-          <p>
-            Kommersiya yüksək ayırdetməli peyklər sifarişlə çəkir və eyni ərazinin
-            müntəzəm arxivi olmur. Sentinel-2A isə ərazidən asılı olmayaraq daimi
-            görüntüləyir — nəticədə <b>1 metrlik məhsulun zaman sırasını</b> qurmaq mümkündür.
-            Bu, dəyişiklik analizi üçün əsas üstünlükdür.
-          </p>
-        </div>
-
-        <div class="plus">
-          <h4>Vahid həndəsi əsas</h4>
-          <p>
-            Bütün görüntülər eyni peykdən, eyni orbitdən və eyni proyeksiyadan gəldiyi
-            üçün tarixlər arasında həndəsi uyğunluq yüksəkdir. Fərqli peyklərdən alınmış
-            görüntüləri üst-üstə salarkən yaranan sürüşmə problemi burada minimaldır.
+            Məhsul <b>GeoTIFF</b> (GIS proqramları üçün), <b>WMS</b> (veb servis) və ya
+            <b>API</b> vasitəsilə təqdim olunur. İstənilən formatda, istənilən ərazi üçün.
           </p>
         </div>
 
       </div>
     </section>
 
-    <!-- ══════════ 11 ══════════ -->
-    <section id="s11">
-      <h2>11 · Kənd təsərrüfatında tətbiq</h2>
+    <!-- ══════════ 2 ══════════ -->
+    <section id="s2">
+      <h2>2 · Kommersiya peykləri ilə müqayisə</h2>
 
       <p>
-        Kənd təsərrüfatı 1 metrlik məhsulun ən geniş tətbiq sahəsidir. Aşağıda
-        konkret istifadə ssenariləri verilir.
+        GeoSolver 1 metr məhsulunu kommersiya 1 metrlik peyk məhsulları ilə müqayisə etmək
+        onun dəyərini daha aydın göstərir.
       </p>
 
-      <h3>Sahə uçotu və sərhədlər</h3>
-      <ul>
-        <li><b>Tarla konturlarının avtomatik çıxarılması</b> — sərhədlər kəskin olduğu üçün
-            seqmentasiya alqoritmləri işlək nəticə verir; əl ilə rəqəmsallaşdırma vaxtı azalır</li>
-        <li><b>Faktiki əkin sahəsinin ölçülməsi</b> — sənəddəki sahə ilə həqiqi əkilmiş
-            sahənin tutuşdurulması</li>
-        <li><b>Boş qalmış sahələrin aşkarlanması</b> — əkilməmiş və ya tərk edilmiş
-            torpaqların müəyyən edilməsi</li>
-        <li><b>Sahə bölünmələrinin izlənməsi</b> — bir tarlanın hissələrə ayrılması,
-            miras və satış nəticəsində yaranan yeni sərhədlər</li>
-      </ul>
+      <div class="comparison-grid">
+        <div class="comparison-item">
+          <div class="label">Xərc (1 km²)</div>
+          <div class="value">$0</div>
+          <div style="font-size:0.8rem;color:#868e96;">mənbə pulsuzdur</div>
+        </div>
+        <div class="comparison-item">
+          <div class="label">Kommersiya 1 m (1 km²)</div>
+          <div class="value red">$30–100</div>
+          <div style="font-size:0.8rem;color:#868e96;">WorldView, GeoEye, Pléiades</div>
+        </div>
+        <div class="comparison-item">
+          <div class="label">Arxiv dərinliyi</div>
+          <div class="value">2015 → bugün</div>
+          <div style="font-size:0.8rem;color:#868e96;">10 illik tam arxiv</div>
+        </div>
+        <div class="comparison-item">
+          <div class="label">Kommersiya arxivi</div>
+          <div class="value red">məhdud / yoxdur</div>
+          <div style="font-size:0.8rem;color:#868e96;">əlavə xərc tələb edir</div>
+        </div>
+        <div class="comparison-item">
+          <div class="label">Təkrar ölçmə</div>
+          <div class="value">5 gün</div>
+          <div style="font-size:0.8rem;color:#868e96;">Azərbaycan üçün orta</div>
+        </div>
+        <div class="comparison-item">
+          <div class="label">Kommersiya təkrarı</div>
+          <div class="value red">sifarişdən asılı</div>
+          <div style="font-size:0.8rem;color:#868e96;">müntəzəm arxiv yoxdur</div>
+        </div>
+      </div>
 
-      <h3>Məhsul monitorinqi</h3>
-      <ul>
-        <li><b>Fenoloji əyrinin qurulması</b> — səpindən biçinə qədər hər mərhələnin qeydi</li>
-        <li><b>Səpin tarixinin təyini</b> — NDVI-nin qalxmağa başladığı an</li>
-        <li><b>Məhsul növünün təsnifatı</b> — taxıl, pambıq, qarğıdalı, üzüm, tərəvəz
-            fərqli mövsümi profil verir</li>
-        <li><b>Biçin faktının təsdiqi</b> — NDVI-nin kəskin düşməsi</li>
-        <li><b>İkinci əkin dövriyyəsinin aşkarlanması</b> — bir mövsümdə iki məhsul</li>
-        <li><b>Məhsuldarlıq proqnozu</b> — vegetasiya dövrü NDVI inteqralı ilə hesablama</li>
-      </ul>
+      <h3>Əsas fərqlər</h3>
 
-      <h3>Dəqiq əkinçilik</h3>
-      <ul>
-        <li><b>Sahədaxili zonalaşdırma</b> — eyni tarlada yüksək, orta və zəif məhsuldarlıq
-            zonalarının ayrılması; 1 metrlik ayırdetmə bu zonaların sərhədini dəqiq göstərir</li>
-        <li><b>Dəyişkən dozalı gübrələmə xəritəsi</b> — NDVI zonalarına uyğun resept xəritəsi
-            hazırlanır və traktor terminalına yüklənir</li>
-        <li><b>Toxum normasının tənzimlənməsi</b> — zəif zonalarda daha sıx səpin</li>
-        <li><b>Suvarma planlaması</b> — NDMI və NDVI birlikdə su ehtiyacı olan zonaları göstərir</li>
-        <li><b>Damcı suvarma nəzarəti</b> — nasaz xətlərin bitki reaksiyasından aşkarlanması</li>
-      </ul>
+      <table class="tbl">
+        <thead><tr><th>Xüsusiyyət</th><th>GeoSolver 1 m</th><th>Kommersiya 1 m</th></tr></thead>
+        <tbody>
+          <tr><td>Mənbə məlumatı</td><td>Sentinel-2A (pulsuz)</td><td>Öz peyki (bahalı)</td></tr>
+          <tr><td>Km² qiyməti</td><td>● 0 ●</td><td>$30–100</td></tr>
+          <tr><td>Arxiv (2015→bugün)</td><td class="ok">Tam, daxildir</td><td>Yoxdur / əlavə ödəniş</td></tr>
+          <tr><td>Təkrar ölçmə tezliyi</td><td>5 gün</td><td>Sifarişdən asılı</td></tr>
+          <tr><td>Geniş ərazi emalı</td><td class="ok">İqtisadi cəhətdən mümkün</td><td>Çox bahalı</td></tr>
+          <tr><td>NDVI / indekslər</td><td class="ok">1 m, daxildir</td><td>1 m, ayrıca emal</td></tr>
+          <tr><td>Zaman sırası analizi</td><td class="ok">Müntəzəm yenilənir</td><td>Məhdud</td></tr>
+        </tbody>
+      </table>
 
-      <h3>Stress və problem aşkarlanması</h3>
-      <ul>
-        <li><b>Su çatışmazlığı</b> — NIR əksolunmasının düşməsi gözlə görünən solmadan əvvəl</li>
-        <li><b>Xəstəlik ocaqları</b> — tarlada anomal aşağı NDVI zonaları</li>
-        <li><b>Zərərverici zədəsi</b> — ləkəli struktur, sərhədləri qeyri-müntəzəm</li>
-        <li><b>Şoranlaşma</b> — BSI indeksi ilə birlikdə duz ləkələrinin aşkarlanması</li>
-        <li><b>Eroziya sahələri</b> — yamacda bitki örtüyünün itməsi</li>
-        <li><b>Dolu zədəsi</b> — hadisədən sonra kəskin NDVI düşməsi, sərhədləri kəskin</li>
-      </ul>
-
-      <h3>Sığorta və subsidiya</h3>
-      <ul>
-        <li><b>Əkin faktının uzaqdan təsdiqi</b> — subsidiya müraciətinin yoxlanması
-            üçün sahəyə getmədən</li>
-        <li><b>Zərər hadisəsinin sənədləşdirilməsi</b> — hadisədən əvvəlki və sonrakı
-            görüntülərin müqayisəsi</li>
-        <li><b>Zərərin miqyasının ölçülməsi</b> — zədələnmiş sahənin faizlə hesablanması</li>
-        <li><b>Bəyan edilmiş məhsul növünün yoxlanması</b> — NDVI profilinin bəyannamə ilə uyğunluğu</li>
-      </ul>
-
-      <h3>Bağçılıq və üzümçülük</h3>
-      <ul>
-        <li><b>Cərgə strukturunun görünməsi</b> — ağac sıralarının konturu 1 metrdə oxunur</li>
-        <li><b>Boş yerlərin sayılması</b> — quruyub itmiş ağacların yeri</li>
-        <li><b>Tac ölçüsünün qiymətləndirilməsi</b> — böyümə dinamikası</li>
-        <li><b>Cavan və köhnə bağın ayrılması</b> — tac sıxlığına görə</li>
-        <li><b>Suvarma qeyri-bərabərliyi</b> — cərgə boyu NDVI dəyişkənliyi</li>
-      </ul>
-
-      <p class="note">
-        Azərbaycan şəraitində ən çox tələb olunan ssenarilər: <b>pambıq və taxıl sahələrinin
-        monitorinqi</b>, <b>subsidiya yoxlaması</b>, <b>suvarma şəbəkəsinin analizi</b>
-        və <b>şoranlaşmanın izlənməsi</b>. Bu məsələlərin hamısı 1 metrlik məhsul
-        səviyyəsində praktik həll olunur.
-      </p>
+      <div class="highlight-box">
+        <b>Xülasə:</b> GeoSolver 1 m eyni dəqiqlikdə, lakin <b>xeyli aşağı xərclə</b> və <b>daha zəngin zaman sırası</b> ilə məhsul təqdim edir.
+      </div>
     </section>
 
-    <!-- ══════════ 12 ══════════ -->
-    <section id="s12">
-      <h2>12 · Digər tətbiq sahələri</h2>
+    <!-- ══════════ 3 ══════════ -->
+    <section id="s3">
+      <h2>3 · Tətbiq sahələri</h2>
+
+      <p>
+        1 metrlik dəqiqlik aşağıdakı sahələrdə xüsusilə dəyərlidir:
+      </p>
 
       <div class="apps">
 
         <div class="app">
-          <h4>Kadastr və torpaq uçotu</h4>
+          <h4>🌾 Kənd təsərrüfatı</h4>
           <ul>
-            <li>Kadastr konturlarının faktiki vəziyyətlə tutuşdurulması</li>
-            <li>Qeydiyyatsız istifadə hallarının ilkin aşkarlanması</li>
-            <li>Sahə ölçüsünün təxmini yoxlanması</li>
-            <li>Torpaq kateqoriyasının dəyişməsinin izlənməsi</li>
-            <li>Sahə mübahisələrində tarixi vəziyyətin bərpası</li>
-            <li>Yeni bölünmələrin qeydiyyata alınması</li>
+            <li>Sahə sərhədlərinin dəqiq çəkilməsi</li>
+            <li>Məhsul növünün təsnifatı (taxıl, pambıq, qarğıdalı, üzüm)</li>
+            <li>Sahədaxili zonallaşdırma (dəyişkən gübrələmə üçün)</li>
+            <li>Biçin tarixinin və əkin sahəsinin təsdiqi</li>
+            <li>Subsidiya və sığorta yoxlaması</li>
           </ul>
         </div>
 
         <div class="app">
-          <h4>Şəhərsalma və infrastruktur</h4>
+          <h4>🏛️ Kadastr və torpaq uçotu</h4>
+          <ul>
+            <li>Sahə konturlarının faktiki vəziyyətlə yoxlanması</li>
+            <li>Yeni bölünmələrin və tikililərin qeydiyyatı</li>
+            <li>Qeyri-qanuni istifadənin ilkin aşkarlanması</li>
+            <li>Tarixi vəziyyətin bərpası (mübahisə halları üçün)</li>
+          </ul>
+        </div>
+
+        <div class="app">
+          <h4>🏗️ Şəhərsalma və infrastruktur</h4>
           <ul>
             <li>Tikinti fəaliyyətinin monitorinqi</li>
             <li>Yol şəbəkəsinin yenilənməsi</li>
-            <li>Qeyri-qanuni tikintinin ilkin aşkarlanması</li>
-            <li>Şəhər genişlənməsinin illik ölçülməsi</li>
             <li>Yaşıllıq sahələrinin uçotu</li>
-            <li>Sənaye zonalarının inkişafı</li>
+            <li>Şəhər genişlənməsinin illik ölçülməsi</li>
           </ul>
         </div>
 
         <div class="app">
-          <h4>Su təsərrüfatı</h4>
+          <h4>💧 Su təsərrüfatı</h4>
           <ul>
-            <li>Su anbarlarının səviyyə dəyişməsi</li>
+            <li>Su anbarlarının səviyyə dinamikası</li>
             <li>Suvarma kanallarının vəziyyəti</li>
-            <li>Çay yataqlarının miqrasiyası</li>
-            <li>Bataqlıq və su-bataq sahələrin uçotu</li>
-            <li>Sahil xəttinin dəyişməsi (Xəzər sahili)</li>
+            <li>Çay yataqlarının dəyişməsi</li>
+            <li>Daşqın zonalarının xəritələşdirilməsi</li>
           </ul>
         </div>
 
         <div class="app">
-          <h4>Meşə və ətraf mühit</h4>
+          <h4>🌳 Ekologiya və meşə</h4>
           <ul>
-            <li>Meşə örtüyünün sərhədi və sahəsi</li>
+            <li>Meşə örtüyünün sahəsi və sərhədləri</li>
             <li>Qanunsuz qırma hallarının aşkarlanması</li>
-            <li>Meşə bərpası layihələrinin monitorinqi</li>
-            <li>Eroziya və sürüşmə zonaları</li>
-            <li>Otlaqların deqradasiyası</li>
-            <li>Qoruq ərazilərində nəzarət</li>
+            <li>Yanğın zərərinin qiymətləndirilməsi</li>
+            <li>Otlaq deqradasiyasının izlənməsi</li>
           </ul>
         </div>
 
         <div class="app">
-          <h4>Fövqəladə hallar</h4>
+          <h4>⚠️ Fövqəladə hallar</h4>
           <ul>
-            <li>Daşqın sahəsinin operativ xəritələşdirilməsi</li>
-            <li>Yanğın zərərinin qiymətləndirilməsi</li>
-            <li>Sürüşmə və uçqun zonaları</li>
+            <li>Daşqın və sürüşmə sahələrinin operativ xəritələşdirilməsi</li>
             <li>Zərərin sahə üzrə hesablanması</li>
             <li>Bərpa işlərinin izlənməsi</li>
           </ul>
         </div>
 
-        <div class="app">
-          <h4>Dəyişikliyin aşkarlanması</h4>
-          <ul>
-            <li>İki tarix arasında obyekt səviyyəsində müqayisə</li>
-            <li>Torpaq örtüyü siniflərinin dəyişməsi</li>
-            <li>Yeni tikililərin peyda olması</li>
-            <li>Əkin sahəsinin genişlənməsi və ya azalması</li>
-            <li>Çoxillik trendlərin qurulması</li>
-          </ul>
-        </div>
-
       </div>
     </section>
 
-    <!-- ══════════ 13 ══════════ -->
-    <section id="s13">
-      <h2>13 · Texniki çərçivə</h2>
+    <!-- ══════════ 4 ══════════ -->
+    <section id="s4">
+      <h2>4 · Sentinel-2A — fon məlumatı</h2>
 
       <p>
-        Məhsuldan düzgün istifadə üçün onun texniki çərçivəsini bilmək lazımdır.
-        Aşağıdakılar məhdudiyyət deyil, <b>tətbiq sərhədidir</b> — hansı məsələdə
-        məhsulun tam işlədiyini, hansında əlavə mənbə tələb olunduğunu göstərir.
+        GeoSolver 1 m məhsulunun mənbəyi <b>Copernicus Sentinel-2A</b> peykidir.
+        Aşağıda əsas texniki xarakteristikalar verilir.
+      </p>
+
+      <table class="tbl">
+        <thead><tr><th>Parametr</th><th>Dəyər</th></tr></thead>
+        <tbody>
+          <tr><td>Buraxılış tarixi</td><td>23 iyun 2015</td></tr>
+          <tr><td>Orbit hündürlüyü</td><td>786 km</td></tr>
+          <tr><td>Zolağın eni</td><td>290 km</td></tr>
+          <tr><td>Orbit dövrü (nominal)</td><td>10 gün</td></tr>
+          <tr><td>Azərbaycan üçün faktiki interval</td><td><b>~5 gün</b> (zolaqların üst-üstə düşməsi səbəbindən)</td></tr>
+          <tr><td>Spektral bandlar</td><td>13 (B2 mavi, B3 yaşıl, B4 qırmızı, B8 NIR — 10 m)</td></tr>
+          <tr><td>Radiometrik dərinlik</td><td>12 bit (4096 səviyyə)</td></tr>
+          <tr><td>Lisenziya</td><td>Copernicus açıq məlumat siyasəti — tam pulsuz</td></tr>
+        </tbody>
+      </table>
+
+      <p>
+        <b>10 metrlik dörd band</b> (B2 mavi, B3 yaşıl, B4 qırmızı, B8 NIR) GeoSolver
+        superrezolyusiya modelinin giriş məlumatlarıdır. Çıxışda eyni dörd band <b>1 metrlik
+        şəbəkədə</b> təqdim olunur.
+      </p>
+
+      <p class="note">
+        Sentinel-2A məlumatları 2015-ci ildən bugünə qədər tam arxiv şəklində əlçatandır.
+        GeoSolver istənilən tarix üçün 1 metrlik məhsul hazırlaya bilər.
+      </p>
+    </section>
+
+    <!-- ══════════ 5 ══════════ -->
+    <section id="s5">
+      <h2>5 · Spektral indekslər — 1 metrlik dəqiqlikdə</h2>
+
+      <p>
+        1 metrlik məhsul dörd bandı (B2, B3, B4, B8) saxladığı üçün bütün əsas spektral
+        indekslər birbaşa 1 metrlik şəbəkədə hesablana bilər.
+      </p>
+
+      <table class="tbl tbl-idx">
+        <thead><tr><th>İndeks</th><th>Düstur</th><th>Təyinat</th></tr></thead>
+        <tbody>
+          <tr><td class="b">NDVI</td><td><code>(B8−B4)/(B8+B4)</code></td><td>Bitki sıxlığı, məhsul monitorinqi</td></tr>
+          <tr><td class="b">NDWI</td><td><code>(B3−B8)/(B3+B8)</code></td><td>Su hövzələri, daşqın</td></tr>
+          <tr><td class="b">NDMI</td><td><code>(B8−B11)/(B8+B11)</code></td><td>Bitki rütubəti, suvarma ehtiyacı</td></tr>
+          <tr><td class="b">SAVI</td><td><code>1.5·(B8−B4)/(B8+B4+0.5)</code></td><td>Seyrək bitkidə torpaq fonunun təsirini azaldır</td></tr>
+          <tr><td class="b">EVI</td><td><code>2.5·(B8−B4)/(B8+6·B4−7.5·B2+1)</code></td><td>Sıx bitkidə doyma problemi olmadan</td></tr>
+        </tbody>
+      </table>
+
+      <div class="highlight-box">
+        <b>Əsas üstünlük:</b> 10 metrlik indekslə müqayisədə 1 metrlik indeks <b>sahə sərhədlərində,
+        qarışıq piksellərdə və xırda obyektlərdə</b> daha dəqiq nəticə verir.
+      </div>
+    </section>
+
+    <!-- ══════════ 6 ══════════ -->
+    <section id="s6">
+      <h2>6 · Texniki çərçivə və məhdudiyyətlər</h2>
+
+      <p>
+        Məhsuldan düzgün istifadə üçün onun imkanlarını və məhdudiyyətlərini bilmək lazımdır.
       </p>
 
       <div class="lims">
@@ -862,9 +459,8 @@
             <h4>Obyekt ölçüsü həddi</h4>
             <p>
               Mənbə görüntüdə heç bir izi olmayan obyekt bərpa oluna bilməz.
-              Praktikada <b>2 metrdən kiçik təkbaşına obyektlər</b> — dar cığır,
-              tək ağac, kiçik tikili, avtomobil — etibarlı şəkildə görünmür.
-              Ölçüsü 3–5 metrdən böyük obyektlər isə aydın seçilir.
+              <b>2 metrdən kiçik</b> tək obyektlər (dar cığır, tək ağac, kiçik tikili)
+              etibarlı görünmür. 3–5 metr və daha böyük obyektlər aydın seçilir.
             </p>
           </div>
         </div>
@@ -872,12 +468,11 @@
         <div class="lim">
           <div class="lim-n">02</div>
           <div class="lim-b">
-            <h4>Detalın xarakteri</h4>
+            <h4>Mənbə keyfiyyətindən asılılıq</h4>
             <p>
-              Model 10 metrlik məlumatdan 1 metrlik struktur bərpa edir. Nəticə
-              həndəsi baxımdan yüksək dəqiqlikli, spektral baxımdan isə mənbəyə
-              bağlıdır. Zona və sahə səviyyəsində analiz üçün tam etibarlıdır;
-              tək piksel dəyəri isə qiymətləndirmə kimi qəbul edilməlidir.
+              Bulud, duman, kölgə mənbə görüntünün keyfiyyətini azaldır.
+              GeoSolver yalnız <b>buludsuz səhnələri</b> emal edir. Tələb olunan
+              tarixdə buludluluq varsa, alternativ yaxın tarix təklif olunur.
             </p>
           </div>
         </div>
@@ -885,11 +480,11 @@
         <div class="lim">
           <div class="lim-n">03</div>
           <div class="lim-b">
-            <h4>Mənbə keyfiyyətindən asılılıq</h4>
+            <h4>Dəqiqlik səviyyəsi</h4>
             <p>
-              Nazik bulud, duman, kölgə və aşağı günəş bucağı mənbə görüntünün
-              keyfiyyətini azaldır. Emaldan əvvəl <b>buludluluq maskası</b> tətbiq
-              edilir və yalnız təmiz səhnələr seçilir.
+              Məhsul <b>zona və sahə səviyyəsində</b> analiz üçün tam etibarlıdır.
+              Tək piksel dəyəri qiymətləndirmə xarakteri daşıyır. Mülkiyyət
+              mübahisələrində ilkin göstəricidir, yekun qərar üçün yer ölçmələri tələb olunur.
             </p>
           </div>
         </div>
@@ -897,25 +492,10 @@
         <div class="lim">
           <div class="lim-n">04</div>
           <div class="lim-b">
-            <h4>Hüquqi sənəd statusu</h4>
+            <h4>Dəyişiklik analizində həssaslıq</h4>
             <p>
-              Mülkiyyət mübahisəsi və məhkəmə sübutu kimi hallarda məhsul
-              <b>ilkin göstərici</b> rolunu oynayır. Yekun qərar üçün yer ölçmələri
-              tələb olunur. Monitorinq, planlaşdırma və qərar dəstəyi üçün isə
-              tam yararlıdır.
-            </p>
-          </div>
-        </div>
-
-        <div class="lim">
-          <div class="lim-n">05</div>
-          <div class="lim-b">
-            <h4>Dəyişiklik analizində həssaslıq həddi</h4>
-            <p>
-              Fərqli tarixli görüntülərdə çox incə detallar tam eyni çıxmaya bilər.
-              Dəyişiklik analizində <b>minimum aşkarlama həddi</b> təyin edilir —
-              adətən 5–10 m² səviyyəsində. Bu həddən böyük dəyişikliklər
-              etibarlı aşkarlanır.
+              Minimum etibarlı aşkarlama həddi <b>~5–10 m²</b> səviyyəsindədir.
+              Bu həddən böyük dəyişikliklər etibarlı aşkarlanır.
             </p>
           </div>
         </div>
@@ -923,51 +503,91 @@
       </div>
 
       <table class="tbl tbl-use">
-        <thead><tr><th>Məqsəd</th><th>Uyğunluq</th></tr></thead>
+        <thead><tr><th>İstifadə məqsədi</th><th>Uyğunluq</th></tr></thead>
         <tbody>
-          <tr><td>Sahə sərhədinin çəkilməsi</td><td class="ok">Yüksək</td></tr>
-          <tr><td>Vizual monitorinq və hesabat</td><td class="ok">Yüksək</td></tr>
-          <tr><td>Zona səviyyəsində NDVI analizi</td><td class="ok">Yüksək</td></tr>
-          <tr><td>Dəyişikliyin aşkarlanması</td><td class="ok">Yüksək</td></tr>
-          <tr><td>Məhsul növünün təsnifatı</td><td class="ok">Yüksək</td></tr>
-          <tr><td>Suvarma və stres analizi</td><td class="ok">Yüksək</td></tr>
-          <tr><td>Bina və ağac sayılması</td><td class="mid">Orta</td></tr>
-          <tr><td>Sahə ölçüsünün hesablanması</td><td class="mid">Orta — yoxlama ilə</td></tr>
-          <tr><td>2 metrdən kiçik obyektlər</td><td class="low">Uyğun deyil</td></tr>
-          <tr><td>Santimetr dəqiqlikli ölçmə</td><td class="low">Uyğun deyil</td></tr>
+          <tr><td>Sahə sərhədinin çəkilməsi</td><td class="ok">✓ Yüksək</td></tr>
+          <tr><td>Vizual monitorinq və hesabat</td><td class="ok">✓ Yüksək</td></tr>
+          <tr><td>NDVI və indeks analizi</td><td class="ok">✓ Yüksək</td></tr>
+          <tr><td>Dəyişikliyin aşkarlanması</td><td class="ok">✓ Yüksək</td></tr>
+          <tr><td>Məhsul təsnifatı</td><td class="ok">✓ Yüksək</td></tr>
+          <tr><td>Bina və ağac sayılması</td><td class="mid">◌ Orta</td></tr>
+          <tr><td>2 metrdən kiçik obyektlər</td><td class="low">✗ Uyğun deyil</td></tr>
+          <tr><td>Santimetr dəqiqlikli ölçmə</td><td class="low">✗ Uyğun deyil</td></tr>
         </tbody>
       </table>
     </section>
 
-    <!-- ══════════ 14 ══════════ -->
-    <section id="s14">
-      <h2>14 · İş axını</h2>
+    <!-- ══════════ 7 ══════════ -->
+    <section id="s7">
+      <h2>7 · İş axını və çatdırılma</h2>
+
+      <h3>Sifariş prosesi</h3>
 
       <ol>
-        <li><b>Ərazi və tarix seçilir</b> — məqsədə uyğun vegetasiya dövrü müəyyən edilir</li>
-        <li><b>Buludsuz Sentinel-2A Level-2A səhnəsi tapılır</b> — arxivdən uyğun tarix seçilir</li>
-        <li><b>Buludluluq maskası tətbiq olunur</b> — SCL təbəqəsi ilə örtülü sahələr kənarlaşdırılır</li>
-        <li><b>10 metrlik dörd band ayrılır</b> — B2, B3, B4, B8</li>
-        <li><b>Superrezolusiya emalı aparılır</b> — çıxış 1 metrlik dörd band</li>
-        <li><b>Nəticə yoxlanılır</b> — təbii rəng və infraqırmızı kompozisiyalarda vizual nəzarət</li>
-        <li><b>İndekslər hesablanır</b> — NDVI, NDWI və ya məqsədə uyğun digərləri</li>
-        <li><b>Mövcud məlumatlarla tutuşdurulur</b> — kadastr bazası, yer ölçmələri, əvvəlki tarixlər</li>
-        <li><b>Yekun məhsul təhvil verilir</b> — GeoTIFF, veb servis və ya GIS layihəsi formatında</li>
+        <li><b>Ərazi müəyyən edilir</b> — maraq zonası (rayon, təsərrüfat, ya xəritədə çəkilmiş kontur)</li>
+        <li><b>Tarix və ya dövr seçilir</b> — tək tarix, mövsüm, ya ardıcıl illər</li>
+        <li><b>Buludsuz səhnələr seçilir</b> — uyğun Sentinel-2A görüntüləri tapılır</li>
+        <li><b>Superrezolyusiya emalı aparılır</b> — çıxış 1 metrlik dörd band</li>
+        <li><b>İstəyə görə indekslər hesablanır</b> — NDVI, NDWI, EVI və s.</li>
+        <li><b>Məhsul çatdırılır</b> — seçilmiş formatda</li>
       </ol>
 
-      <p class="note">
-        Bütün mərhələlər avtomatlaşdırıla bilər. Böyük ərazilər üçün sistematik emal
-        qurulur və nəticələr müntəzəm olaraq veb servis şəklində yenilənir.
+      <h3>Çatdırılma formatları</h3>
+
+      <table class="tbl">
+        <thead><tr><th>Format</th><th>Təsvir</th><th>İstifadə</th></tr></thead>
+        <tbody>
+          <tr><td><b>GeoTIFF</b></td><td>Tam spektral məlumat, koordinat sistemi ilə</td><td>QGIS, ArcGIS, Python, ENVI</td></tr>
+          <tr><td><b>WMS / WMTS</b></td><td>Veb xəritə servisi</td><td>Brauzer, xəritə tətbiqləri</td></tr>
+          <tr><td><b>API (Cloud Optimized GeoTIFF)</b></td><td>Birbaşa bulud oxuması</td><td>Proqram təminatı ilə inteqrasiya</td></tr>
+          <tr><td><b>Rəngli təsvir (PNG, JPEG)</b></td><td>Təbii rəng / infraqırmızı</td><td>Hesabat, təqdimat, çap</td></tr>
+          <tr><td><b>İndeks xəritələri</b></td><td>NDVI, NDWI və s. rəngli xəritə</td><td>Sahə analizi, qərar dəstəyi</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Nümunə istifadə ssenariləri</h3>
+
+      <ul>
+        <li><b>Bir rayon üzrə 2025-ci il yaz əkinlərinin NDVI xəritəsi</b> — 1 metr dəqiqlikdə</li>
+        <li><b>Təsərrüfat üzrə 2018–2025 sahə sərhədlərinin dəyişməsi</b> — illik müqayisə</li>
+        <li><b>Suvarma kanalı boyu 5 km zolaq</b> — 1 m görüntü, kanalın vəziyyəti</li>
+        <li><b>Yeni tikinti sahəsinin 2019 və 2025 müqayisəsi</b> — dəyişiklik aşkarlanması</li>
+      </ul>
+
+      <div class="highlight-box">
+        <b>Xüsusi tələblər?</b> Fərdi sifarişlər üçün bizimlə əlaqə saxlayın — istənilən ərazi,
+        istənilən tarix, istənilən format.
+      </div>
+    </section>
+
+    <!-- ══════════ 8 ══════════ -->
+    <section id="s8">
+      <h2>8 · Əlaqə</h2>
+
+      <div class="contact-block">
+        <h3 style="margin-top:0;">GeoSolver 1 metrlik məhsulu sifariş edin</h3>
+        <p style="color:#495057;max-width:600px;margin:0.5rem auto 1.5rem;">
+          Maraqlanan sahəni, istədiyiniz tarixi və çatdırılma formatını qeyd edin.
+          Biz sizə uyğun təklif və nümunə məhsul təqdim edəcəyik.
+        </p>
+        <a class="btn" href="https://geosolver.az/" target="_blank">geosolver.az</a>
+        <p class="sub">
+          Saytda əlaqə formu, ətraflı məlumat və əvvəlki layihələr haqqında məlumat tapa bilərsiniz.
+        </p>
+      </div>
+
+      <p style="text-align:center;color:#868e96;font-size:0.9rem;">
+        GeoSolver — Azərbaycanda peyk məlumatlarının analizi və emalı.
       </p>
     </section>
 
     <footer class="doc-foot">
       <p>
-        Mənbə məlumatlar: <b>Copernicus Sentinel-2A</b>, Avropa Kosmik Agentliyi (ESA)
-        və Avropa Komissiyası. Açıq məlumat siyasəti əsasında istifadə olunur.
+        Mənbə məlumatlar: <b>Copernicus Sentinel-2A</b>, Avropa Kosmik Agentliyi (ESA).
+        Açıq məlumat siyasəti əsasında istifadə olunur.
       </p>
       <p>
-        Superrezolusiya emalı, analiz və veb təqdimat — <b>GeoSolver</b>, Azərbaycan.
+        Superrezolyusiya emalı, analiz və veb təqdimat — <b>GeoSolver</b>, Azərbaycan.
       </p>
       <div class="foot-btns">
         <a class="foot-back" href="index.html">
