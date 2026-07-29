@@ -4,6 +4,12 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>GeoSolver 1 metr — Yüksək ayırdetməli peyk məhsulu</title>
+<meta name="description" id="metaDesc" content="Copernicus Sentinel-2 peyklərinin pulsuz 10 metrlik görüntülərini süni intellektlə 1 metr piksel ölçüsünə qaldıran GeoSolver məhsulu."/>
+
+<link rel="alternate" hreflang="az" href="?lang=az"/>
+<link rel="alternate" hreflang="en" href="?lang=en"/>
+<link rel="alternate" hreflang="ru" href="?lang=ru"/>
+<link rel="alternate" hreflang="x-default" href="?lang=az"/>
 
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -33,39 +39,6 @@
     margin: 1.2rem 0;
   }
 
-  .comparison-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-    margin: 1.2rem 0;
-  }
-
-  .comparison-item {
-    background: #f8f9fa;
-    padding: 1rem 1.2rem;
-    border-radius: 8px;
-    border: 1px solid #e9ecef;
-    text-align: center;
-  }
-
-  .comparison-item .label {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: #868e96;
-  }
-
-  .comparison-item .value {
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: #1a7a3a;
-    margin-top: 0.3rem;
-  }
-
-  .comparison-item .value.red {
-    color: #c92a2a;
-  }
-
   .contact-block {
     background: #f0f8f2;
     border-radius: 12px;
@@ -89,13 +62,15 @@
     background: #0f5a2a;
   }
 
-  .contact-block .sub {
-    color: #495057;
-    margin-top: 0.8rem;
-    font-size: 0.9rem;
+  /* ═══ BAŞLIQ SAĞ TƏRƏF + DİL SEÇİCİ ═══ */
+  /* info.css-dən asılı olmamaq üçün başlığın flex düzülüşü burada təsbit edilir */
+  .hdr {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
   }
 
-  /* ═══ DİL SEÇİCİ ═══ */
   .hdr-right {
     display: flex;
     align-items: center;
@@ -175,7 +150,7 @@
       <button type="button" data-lang="ru" lang="ru">RU</button>
     </div>
     <a class="back-btn" href="index.html">
-      <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
         <path d="M9.5 3.5L5 8l4.5 4.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
       <span data-i18n="backToMap">Xəritəyə qayıt</span>
@@ -190,7 +165,7 @@
     <div class="toc-lbl" data-i18n="tocLabel">Mündəricat</div>
     <a href="#s1" data-i18n="toc1">GeoSolver 1 metrlik məhsul</a>
     <a href="#s3" data-i18n="toc3">Tətbiq sahələri</a>
-    <a href="#s4" data-i18n="toc4">Sentinel-2A — fon</a>
+    <a href="#s4" data-i18n="toc4">Sentinel-2 — fon</a>
     <a href="#s5" data-i18n="toc5">Spektral indekslər</a>
     <a href="#s6" data-i18n="toc6">Texniki çərçivə</a>
     <a href="#s7" data-i18n="toc7">İş axını və çatdırılma</a>
@@ -204,9 +179,8 @@
       <span class="product-badge" data-i18n="badge">✦ Kommersiya məhsulu</span>
       <h1 data-i18n="h1">GeoSolver MMC – 1 m Yüksək Ayırdetməli Peyk Görüntüsü</h1>
       <p class="doc-lead" data-i18n="lead">
-        <b>Sentinel-2A</b> peykindən alınmış <b>pulsuz 10 metrlik</b> görüntüləri süni intellektlə
-        <b>1 metr piksel ölçüsünə</b> qaldıran məhsul. Kommersiya 1 metrlik peyklərə xərcləmədən,
-        Azərbaycan üzrə 2015-ci ildən bugünə qədər bütün arxivi 1 metr dəqiqlikdə əldə edə bilərsiniz.
+        <b>Copernicus Sentinel-2</b> peyklərindən alınmış <b>pulsuz 10 metrlik</b> görüntüləri süni intellektlə
+        <b>1 metr piksel ölçüsünə</b> qaldıran məhsul.
       </p>
     </div>
 
@@ -215,13 +189,12 @@
       <h2 data-i18n="s1h2">1 · GeoSolver 1 metrlik yüksək ayırdetməli görüntü məhsulu</h2>
 
       <p data-i18n="s1p1">
-        <b>GeoSolver 1 metr</b> — Sentinel-2A peykinin 10 metrlik bandlarına tətbiq olunan
-        <b>süni intellekt əsaslı yüksək ayırdetməli görüntü</b> alqoritmidir. Çıxışda <b>1 metr piksel ölçüsündə</b>
-        dörd spektral band (B2 mavi, B3 yaşıl, B4 qırmızı, B8 yaxın infraqırmızı) əldə edilir.
+        <b>GeoSolver 1 metr</b> — Sentinel-2 peyklərinin 10 metrlik bandlarına tətbiq olunan
+        süni intellekt əsaslı alqoritmdir.
       </p>
 
       <div class="highlight-box" data-i18n="s1hl">
-        <b>Nəticə:</b> 10 m-lik bir pikselin yerinə 1 m-lik 100 piksel. Hər piksel öz spektral dəyərini saxlayır.
+        <b>Nəticə:</b> 10 m-lik bir pikselin yerinə 1 m-lik 100 piksel.
       </div>
 
       <div class="kpi">
@@ -233,94 +206,41 @@
 
       <h3 data-i18n="s1h3a">Texniki əsas</h3>
       <p data-i18n="s1p2">
-        Model <b>dərin öyrənmə (deep learning)</b> arxitekturasına əsaslanır.
-        Təlim prosesində model 10 metrlik görüntü ilə 1 metrlik görüntü arasındakı
-        <b>mürəkkəb əlaqəni</b> öyrənir — sərhədlərin kəskinləşməsi, teksturaların bərpası,
-        spektral dəyərlərin düzgün paylanması.
+        Model dərin öyrənmə arxitekturasına əsaslanır.
       </p>
 
       <p data-i18n="s1p3">
         Nəticədə hər bir 10 metrlik piksel 10×10 ölçülü 1 metrlik bloka çevrilir.
-        Hər bir yeni piksel öz spektral dəyərini saxlayır — yəni <b>NDVI, NDWI və digər indekslər</b>
-        birbaşa 1 metrlik şəbəkədə hesablana bilər.
       </p>
 
       <h3 data-i18n="s1h3b">Nə dəyişir?</h3>
 
       <ul>
-        <li data-i18n="s1l1"><b>Sərhədlər kəskinləşir</b> — tarla, yol, kanal, meşə zolağı aydın seçilir.</li>
-        <li data-i18n="s1l2"><b>Qarışıq piksel problemi azalır</b> — hər bir piksel daha vahid ərazini təmsil edir.</li>
-        <li data-i18n="s1l3"><b>Xırda obyektlər görünür</b> — 3–5 metrlik tikililər, dar yollar, suvarma arxları.</li>
-        <li data-i18n="s1l4"><b>Sahədaxili analiz mümkün olur</b> — eyni tarlada zəif və güclü zonalar ayrılır.</li>
-        <li data-i18n="s1l5"><b>Vizual keyfiyyət yüksəlir</b> — hesabatlar, təqdimatlar, GIS layihələri üçün ideal.</li>
+        <li data-i18n="s1l1">Sərhədlər kəskinləşir.</li>
+        <li data-i18n="s1l2">Qarışıq piksel problemi azalır.</li>
+        <li data-i18n="s1l3">Xırda obyektlər görünür.</li>
+        <li data-i18n="s1l4">Sahədaxili analiz mümkün olur.</li>
+        <li data-i18n="s1l5">Vizual keyfiyyət yüksəlir.</li>
       </ul>
 
       <h3 data-i18n="s1h3c">Əsas üstünlüklər</h3>
 
       <div class="pluses">
-
-        <div class="plus">
-          <h4 data-i18n="p1h">Pulsuz mənbə, yüksək nəticə</h4>
-          <p data-i18n="p1p">
-            Sentinel-2A məlumatları tam pulsuzdur. GeoSolver MMC bu məlumatı 1 metrə qaldıraraq
-            kommersiya keyfiyyətində məhsul təqdim edir — <b>xərc kommersiya peyklərinin
-            fraksiyasıdır</b>.
-          </p>
-        </div>
-
-        <div class="plus">
-          <h4 data-i18n="p2h">Dərin arxiv</h4>
-          <p data-i18n="p2p">
-            <b>2015-ci ildən bugünə</b> qədər bütün Sentinel-2A arxivi 1 metrlik formata çevrilə bilər.
-            Bu, 10 illik dəyişiklik analizi, keçmiş hadisələrin araşdırılması və uzunmüddətli
-            trendlərin qurulması deməkdir.
-          </p>
-        </div>
-
-        <div class="plus">
-          <h4 data-i18n="p3h">Müntəzəm yenilənmə</h4>
-          <p data-i18n="p3p">
-            Sentinel-2A Azərbaycanı <b>orta hesabla 5 gündən bir</b> görüntüləyir.
-            Bu tezlik dinamik proseslərin — əkin, suvarma, tikinti — izlənməsi üçün kifayətdir.
-          </p>
-        </div>
-
-        <div class="plus">
-          <h4 data-i18n="p4h">Vahid spektral əsas</h4>
-          <p data-i18n="p4p">
-            Məhsul dörd bandı saxlayır: B2, B3, B4, B8. Bu, NDVI, NDWI, təbii rəng,
-            infraqırmızı kompozisiya və digər indekslərin <b>1 metrlik dəqiqlikdə</b> hesablanması
-            deməkdir.
-          </p>
-        </div>
-
-        <div class="plus">
-          <h4 data-i18n="p5h">Azərbaycan şəraitinə uyğun</h4>
-          <p data-i18n="p5p">
-            Kiçik və orta təsərrüfatlar, xırda sahələr, mürəkkəb relyef — 1 metrlik dəqiqlik
-            bu şəraitdə xüsusilə dəyərlidir. Sahə ölçüsündən asılı olmayaraq keyfiyyət eynidir.
-          </p>
-        </div>
-
-        <div class="plus">
-          <h4 data-i18n="p6h">Çevik çatdırılma</h4>
-          <p data-i18n="p6p">
-            Məhsul <b>GeoTIFF</b> (GIS proqramları üçün), <b>WMS</b> (veb servis) və ya
-            <b>API</b> vasitəsilə təqdim olunur. İstənilən formatda, istənilən ərazi üçün.
-          </p>
-        </div>
-
+        <div class="plus"><h4 data-i18n="p1h">Pulsuz mənbə, yüksək nəticə</h4><p data-i18n="p1p">Sentinel-2 məlumatları tam pulsuzdur. GeoSolver MMC bu məlumatı 1 metrə qaldıraraq kommersiya keyfiyyətində məhsul təqdim edir — <b>xərc kommersiya peyklərinin fraksiyasıdır</b>.</p></div>
+        <div class="plus"><h4 data-i18n="p2h">Dərin arxiv</h4><p data-i18n="p2p"><b>2015-ci ildən bugünə</b> qədər bütün Sentinel-2 arxivi 1 metrlik formata çevrilə bilər. Bu, 10 illik dəyişiklik analizi, keçmiş hadisələrin araşdırılması və uzunmüddətli trendlərin qurulması deməkdir.</p></div>
+        <div class="plus"><h4 data-i18n="p3h">Müntəzəm yenilənmə</h4><p data-i18n="p3p">Sentinel-2 peyk qrupu Azərbaycanı <b>orta hesabla 5 gündən bir</b>, zolaqların üst-üstə düşdüyü ərazilərdə isə daha tez-tez görüntüləyir. Bu tezlik dinamik proseslərin — əkin, suvarma, tikinti — izlənməsi üçün kifayətdir.</p></div>
+        <div class="plus"><h4 data-i18n="p4h">Vahid spektral əsas</h4><p data-i18n="p4p">Məhsul dörd bandı saxlayır: B2, B3, B4, B8. Bu, NDVI, NDWI, təbii rəng, infraqırmızı kompozisiya və digər indekslərin <b>1 metrlik şəbəkədə</b> hesablanması deməkdir.</p></div>
+        <div class="plus"><h4 data-i18n="p5h">Azərbaycan şəraitinə uyğun</h4><p data-i18n="p5p">Kiçik və orta təsərrüfatlar, xırda sahələr, mürəkkəb relyef — 1 metrlik dəqiqlik bu şəraitdə xüsusilə dəyərlidir. Sahə ölçüsündən asılı olmayaraq keyfiyyət eynidir.</p></div>
+        <div class="plus"><h4 data-i18n="p6h">Çevik çatdırılma</h4><p data-i18n="p6p">Məhsul <b>GeoTIFF</b> (GIS proqramları üçün), <b>WMS</b> (veb servis) və ya <b>API</b> vasitəsilə təqdim olunur. İstənilən formatda, istənilən ərazi üçün.</p></div>
       </div>
     </section>
 
 
-    <!-- ══════════ 3 ══════════ -->
+    <!-- ══════════ 2 (id=s3) ══════════ -->
     <section id="s3">
-      <h2 data-i18n="s3h2">3 · Tətbiq sahələri</h2>
+      <h2 data-i18n="s3h2">2 · Tətbiq sahələri</h2>
 
-      <p data-i18n="s3p">
-        1 metrlik dəqiqlik aşağıdakı sahələrdə xüsusilə dəyərlidir:
-      </p>
+      <p data-i18n="s3p">1 metrlik dəqiqlik aşağıdakı sahələrdə xüsusilə dəyərlidir:</p>
 
       <div class="apps">
 
@@ -387,137 +307,91 @@
       </div>
     </section>
 
-    <!-- ══════════ 4 ══════════ -->
+    <!-- ══════════ 3 (id=s4) ══════════ -->
     <section id="s4">
-      <h2 data-i18n="s4h2">4 · Sentinel-2A — fon məlumatı</h2>
+      <h2 data-i18n="s4h2">3 · Sentinel-2 — fon məlumatı</h2>
 
-      <p data-i18n="s4p1">
-        GeoSolver MMC -nin təqdim etdiyi yüksək ayırdetməli 1 metr məhsulunun mənbəyi <b>Copernicus Sentinel-2A</b> peykidir.
-        Aşağıda əsas texniki xarakteristikalar verilir.
-      </p>
+      <p data-i18n="s4p1">GeoSolver MMC-nin təqdim etdiyi 1 metrlik məhsulun mənbəyi <b>Copernicus Sentinel-2</b> missiyasıdır. Aşağıda əsas texniki xarakteristikalar verilir.</p>
 
       <table class="tbl">
         <thead><tr><th data-i18n="s4th1">Parametr</th><th data-i18n="s4th2">Dəyər</th></tr></thead>
         <tbody>
-          <tr><td data-i18n="s4r1a">Buraxılış tarixi</td><td data-i18n="s4r1b">23 iyun 2015</td></tr>
-          <tr><td data-i18n="s4r2a">Orbit hündürlüyü</td><td data-i18n="s4r2b">786 km</td></tr>
-          <tr><td data-i18n="s4r3a">Zolağın eni</td><td data-i18n="s4r3b">290 km</td></tr>
-          <tr><td data-i18n="s4r4a">Orbit dövrü (nominal)</td><td data-i18n="s4r4b">10 gün</td></tr>
-          <tr><td data-i18n="s4r5a">Azərbaycan üçün faktiki interval</td><td data-i18n="s4r5b"><b>~5 gün</b> (zolaqların üst-üstə düşməsi səbəbindən)</td></tr>
-          <tr><td data-i18n="s4r6a">Spektral bandlar</td><td data-i18n="s4r6b">13 (B2 mavi, B3 yaşıl, B4 qırmızı, B8 NIR — 10 m)</td></tr>
-          <tr><td data-i18n="s4r7a">Radiometrik dərinlik</td><td data-i18n="s4r7b">12 bit (4096 səviyyə)</td></tr>
-          <tr><td data-i18n="s4r8a">Lisenziya</td><td data-i18n="s4r8b">Copernicus açıq məlumat siyasəti — tam pulsuz</td></tr>
+          <tr><td data-i18n="s4r1a">Missiya</td><td data-i18n="s4r1b">Copernicus Sentinel-2 (2A, 2B, 2C)</td></tr>
+          <tr><td data-i18n="s4r2a">Peyklərin buraxılışı</td><td data-i18n="s4r2b">2A — 23 iyun 2015 · 2B — 7 mart 2017 · 2C — 5 sentyabr 2024</td></tr>
+          <tr><td data-i18n="s4r3a">Orbit hündürlüyü</td><td data-i18n="s4r3b">786 km</td></tr>
+          <tr><td data-i18n="s4r4a">Zolağın eni</td><td data-i18n="s4r4b">290 km</td></tr>
+          <tr><td data-i18n="s4r5a">Bir peykin təkrar çəkilişi</td><td data-i18n="s4r5b">10 gün (nominal)</td></tr>
+          <tr><td data-i18n="s4r6a">Qrup halında təkrar çəkiliş</td><td data-i18n="s4r6b"><b>~5 gün</b> — Azərbaycanda zolaqların üst-üstə düşdüyü ərazilərdə daha tez-tez</td></tr>
+          <tr><td data-i18n="s4r7a">Spektral bandlar</td><td data-i18n="s4r7b">13 (bunlardan B2 mavi, B3 yaşıl, B4 qırmızı, B8 NIR — 10 m)</td></tr>
+          <tr><td data-i18n="s4r8a">Radiometrik dərinlik</td><td data-i18n="s4r8b">12 bit (4096 səviyyə)</td></tr>
+          <tr><td data-i18n="s4r9a">Arxivin başlanğıcı</td><td data-i18n="s4r9b">2015 (müntəzəm çəkilişlər 2016-cı ilin əvvəlindən, 5 günlük tsikl 2017-dən)</td></tr>
+          <tr><td data-i18n="s4r10a">Lisenziya</td><td data-i18n="s4r10b">Copernicus açıq məlumat siyasəti — tam pulsuz</td></tr>
         </tbody>
       </table>
 
-      <p data-i18n="s4p2">
-        <b>10 metrlik dörd band</b> (B2 mavi, B3 yaşıl, B4 qırmızı, B8 NIR) GeoSolver MMC -nin 1 metrlik
-        yüksək ayırdetmə modelinin giriş məlumatlarıdır. Çıxışda eyni dörd band <b>1 metrlik
-        şəbəkədə</b> təqdim olunur.
-      </p>
+      <p data-i18n="s4p2"><b>10 metrlik dörd band</b> (B2 mavi, B3 yaşıl, B4 qırmızı, B8 NIR) GeoSolver MMC-nin 1 metrlik modelinin giriş məlumatlarıdır. Çıxışda eyni dörd band <b>1 metrlik şəbəkədə</b> təqdim olunur.</p>
 
-      <p class="note" data-i18n="s4note">
-        Sentinel-2A məlumatları 2015-ci ildən bugünə qədər tam arxiv şəklində əlçatandır.
-        GeoSolver MMC istənilən tarix üçün 1 metrlik məhsul hazırlaya bilər.
-      </p>
+      <p class="note" data-i18n="s4note">Qeyd: 21 yanvar 2025-ci ildə əməliyyat konstelyasiyasında Sentinel-2A-nı Sentinel-2C əvəz etmişdir; Sentinel-2A isə uzadılmış kampaniya çərçivəsində 2026-cı ilin sonuna qədər əlavə çəkilişlər aparır. Məhsul üçün hər üç peykin məlumatı istifadə olunur, ona görə də tarix seçimində məhdudiyyət yoxdur.</p>
     </section>
 
-    <!-- ══════════ 5 ══════════ -->
+    <!-- ══════════ 4 (id=s5) ══════════ -->
     <section id="s5">
-      <h2 data-i18n="s5h2">5 · Spektral indekslər — 1 metrlik dəqiqlikdə</h2>
+      <h2 data-i18n="s5h2">4 · Spektral indekslər — 1 metrlik dəqiqlikdə</h2>
 
-      <p data-i18n="s5p">
-        1 metrlik məhsul dörd bandı (B2, B3, B4, B8) saxladığı üçün bütün əsas spektral
-        indekslər birbaşa 1 metrlik şəbəkədə hesablana bilər.
-      </p>
+      <p data-i18n="s5p">1 metrlik məhsul dörd bandı (B2, B3, B4, B8) saxladığı üçün bu bandlara əsaslanan bütün indekslər birbaşa 1 metrlik şəbəkədə hesablana bilər.</p>
 
       <table class="tbl tbl-idx">
         <thead><tr><th data-i18n="s5th1">İndeks</th><th data-i18n="s5th2">Düstur</th><th data-i18n="s5th3">Təyinat</th></tr></thead>
         <tbody>
           <tr><td class="b">NDVI</td><td><code>(B8−B4)/(B8+B4)</code></td><td data-i18n="s5r1">Bitki sıxlığı, məhsul monitorinqi</td></tr>
           <tr><td class="b">NDWI</td><td><code>(B3−B8)/(B3+B8)</code></td><td data-i18n="s5r2">Su hövzələri, daşqın</td></tr>
-          <tr><td class="b">NDMI</td><td><code>(B8−B11)/(B8+B11)</code></td><td data-i18n="s5r3">Bitki rütubəti, suvarma ehtiyacı</td></tr>
+          <tr><td class="b">GNDVI</td><td><code>(B8−B3)/(B8+B3)</code></td><td data-i18n="s5r3">Bitki xlorofil məzmunu, azot statusu</td></tr>
           <tr><td class="b">SAVI</td><td><code>1.5·(B8−B4)/(B8+B4+0.5)</code></td><td data-i18n="s5r4">Seyrək bitkidə torpaq fonunun təsirini azaldır</td></tr>
           <tr><td class="b">EVI</td><td><code>2.5·(B8−B4)/(B8+6·B4−7.5·B2+1)</code></td><td data-i18n="s5r5">Sıx bitkidə doyma problemi olmadan</td></tr>
         </tbody>
       </table>
 
-      <div class="highlight-box" data-i18n="s5hl">
-        <b>Əsas üstünlük:</b> 10 metrlik indekslə müqayisədə 1 metrlik indeks <b>sahə sərhədlərində,
-        qarışıq piksellərdə və xırda obyektlərdə</b> daha dəqiq nəticə verir.
-      </div>
+      <p class="note" data-i18n="s5note">Qeyd: NDMI, NBR kimi qısadalğalı infraqırmızı (SWIR) indeksləri B11/B12 bandlarını tələb edir. Bu bandlar Sentinel-2-də 20 metrlikdir və 1 metrlik məhsulun tərkibinə daxil deyil — həmin indekslər ayrıca, 20 metrlik şəbəkədə təqdim olunur.</p>
+
+      <div class="highlight-box" data-i18n="s5hl"><b>Əsas üstünlük:</b> 10 metrlik indekslə müqayisədə 1 metrlik indeks <b>sahə sərhədlərində, qarışıq piksellərdə və xırda obyektlərdə</b> daha dəqiq nəticə verir.</div>
     </section>
 
-    <!-- ══════════ 6 ══════════ -->
+    <!-- ══════════ 5 (id=s6) ══════════ -->
     <section id="s6">
-      <h2 data-i18n="s6h2">6 · Texniki çərçivə və məhdudiyyətlər</h2>
+      <h2 data-i18n="s6h2">5 · Texniki çərçivə və məhdudiyyətlər</h2>
 
-      <p data-i18n="s6p">
-        Məhsuldan düzgün istifadə üçün onun imkanlarını və məhdudiyyətlərini bilmək lazımdır.
-      </p>
+      <p data-i18n="s6p">Məhsuldan düzgün istifadə üçün onun imkanlarını və məhdudiyyətlərini bilmək lazımdır.</p>
 
       <div class="lims">
-
         <div class="lim">
           <div class="lim-n">01</div>
-          <div class="lim-b">
-            <h4 data-i18n="l1h">Obyekt ölçüsü həddi</h4>
-            <p data-i18n="l1p">
-              Mənbə görüntüdə heç bir izi olmayan obyekt bərpa oluna bilməz.
-              <b>2 metrdən kiçik</b> tək obyektlər (dar cığır, tək ağac, kiçik tikili)
-              etibarlı görünmür. 3–5 metr və daha böyük obyektlər aydın seçilir.
-            </p>
-          </div>
+          <div class="lim-b"><h4 data-i18n="l1h">Obyekt ölçüsü həddi</h4><p data-i18n="l1p">Mənbə görüntüdə heç bir izi olmayan obyekt bərpa oluna bilməz. <b>2 metrdən kiçik</b> tək obyektlər (dar cığır, tək ağac, kiçik tikili) etibarlı görünmür. 3–5 metr və daha böyük obyektlər aydın seçilir.</p></div>
         </div>
-
         <div class="lim">
           <div class="lim-n">02</div>
-          <div class="lim-b">
-            <h4 data-i18n="l2h">Mənbə keyfiyyətindən asılılıq</h4>
-            <p data-i18n="l2p">
-              Bulud, duman, kölgə mənbə görüntünün keyfiyyətini azaldır.
-              GeoSolver yalnız <b>buludsuz səhnələri</b> emal edir. Tələb olunan
-              tarixdə buludluluq varsa, alternativ yaxın tarix təklif olunur.
-            </p>
-          </div>
+          <div class="lim-b"><h4 data-i18n="l2h">Mənbə keyfiyyətindən asılılıq</h4><p data-i18n="l2p">Bulud, duman, kölgə mənbə görüntünün keyfiyyətini azaldır. GeoSolver yalnız <b>buludsuz səhnələri</b> emal edir. Tələb olunan tarixdə buludluluq varsa, alternativ yaxın tarix təklif olunur.</p></div>
         </div>
-
         <div class="lim">
           <div class="lim-n">03</div>
-          <div class="lim-b">
-            <h4 data-i18n="l3h">Dəqiqlik səviyyəsi</h4>
-            <p data-i18n="l3p">
-              Məhsul <b>zona və sahə səviyyəsində</b> analiz üçün tam etibarlıdır.
-              Tək piksel dəyəri qiymətləndirmə xarakteri daşıyır. Mülkiyyət
-              mübahisələrində ilkin göstəricidir, yekun qərar üçün yer ölçmələri tələb olunur.
-            </p>
-          </div>
+          <div class="lim-b"><h4 data-i18n="l3h">Dəqiqlik səviyyəsi</h4><p data-i18n="l3p">Məhsul <b>zona və sahə səviyyəsində</b> analiz üçün etibarlıdır. Tək piksel dəyəri qiymətləndirmə xarakteri daşıyır. Mülkiyyət mübahisələrində ilkin göstəricidir, yekun qərar üçün yer ölçmələri tələb olunur.</p></div>
         </div>
-
         <div class="lim">
           <div class="lim-n">04</div>
-          <div class="lim-b">
-            <h4 data-i18n="l4h">Dəyişiklik analizində həssaslıq</h4>
-            <p data-i18n="l4p">
-              Minimum etibarlı aşkarlama həddi <b>~5–10 m²</b> səviyyəsindədir.
-              Bu həddən böyük dəyişikliklər etibarlı aşkarlanır.
-            </p>
-          </div>
+          <div class="lim-b"><h4 data-i18n="l4h">Dəyişiklik analizində həssaslıq</h4><p data-i18n="l4p">Aşkarlama həddi mənbə pikselinin ölçüsü ilə məhdudlaşır: <b>təxminən 100 m²</b> (bir Sentinel-2 pikseli) və daha böyük dəyişikliklər etibarlı aşkarlanır. Kontrastı yüksək dəyişikliklər (məsələn, torpaq üzərində yeni beton örtük) bəzən <b>~25–50 m²</b> səviyyəsində də görünür, lakin bu, hər səhnədə təmin olunmur.</p></div>
         </div>
-
       </div>
     </section>
 
-    <!-- ══════════ 7 ══════════ -->
+    <!-- ══════════ 6 (id=s7) ══════════ -->
     <section id="s7">
-      <h2 data-i18n="s7h2">7 · İş axını və çatdırılma</h2>
+      <h2 data-i18n="s7h2">6 · İş axını və çatdırılma</h2>
 
       <h3 data-i18n="s7h3a">Sifariş prosesi</h3>
 
       <ol>
         <li data-i18n="s7o1"><b>Ərazi müəyyən edilir</b> — maraq zonası (rayon, təsərrüfat, ya xəritədə çəkilmiş kontur)</li>
         <li data-i18n="s7o2"><b>Tarix və ya dövr seçilir</b> — tək tarix, mövsüm, ya ardıcıl illər</li>
-        <li data-i18n="s7o3"><b>Buludsuz səhnələr seçilir</b> — uyğun Sentinel-2A görüntüləri tapılır</li>
+        <li data-i18n="s7o3"><b>Buludsuz səhnələr seçilir</b> — uyğun Sentinel-2 görüntüləri tapılır</li>
         <li data-i18n="s7o4"><b>Superrezolyusiya emalı aparılır</b> — çıxış 1 metrlik dörd band</li>
         <li data-i18n="s7o5"><b>İstəyə görə indekslər hesablanır</b> — NDVI, NDWI, EVI və s.</li>
         <li data-i18n="s7o6"><b>Məhsul çatdırılır</b> — istəyə uyğun formatda</li>
@@ -536,42 +410,31 @@
         </tbody>
       </table>
 
-
-      <div class="highlight-box" data-i18n="s7hl">
-        <b>Xüsusi tələblər?</b> Fərdi sifarişlər üçün bizimlə əlaqə saxlayın — istənilən ərazi,
-        istənilən tarix, istənilən format.
-      </div>
+      <div class="highlight-box" data-i18n="s7hl"><b>Xüsusi tələblər?</b> Fərdi sifarişlər üçün bizimlə əlaqə saxlayın — istənilən ərazi, istənilən tarix, istənilən format.</div>
     </section>
 
-    <!-- ══════════ 8 ══════════ -->
+    <!-- ══════════ 7 (id=s8) ══════════ -->
     <section id="s8">
-      <h2 data-i18n="s8h2">8 · Əlaqə</h2>
+      <h2 data-i18n="s8h2">7 · Əlaqə</h2>
 
       <div class="contact-block">
-        <p style="color:#495057;max-width:600px;margin:0.5rem auto 1.5rem;" data-i18n="s8p">
-          <b>Maraqlanan sahəni, istədiyiniz tarixi və çatdırılma formatını bizə bildirin.
-          Biz sizə uyğun təklif və nümunə məhsul təqdim edəcəyik.</b>
-        </p>
-        <a class="btn" href="https://geosolver.az/" target="_blank">geosolver.az</a>
+        <p style="color:#495057;max-width:600px;margin:0.5rem auto 1.5rem;" data-i18n="s8p"><b>Maraqlanan sahəni, istədiyiniz tarixi və çatdırılma formatını bizə bildirin. Biz sizə uyğun təklif və nümunə məhsul təqdim edəcəyik.</b></p>
+        <a class="btn" href="https://geosolver.az/" target="_blank" rel="noopener">geosolver.az</a>
       </div>
-
     </section>
 
     <footer class="doc-foot">
-      <p data-i18n="footSrc">
-        Mənbə :  <b>Copernicus Sentinel-2A</b>, Avropa Kosmik Agentliyi (ESA).
-        Açıq məlumat siyasəti əsasında istifadə olunur.
-      </p>
+      <p data-i18n="footSrc">Mənbə: <b>Copernicus Sentinel-2</b>, Avropa Kosmik Agentliyi (ESA). Açıq məlumat siyasəti əsasında istifadə olunur.</p>
       <div class="foot-btns">
         <a class="foot-back" href="index.html">
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
             <path d="M9.5 3.5L5 8l4.5 4.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
           <span data-i18n="footBack">Müqayisə xəritəsinə qayıt</span>
         </a>
         <a class="foot-site" href="https://geosolver.az/" target="_blank" rel="noopener">
           geosolver.az
-          <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true">
             <path d="M6 3h7v7M13 3L4 12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </a>
@@ -584,21 +447,22 @@
 <script>
 /* ══════════════════════════════════════════════════════════════
    TƏRCÜMƏ LÜĞƏTİ — AZ / EN / RU
-   Yeni mətn əlavə etmək üçün: HTML-də data-i18n="acar" yaz,
-   sonra üç dilin hər birinə eyni açarı əlavə et.
+   Yeni mətn üçün: HTML-də data-i18n="acar", sonra hər üç dilə
+   eyni açarı əlavə et.
    ══════════════════════════════════════════════════════════════ */
 const I18N = {
 
   /* ─────────────── AZƏRBAYCAN ─────────────── */
   az: {
     pageTitle: "GeoSolver 1 metr — Yüksək ayırdetməli peyk məhsulu",
+    metaDesc: "Copernicus Sentinel-2 peyklərinin pulsuz 10 metrlik görüntülərini süni intellektlə 1 metr piksel ölçüsünə qaldıran GeoSolver məhsulu.",
     brandTag: "1 metrlik məhsul",
     backToMap: "Xəritəyə qayıt",
 
     tocLabel: "Mündəricat",
     toc1: "GeoSolver 1 metrlik məhsul",
     toc3: "Tətbiq sahələri",
-    toc4: "Sentinel-2A — fon",
+    toc4: "Sentinel-2 — fon",
     toc5: "Spektral indekslər",
     toc6: "Texniki çərçivə",
     toc7: "İş axını və çatdırılma",
@@ -606,10 +470,10 @@ const I18N = {
 
     badge: "✦ Kommersiya məhsulu",
     h1: "GeoSolver MMC – 1 m Yüksək Ayırdetməli Peyk Görüntüsü",
-    lead: "<b>Sentinel-2A</b> peykindən alınmış <b>pulsuz 10 metrlik</b> görüntüləri süni intellektlə <b>1 metr piksel ölçüsünə</b> qaldıran məhsul. Kommersiya 1 metrlik peyklərə xərcləmədən, Azərbaycan üzrə 2015-ci ildən bugünə qədər bütün arxivi 1 metr dəqiqlikdə əldə edə bilərsiniz.",
+    lead: "<b>Copernicus Sentinel-2</b> peyklərindən alınmış <b>pulsuz 10 metrlik</b> görüntüləri süni intellektlə <b>1 metr piksel ölçüsünə</b> qaldıran məhsul. Kommersiya metrlik peyklərə xərcləmədən, Azərbaycan üzrə 2015-ci ildən bugünə qədər bütün arxivi 1 metrlik şəbəkədə əldə edə bilərsiniz.",
 
     s1h2: "1 · GeoSolver 1 metrlik yüksək ayırdetməli görüntü məhsulu",
-    s1p1: "<b>GeoSolver 1 metr</b> — Sentinel-2A peykinin 10 metrlik bandlarına tətbiq olunan <b>süni intellekt əsaslı yüksək ayırdetməli görüntü</b> alqoritmidir. Çıxışda <b>1 metr piksel ölçüsündə</b> dörd spektral band (B2 mavi, B3 yaşıl, B4 qırmızı, B8 yaxın infraqırmızı) əldə edilir.",
+    s1p1: "<b>GeoSolver 1 metr</b> — Sentinel-2 peyklərinin 10 metrlik bandlarına tətbiq olunan <b>süni intellekt əsaslı superrezolyusiya</b> alqoritmidir. Çıxışda <b>1 metr piksel ölçüsündə</b> dörd spektral band (B2 mavi, B3 yaşıl, B4 qırmızı, B8 yaxın infraqırmızı) əldə edilir.",
     s1hl: "<b>Nəticə:</b> 10 m-lik bir pikselin yerinə 1 m-lik 100 piksel. Hər piksel öz spektral dəyərini saxlayır.",
     kpi1: "Piksel ölçüsü",
     kpi2: "Piksel sıxlığı",
@@ -617,8 +481,8 @@ const I18N = {
     kpi4v: "2015 → bugün",
     kpi4: "Tam arxiv",
     s1h3a: "Texniki əsas",
-    s1p2: "Model <b>dərin öyrənmə (deep learning)</b> arxitekturasına əsaslanır. Təlim prosesində model 10 metrlik görüntü ilə 1 metrlik görüntü arasındakı <b>mürəkkəb əlaqəni</b> öyrənir — sərhədlərin kəskinləşməsi, teksturaların bərpası, spektral dəyərlərin düzgün paylanması.",
-    s1p3: "Nəticədə hər bir 10 metrlik piksel 10×10 ölçülü 1 metrlik bloka çevrilir. Hər bir yeni piksel öz spektral dəyərini saxlayır — yəni <b>NDVI, NDWI və digər indekslər</b> birbaşa 1 metrlik şəbəkədə hesablana bilər.",
+    s1p2: "Model <b>dərin öyrənmə (deep learning)</b> arxitekturasına əsaslanır. Təlim prosesində model 10 metrlik görüntü ilə 1 metrlik istinad görüntüsü arasındakı <b>mürəkkəb əlaqəni</b> öyrənir — sərhədlərin kəskinləşməsi, teksturaların bərpası, spektral dəyərlərin düzgün paylanması.",
+    s1p3: "Nəticədə hər bir 10 metrlik piksel 10×10 ölçülü 1 metrlik bloka çevrilir. Model spektral dəyərləri qoruyacaq şəkildə öyrədilib — yəni <b>NDVI, NDWI və digər indekslər</b> birbaşa 1 metrlik şəbəkədə hesablana bilər.",
     s1h3b: "Nə dəyişir?",
     s1l1: "<b>Sərhədlər kəskinləşir</b> — tarla, yol, kanal, meşə zolağı aydın seçilir.",
     s1l2: "<b>Qarışıq piksel problemi azalır</b> — hər bir piksel daha vahid ərazini təmsil edir.",
@@ -627,19 +491,19 @@ const I18N = {
     s1l5: "<b>Vizual keyfiyyət yüksəlir</b> — hesabatlar, təqdimatlar, GIS layihələri üçün ideal.",
     s1h3c: "Əsas üstünlüklər",
     p1h: "Pulsuz mənbə, yüksək nəticə",
-    p1p: "Sentinel-2A məlumatları tam pulsuzdur. GeoSolver MMC bu məlumatı 1 metrə qaldıraraq kommersiya keyfiyyətində məhsul təqdim edir — <b>xərc kommersiya peyklərinin fraksiyasıdır</b>.",
+    p1p: "Sentinel-2 məlumatları tam pulsuzdur. GeoSolver MMC bu məlumatı 1 metrə qaldıraraq kommersiya keyfiyyətində məhsul təqdim edir — <b>xərc kommersiya peyklərinin fraksiyasıdır</b>.",
     p2h: "Dərin arxiv",
-    p2p: "<b>2015-ci ildən bugünə</b> qədər bütün Sentinel-2A arxivi 1 metrlik formata çevrilə bilər. Bu, 10 illik dəyişiklik analizi, keçmiş hadisələrin araşdırılması və uzunmüddətli trendlərin qurulması deməkdir.",
+    p2p: "<b>2015-ci ildən bugünə</b> qədər bütün Sentinel-2 arxivi 1 metrlik formata çevrilə bilər. Bu, 10 illik dəyişiklik analizi, keçmiş hadisələrin araşdırılması və uzunmüddətli trendlərin qurulması deməkdir.",
     p3h: "Müntəzəm yenilənmə",
-    p3p: "Sentinel-2A Azərbaycanı <b>orta hesabla 5 gündən bir</b> görüntüləyir. Bu tezlik dinamik proseslərin — əkin, suvarma, tikinti — izlənməsi üçün kifayətdir.",
+    p3p: "Sentinel-2 peyk qrupu Azərbaycanı <b>orta hesabla 5 gündən bir</b>, zolaqların üst-üstə düşdüyü ərazilərdə isə daha tez-tez görüntüləyir. Bu tezlik dinamik proseslərin — əkin, suvarma, tikinti — izlənməsi üçün kifayətdir.",
     p4h: "Vahid spektral əsas",
-    p4p: "Məhsul dörd bandı saxlayır: B2, B3, B4, B8. Bu, NDVI, NDWI, təbii rəng, infraqırmızı kompozisiya və digər indekslərin <b>1 metrlik dəqiqlikdə</b> hesablanması deməkdir.",
+    p4p: "Məhsul dörd bandı saxlayır: B2, B3, B4, B8. Bu, NDVI, NDWI, təbii rəng, infraqırmızı kompozisiya və digər indekslərin <b>1 metrlik şəbəkədə</b> hesablanması deməkdir.",
     p5h: "Azərbaycan şəraitinə uyğun",
     p5p: "Kiçik və orta təsərrüfatlar, xırda sahələr, mürəkkəb relyef — 1 metrlik dəqiqlik bu şəraitdə xüsusilə dəyərlidir. Sahə ölçüsündən asılı olmayaraq keyfiyyət eynidir.",
     p6h: "Çevik çatdırılma",
     p6p: "Məhsul <b>GeoTIFF</b> (GIS proqramları üçün), <b>WMS</b> (veb servis) və ya <b>API</b> vasitəsilə təqdim olunur. İstənilən formatda, istənilən ərazi üçün.",
 
-    s3h2: "3 · Tətbiq sahələri",
+    s3h2: "2 · Tətbiq sahələri",
     s3p: "1 metrlik dəqiqlik aşağıdakı sahələrdə xüsusilə dəyərlidir:",
     a1h: "Kənd təsərrüfatı",
     a1l1: "Sahə sərhədlərinin dəqiq çəkilməsi",
@@ -672,47 +536,50 @@ const I18N = {
     a6l2: "Zərərin sahə üzrə hesablanması",
     a6l3: "Bərpa işlərinin izlənməsi",
 
-    s4h2: "4 · Sentinel-2A — fon məlumatı",
-    s4p1: "GeoSolver MMC -nin təqdim etdiyi yüksək ayırdetməli 1 metr məhsulunun mənbəyi <b>Copernicus Sentinel-2A</b> peykidir. Aşağıda əsas texniki xarakteristikalar verilir.",
+    s4h2: "3 · Sentinel-2 — fon məlumatı",
+    s4p1: "GeoSolver MMC-nin təqdim etdiyi 1 metrlik məhsulun mənbəyi <b>Copernicus Sentinel-2</b> missiyasıdır. Aşağıda əsas texniki xarakteristikalar verilir.",
     s4th1: "Parametr",
     s4th2: "Dəyər",
-    s4r1a: "Buraxılış tarixi",        s4r1b: "23 iyun 2015",
-    s4r2a: "Orbit hündürlüyü",        s4r2b: "786 km",
-    s4r3a: "Zolağın eni",             s4r3b: "290 km",
-    s4r4a: "Orbit dövrü (nominal)",   s4r4b: "10 gün",
-    s4r5a: "Azərbaycan üçün faktiki interval", s4r5b: "<b>~5 gün</b> (zolaqların üst-üstə düşməsi səbəbindən)",
-    s4r6a: "Spektral bandlar",        s4r6b: "13 (B2 mavi, B3 yaşıl, B4 qırmızı, B8 NIR — 10 m)",
-    s4r7a: "Radiometrik dərinlik",    s4r7b: "12 bit (4096 səviyyə)",
-    s4r8a: "Lisenziya",               s4r8b: "Copernicus açıq məlumat siyasəti — tam pulsuz",
-    s4p2: "<b>10 metrlik dörd band</b> (B2 mavi, B3 yaşıl, B4 qırmızı, B8 NIR) GeoSolver MMC -nin 1 metrlik yüksək ayırdetmə modelinin giriş məlumatlarıdır. Çıxışda eyni dörd band <b>1 metrlik şəbəkədə</b> təqdim olunur.",
-    s4note: "Sentinel-2A məlumatları 2015-ci ildən bugünə qədər tam arxiv şəklində əlçatandır. GeoSolver MMC istənilən tarix üçün 1 metrlik məhsul hazırlaya bilər.",
+    s4r1a: "Missiya",                         s4r1b: "Copernicus Sentinel-2 (2A, 2B, 2C)",
+    s4r2a: "Peyklərin buraxılışı",            s4r2b: "2A — 23 iyun 2015 · 2B — 7 mart 2017 · 2C — 5 sentyabr 2024",
+    s4r3a: "Orbit hündürlüyü",                s4r3b: "786 km",
+    s4r4a: "Zolağın eni",                     s4r4b: "290 km",
+    s4r5a: "Bir peykin təkrar çəkilişi",      s4r5b: "10 gün (nominal)",
+    s4r6a: "Qrup halında təkrar çəkiliş",     s4r6b: "<b>~5 gün</b> — Azərbaycanda zolaqların üst-üstə düşdüyü ərazilərdə daha tez-tez",
+    s4r7a: "Spektral bandlar",                s4r7b: "13 (bunlardan B2 mavi, B3 yaşıl, B4 qırmızı, B8 NIR — 10 m)",
+    s4r8a: "Radiometrik dərinlik",            s4r8b: "12 bit (4096 səviyyə)",
+    s4r9a: "Arxivin başlanğıcı",              s4r9b: "2015 (müntəzəm çəkilişlər 2016-cı ilin əvvəlindən, 5 günlük tsikl 2017-dən)",
+    s4r10a: "Lisenziya",                      s4r10b: "Copernicus açıq məlumat siyasəti — tam pulsuz",
+    s4p2: "<b>10 metrlik dörd band</b> (B2 mavi, B3 yaşıl, B4 qırmızı, B8 NIR) GeoSolver MMC-nin 1 metrlik modelinin giriş məlumatlarıdır. Çıxışda eyni dörd band <b>1 metrlik şəbəkədə</b> təqdim olunur.",
+    s4note: "Qeyd: 21 yanvar 2025-ci ildə əməliyyat konstelyasiyasında Sentinel-2A-nı Sentinel-2C əvəz etmişdir; Sentinel-2A isə uzadılmış kampaniya çərçivəsində 2026-cı ilin sonuna qədər əlavə çəkilişlər aparır. Məhsul üçün hər üç peykin məlumatı istifadə olunur, ona görə də tarix seçimində məhdudiyyət yoxdur.",
 
-    s5h2: "5 · Spektral indekslər — 1 metrlik dəqiqlikdə",
-    s5p: "1 metrlik məhsul dörd bandı (B2, B3, B4, B8) saxladığı üçün bütün əsas spektral indekslər birbaşa 1 metrlik şəbəkədə hesablana bilər.",
+    s5h2: "4 · Spektral indekslər — 1 metrlik dəqiqlikdə",
+    s5p: "1 metrlik məhsul dörd bandı (B2, B3, B4, B8) saxladığı üçün bu bandlara əsaslanan bütün indekslər birbaşa 1 metrlik şəbəkədə hesablana bilər.",
     s5th1: "İndeks", s5th2: "Düstur", s5th3: "Təyinat",
     s5r1: "Bitki sıxlığı, məhsul monitorinqi",
     s5r2: "Su hövzələri, daşqın",
-    s5r3: "Bitki rütubəti, suvarma ehtiyacı",
+    s5r3: "Bitki xlorofil məzmunu, azot statusu",
     s5r4: "Seyrək bitkidə torpaq fonunun təsirini azaldır",
     s5r5: "Sıx bitkidə doyma problemi olmadan",
+    s5note: "Qeyd: NDMI, NBR kimi qısadalğalı infraqırmızı (SWIR) indeksləri B11/B12 bandlarını tələb edir. Bu bandlar Sentinel-2-də 20 metrlikdir və 1 metrlik məhsulun tərkibinə daxil deyil — həmin indekslər ayrıca, 20 metrlik şəbəkədə təqdim olunur.",
     s5hl: "<b>Əsas üstünlük:</b> 10 metrlik indekslə müqayisədə 1 metrlik indeks <b>sahə sərhədlərində, qarışıq piksellərdə və xırda obyektlərdə</b> daha dəqiq nəticə verir.",
 
-    s6h2: "6 · Texniki çərçivə və məhdudiyyətlər",
+    s6h2: "5 · Texniki çərçivə və məhdudiyyətlər",
     s6p: "Məhsuldan düzgün istifadə üçün onun imkanlarını və məhdudiyyətlərini bilmək lazımdır.",
     l1h: "Obyekt ölçüsü həddi",
     l1p: "Mənbə görüntüdə heç bir izi olmayan obyekt bərpa oluna bilməz. <b>2 metrdən kiçik</b> tək obyektlər (dar cığır, tək ağac, kiçik tikili) etibarlı görünmür. 3–5 metr və daha böyük obyektlər aydın seçilir.",
     l2h: "Mənbə keyfiyyətindən asılılıq",
     l2p: "Bulud, duman, kölgə mənbə görüntünün keyfiyyətini azaldır. GeoSolver yalnız <b>buludsuz səhnələri</b> emal edir. Tələb olunan tarixdə buludluluq varsa, alternativ yaxın tarix təklif olunur.",
     l3h: "Dəqiqlik səviyyəsi",
-    l3p: "Məhsul <b>zona və sahə səviyyəsində</b> analiz üçün tam etibarlıdır. Tək piksel dəyəri qiymətləndirmə xarakteri daşıyır. Mülkiyyət mübahisələrində ilkin göstəricidir, yekun qərar üçün yer ölçmələri tələb olunur.",
+    l3p: "Məhsul <b>zona və sahə səviyyəsində</b> analiz üçün etibarlıdır. Tək piksel dəyəri qiymətləndirmə xarakteri daşıyır. Mülkiyyət mübahisələrində ilkin göstəricidir, yekun qərar üçün yer ölçmələri tələb olunur.",
     l4h: "Dəyişiklik analizində həssaslıq",
-    l4p: "Minimum etibarlı aşkarlama həddi <b>~5–10 m²</b> səviyyəsindədir. Bu həddən böyük dəyişikliklər etibarlı aşkarlanır.",
+    l4p: "Aşkarlama həddi mənbə pikselinin ölçüsü ilə məhdudlaşır: <b>təxminən 100 m²</b> (bir Sentinel-2 pikseli) və daha böyük dəyişikliklər etibarlı aşkarlanır. Kontrastı yüksək dəyişikliklər (məsələn, torpaq üzərində yeni beton örtük) bəzən <b>~25–50 m²</b> səviyyəsində də görünür, lakin bu, hər səhnədə təmin olunmur.",
 
-    s7h2: "7 · İş axını və çatdırılma",
+    s7h2: "6 · İş axını və çatdırılma",
     s7h3a: "Sifariş prosesi",
     s7o1: "<b>Ərazi müəyyən edilir</b> — maraq zonası (rayon, təsərrüfat, ya xəritədə çəkilmiş kontur)",
     s7o2: "<b>Tarix və ya dövr seçilir</b> — tək tarix, mövsüm, ya ardıcıl illər",
-    s7o3: "<b>Buludsuz səhnələr seçilir</b> — uyğun Sentinel-2A görüntüləri tapılır",
+    s7o3: "<b>Buludsuz səhnələr seçilir</b> — uyğun Sentinel-2 görüntüləri tapılır",
     s7o4: "<b>Superrezolyusiya emalı aparılır</b> — çıxış 1 metrlik dörd band",
     s7o5: "<b>İstəyə görə indekslər hesablanır</b> — NDVI, NDWI, EVI və s.",
     s7o6: "<b>Məhsul çatdırılır</b> — istəyə uyğun formatda",
@@ -725,23 +592,24 @@ const I18N = {
     s7r5a: "<b>İndeks xəritələri</b>", s7r5b: "NDVI, NDWI və s. rəngli xəritə", s7r5c: "Sahə analizi, qərar dəstəyi",
     s7hl: "<b>Xüsusi tələblər?</b> Fərdi sifarişlər üçün bizimlə əlaqə saxlayın — istənilən ərazi, istənilən tarix, istənilən format.",
 
-    s8h2: "8 · Əlaqə",
+    s8h2: "7 · Əlaqə",
     s8p: "<b>Maraqlanan sahəni, istədiyiniz tarixi və çatdırılma formatını bizə bildirin. Biz sizə uyğun təklif və nümunə məhsul təqdim edəcəyik.</b>",
 
-    footSrc: "Mənbə: <b>Copernicus Sentinel-2A</b>, Avropa Kosmik Agentliyi (ESA). Açıq məlumat siyasəti əsasında istifadə olunur.",
+    footSrc: "Mənbə: <b>Copernicus Sentinel-2</b>, Avropa Kosmik Agentliyi (ESA). Açıq məlumat siyasəti əsasında istifadə olunur.",
     footBack: "Müqayisə xəritəsinə qayıt"
   },
 
   /* ─────────────── ENGLISH ─────────────── */
   en: {
     pageTitle: "GeoSolver 1 m — High-resolution satellite product",
+    metaDesc: "GeoSolver product that uses AI to upscale free 10-meter Copernicus Sentinel-2 imagery to a 1-meter pixel size.",
     brandTag: "1-meter product",
     backToMap: "Back to map",
 
     tocLabel: "Contents",
     toc1: "GeoSolver 1-meter product",
     toc3: "Applications",
-    toc4: "Sentinel-2A — background",
+    toc4: "Sentinel-2 — background",
     toc5: "Spectral indices",
     toc6: "Technical scope",
     toc7: "Workflow and delivery",
@@ -749,10 +617,10 @@ const I18N = {
 
     badge: "✦ Commercial product",
     h1: "GeoSolver LLC – 1 m High-Resolution Satellite Imagery",
-    lead: "A product that uses artificial intelligence to upscale <b>free 10-meter</b> imagery from the <b>Sentinel-2A</b> satellite to a <b>1-meter pixel size</b>. Without paying for commercial 1-meter satellites, you can obtain the entire archive over Azerbaijan from 2015 to today at 1-meter detail.",
+    lead: "A product that uses artificial intelligence to upscale <b>free 10-meter</b> imagery from the <b>Copernicus Sentinel-2</b> satellites to a <b>1-meter pixel size</b>. Without paying for commercial meter-class satellites, you can obtain the entire archive over Azerbaijan from 2015 to today on a 1-meter grid.",
 
     s1h2: "1 · GeoSolver 1-meter high-resolution imagery product",
-    s1p1: "<b>GeoSolver 1 m</b> is an <b>AI-based high-resolution imaging</b> algorithm applied to the 10-meter bands of the Sentinel-2A satellite. The output is four spectral bands (B2 blue, B3 green, B4 red, B8 near-infrared) at a <b>1-meter pixel size</b>.",
+    s1p1: "<b>GeoSolver 1 m</b> is an <b>AI-based super-resolution</b> algorithm applied to the 10-meter bands of the Sentinel-2 satellites. The output is four spectral bands (B2 blue, B3 green, B4 red, B8 near-infrared) at a <b>1-meter pixel size</b>.",
     s1hl: "<b>Result:</b> 100 one-meter pixels in place of a single 10-meter pixel. Every pixel keeps its own spectral value.",
     kpi1: "Pixel size",
     kpi2: "Pixel density",
@@ -760,8 +628,8 @@ const I18N = {
     kpi4v: "2015 → today",
     kpi4: "Full archive",
     s1h3a: "Technical basis",
-    s1p2: "The model is built on a <b>deep learning</b> architecture. During training it learns the <b>complex relationship</b> between 10-meter and 1-meter imagery — sharpening of boundaries, reconstruction of textures, and correct distribution of spectral values.",
-    s1p3: "As a result, each 10-meter pixel becomes a 10×10 block of 1-meter pixels. Every new pixel keeps its own spectral value — meaning <b>NDVI, NDWI and other indices</b> can be computed directly on the 1-meter grid.",
+    s1p2: "The model is built on a <b>deep learning</b> architecture. During training it learns the <b>complex relationship</b> between 10-meter imagery and a 1-meter reference — sharpening of boundaries, reconstruction of textures, and correct distribution of spectral values.",
+    s1p3: "As a result, each 10-meter pixel becomes a 10×10 block of 1-meter pixels. The model is trained to preserve spectral values — meaning <b>NDVI, NDWI and other indices</b> can be computed directly on the 1-meter grid.",
     s1h3b: "What changes?",
     s1l1: "<b>Boundaries get sharper</b> — fields, roads, canals and shelterbelts stand out clearly.",
     s1l2: "<b>Mixed-pixel effects shrink</b> — each pixel represents a more uniform area.",
@@ -770,19 +638,19 @@ const I18N = {
     s1l5: "<b>Visual quality improves</b> — ideal for reports, presentations and GIS projects.",
     s1h3c: "Key advantages",
     p1h: "Free source, high-end result",
-    p1p: "Sentinel-2A data is entirely free. GeoSolver LLC upscales it to 1 meter and delivers a commercial-grade product — <b>at a fraction of the cost of commercial satellites</b>.",
+    p1p: "Sentinel-2 data is entirely free. GeoSolver LLC upscales it to 1 meter and delivers a commercial-grade product — <b>at a fraction of the cost of commercial satellites</b>.",
     p2h: "Deep archive",
-    p2p: "The full Sentinel-2A archive <b>from 2015 to today</b> can be converted to 1-meter format. That means 10 years of change analysis, investigation of past events, and long-term trend building.",
+    p2p: "The full Sentinel-2 archive <b>from 2015 to today</b> can be converted to 1-meter format. That means 10 years of change analysis, investigation of past events, and long-term trend building.",
     p3h: "Regular updates",
-    p3p: "Sentinel-2A images Azerbaijan <b>roughly every 5 days on average</b>. That frequency is enough to track dynamic processes — sowing, irrigation, construction.",
+    p3p: "The Sentinel-2 constellation images Azerbaijan <b>roughly every 5 days on average</b>, and more often where orbit swaths overlap. That frequency is enough to track dynamic processes — sowing, irrigation, construction.",
     p4h: "Consistent spectral basis",
-    p4p: "The product keeps four bands: B2, B3, B4, B8. This means NDVI, NDWI, true color, infrared composites and other indices can be computed <b>at 1-meter detail</b>.",
+    p4p: "The product keeps four bands: B2, B3, B4, B8. This means NDVI, NDWI, true color, infrared composites and other indices can be computed <b>on the 1-meter grid</b>.",
     p5h: "Suited to Azerbaijani conditions",
     p5p: "Small and medium farms, small parcels, complex terrain — 1-meter detail is especially valuable in these conditions. Quality is the same regardless of area size.",
     p6h: "Flexible delivery",
     p6p: "The product is delivered as <b>GeoTIFF</b> (for GIS software), <b>WMS</b> (web service) or via <b>API</b>. Any format, any area.",
 
-    s3h2: "3 · Applications",
+    s3h2: "2 · Applications",
     s3p: "1-meter detail is particularly valuable in the following areas:",
     a1h: "Agriculture",
     a1l1: "Precise delineation of field boundaries",
@@ -815,47 +683,50 @@ const I18N = {
     a6l2: "Damage calculation by area",
     a6l3: "Monitoring of recovery works",
 
-    s4h2: "4 · Sentinel-2A — background",
-    s4p1: "The source for the 1-meter high-resolution product delivered by GeoSolver LLC is the <b>Copernicus Sentinel-2A</b> satellite. Its main technical characteristics are given below.",
+    s4h2: "3 · Sentinel-2 — background",
+    s4p1: "The source for the 1-meter product delivered by GeoSolver LLC is the <b>Copernicus Sentinel-2</b> mission. Its main technical characteristics are given below.",
     s4th1: "Parameter",
     s4th2: "Value",
-    s4r1a: "Launch date",              s4r1b: "23 June 2015",
-    s4r2a: "Orbit altitude",           s4r2b: "786 km",
-    s4r3a: "Swath width",              s4r3b: "290 km",
-    s4r4a: "Revisit cycle (nominal)",  s4r4b: "10 days",
-    s4r5a: "Actual interval for Azerbaijan", s4r5b: "<b>~5 days</b> (due to overlapping swaths)",
-    s4r6a: "Spectral bands",           s4r6b: "13 (B2 blue, B3 green, B4 red, B8 NIR — 10 m)",
-    s4r7a: "Radiometric depth",        s4r7b: "12-bit (4096 levels)",
-    s4r8a: "License",                  s4r8b: "Copernicus open data policy — completely free",
-    s4p2: "The <b>four 10-meter bands</b> (B2 blue, B3 green, B4 red, B8 NIR) are the input to the 1-meter high-resolution model of GeoSolver LLC. The output delivers the same four bands <b>on a 1-meter grid</b>.",
-    s4note: "Sentinel-2A data is available as a full archive from 2015 to today. GeoSolver LLC can produce the 1-meter product for any date.",
+    s4r1a: "Mission",                    s4r1b: "Copernicus Sentinel-2 (2A, 2B, 2C)",
+    s4r2a: "Satellite launches",         s4r2b: "2A — 23 June 2015 · 2B — 7 March 2017 · 2C — 5 September 2024",
+    s4r3a: "Orbit altitude",             s4r3b: "786 km",
+    s4r4a: "Swath width",                s4r4b: "290 km",
+    s4r5a: "Revisit per satellite",      s4r5b: "10 days (nominal)",
+    s4r6a: "Constellation revisit",      s4r6b: "<b>~5 days</b> — more frequent over Azerbaijan where swaths overlap",
+    s4r7a: "Spectral bands",             s4r7b: "13 (of which B2 blue, B3 green, B4 red, B8 NIR at 10 m)",
+    s4r8a: "Radiometric depth",          s4r8b: "12-bit (4096 levels)",
+    s4r9a: "Archive start",              s4r9b: "2015 (routine acquisitions from early 2016, 5-day cycle from 2017)",
+    s4r10a: "License",                   s4r10b: "Copernicus open data policy — completely free",
+    s4p2: "The <b>four 10-meter bands</b> (B2 blue, B3 green, B4 red, B8 NIR) are the input to the 1-meter model of GeoSolver LLC. The output delivers the same four bands <b>on a 1-meter grid</b>.",
+    s4note: "Note: on 21 January 2025 Sentinel-2C replaced Sentinel-2A in the operational constellation, while Sentinel-2A continues additional acquisitions under an extension campaign until the end of 2026. The product uses data from all three satellites, so there is no restriction on date selection.",
 
-    s5h2: "5 · Spectral indices — at 1-meter detail",
-    s5p: "Because the 1-meter product keeps four bands (B2, B3, B4, B8), all the main spectral indices can be computed directly on the 1-meter grid.",
+    s5h2: "4 · Spectral indices — at 1-meter detail",
+    s5p: "Because the 1-meter product keeps four bands (B2, B3, B4, B8), every index based on these bands can be computed directly on the 1-meter grid.",
     s5th1: "Index", s5th2: "Formula", s5th3: "Purpose",
     s5r1: "Vegetation density, crop monitoring",
     s5r2: "Water bodies, flooding",
-    s5r3: "Vegetation moisture, irrigation demand",
+    s5r3: "Chlorophyll content, nitrogen status",
     s5r4: "Reduces soil background effect in sparse vegetation",
     s5r5: "No saturation problem in dense vegetation",
+    s5note: "Note: shortwave-infrared indices such as NDMI and NBR require bands B11/B12. Those bands are 20 m on Sentinel-2 and are not part of the 1-meter product — they are delivered separately, on a 20-meter grid.",
     s5hl: "<b>Key advantage:</b> compared with a 10-meter index, a 1-meter index gives more accurate results <b>at field boundaries, in mixed pixels and on small objects</b>.",
 
-    s6h2: "6 · Technical scope and limitations",
+    s6h2: "5 · Technical scope and limitations",
     s6p: "To use the product correctly, it helps to know both what it can and cannot do.",
     l1h: "Object size limit",
     l1p: "An object with no trace at all in the source image cannot be reconstructed. Isolated objects <b>smaller than 2 meters</b> (a narrow path, a single tree, a small structure) are not reliably visible. Objects of 3–5 meters and larger stand out clearly.",
     l2h: "Dependence on source quality",
     l2p: "Cloud, haze and shadow reduce the quality of the source image. GeoSolver processes only <b>cloud-free scenes</b>. If the requested date is cloudy, an alternative nearby date is proposed.",
     l3h: "Level of accuracy",
-    l3p: "The product is fully reliable for analysis <b>at zone and parcel level</b>. Single-pixel values are indicative. In ownership disputes it serves as an initial indicator; a final decision requires ground survey.",
+    l3p: "The product is reliable for analysis <b>at zone and parcel level</b>. Single-pixel values are indicative. In ownership disputes it serves as an initial indicator; a final decision requires ground survey.",
     l4h: "Sensitivity in change detection",
-    l4p: "The minimum reliable detection threshold is around <b>~5–10 m²</b>. Changes above this threshold are detected reliably.",
+    l4p: "Detection is bounded by the source pixel size: changes of <b>about 100 m²</b> (one Sentinel-2 pixel) and larger are detected reliably. High-contrast changes — new concrete over bare soil, for example — are sometimes visible down to <b>~25–50 m²</b>, but this cannot be guaranteed for every scene.",
 
-    s7h2: "7 · Workflow and delivery",
+    s7h2: "6 · Workflow and delivery",
     s7h3a: "Ordering process",
     s7o1: "<b>The area is defined</b> — the area of interest (district, farm, or an outline drawn on the map)",
     s7o2: "<b>A date or period is chosen</b> — a single date, a season, or consecutive years",
-    s7o3: "<b>Cloud-free scenes are selected</b> — suitable Sentinel-2A images are found",
+    s7o3: "<b>Cloud-free scenes are selected</b> — suitable Sentinel-2 images are found",
     s7o4: "<b>Super-resolution processing is run</b> — output is four bands at 1 meter",
     s7o5: "<b>Indices are computed on request</b> — NDVI, NDWI, EVI and others",
     s7o6: "<b>The product is delivered</b> — in the requested format",
@@ -868,34 +739,35 @@ const I18N = {
     s7r5a: "<b>Index maps</b>", s7r5b: "Colored maps of NDVI, NDWI, etc.", s7r5c: "Field analysis, decision support",
     s7hl: "<b>Special requirements?</b> Contact us for custom orders — any area, any date, any format.",
 
-    s8h2: "8 · Contact",
+    s8h2: "7 · Contact",
     s8p: "<b>Tell us the area you are interested in, the date you need and the delivery format. We will send you a matching offer and a sample product.</b>",
 
-    footSrc: "Source: <b>Copernicus Sentinel-2A</b>, European Space Agency (ESA). Used under the open data policy.",
+    footSrc: "Source: <b>Copernicus Sentinel-2</b>, European Space Agency (ESA). Used under the open data policy.",
     footBack: "Back to the comparison map"
   },
 
   /* ─────────────── РУССКИЙ ─────────────── */
   ru: {
     pageTitle: "GeoSolver 1 м — спутниковый продукт высокого разрешения",
+    metaDesc: "Продукт GeoSolver, повышающий разрешение бесплатных 10-метровых снимков Copernicus Sentinel-2 до размера пикселя 1 метр.",
     brandTag: "Продукт 1 метр",
     backToMap: "Вернуться к карте",
 
     tocLabel: "Содержание",
     toc1: "Продукт GeoSolver 1 метр",
     toc3: "Области применения",
-    toc4: "Sentinel-2A — справка",
+    toc4: "Sentinel-2 — справка",
     toc5: "Спектральные индексы",
     toc6: "Технические рамки",
     toc7: "Рабочий процесс и поставка",
     toc8: "Контакты",
 
     badge: "✦ Коммерческий продукт",
-    h1: "GeoSolver LLC – спутниковые снимки высокого разрешения 1 м",
-    lead: "Продукт, который с помощью искусственного интеллекта повышает разрешение <b>бесплатных 10-метровых</b> снимков спутника <b>Sentinel-2A</b> до <b>размера пикселя 1 метр</b>. Не тратя средства на коммерческие спутники метрового класса, вы можете получить весь архив по Азербайджану с 2015 года до сегодняшнего дня с детализацией 1 метр.",
+    h1: "ООО GeoSolver – спутниковые снимки высокого разрешения 1 м",
+    lead: "Продукт, который с помощью искусственного интеллекта повышает разрешение <b>бесплатных 10-метровых</b> снимков спутников <b>Copernicus Sentinel-2</b> до <b>размера пикселя 1 метр</b>. Не тратя средства на коммерческие спутники метрового класса, вы можете получить весь архив по Азербайджану с 2015 года до сегодняшнего дня на метровой сетке.",
 
     s1h2: "1 · Продукт GeoSolver — снимки высокого разрешения 1 м",
-    s1p1: "<b>GeoSolver 1 м</b> — алгоритм <b>повышения разрешения на основе искусственного интеллекта</b>, применяемый к 10-метровым каналам спутника Sentinel-2A. На выходе получаются четыре спектральных канала (B2 синий, B3 зелёный, B4 красный, B8 ближний инфракрасный) с <b>размером пикселя 1 метр</b>.",
+    s1p1: "<b>GeoSolver 1 м</b> — алгоритм <b>сверхразрешения на основе искусственного интеллекта</b>, применяемый к 10-метровым каналам спутников Sentinel-2. На выходе получаются четыре спектральных канала (B2 синий, B3 зелёный, B4 красный, B8 ближний инфракрасный) с <b>размером пикселя 1 метр</b>.",
     s1hl: "<b>Результат:</b> вместо одного 10-метрового пикселя — 100 пикселей по 1 метру. Каждый пиксель сохраняет собственное спектральное значение.",
     kpi1: "Размер пикселя",
     kpi2: "Плотность пикселей",
@@ -903,8 +775,8 @@ const I18N = {
     kpi4v: "2015 → сегодня",
     kpi4: "Полный архив",
     s1h3a: "Техническая основа",
-    s1p2: "Модель построена на архитектуре <b>глубокого обучения (deep learning)</b>. В процессе обучения она осваивает <b>сложную взаимосвязь</b> между 10-метровым и 1-метровым изображением — повышение резкости границ, восстановление текстур, корректное распределение спектральных значений.",
-    s1p3: "В итоге каждый 10-метровый пиксель превращается в блок 10×10 однометровых пикселей. Каждый новый пиксель сохраняет собственное спектральное значение — то есть <b>NDVI, NDWI и другие индексы</b> можно рассчитывать непосредственно на метровой сетке.",
+    s1p2: "Модель построена на архитектуре <b>глубокого обучения (deep learning)</b>. В процессе обучения она осваивает <b>сложную взаимосвязь</b> между 10-метровым изображением и метровым эталоном — повышение резкости границ, восстановление текстур, корректное распределение спектральных значений.",
+    s1p3: "В итоге каждый 10-метровый пиксель превращается в блок 10×10 однометровых пикселей. Модель обучена сохранять спектральные значения — то есть <b>NDVI, NDWI и другие индексы</b> можно рассчитывать непосредственно на метровой сетке.",
     s1h3b: "Что меняется?",
     s1l1: "<b>Границы становятся резче</b> — поля, дороги, каналы, лесополосы читаются отчётливо.",
     s1l2: "<b>Проблема смешанных пикселей уменьшается</b> — каждый пиксель представляет более однородный участок.",
@@ -913,19 +785,19 @@ const I18N = {
     s1l5: "<b>Растёт визуальное качество</b> — идеально для отчётов, презентаций и ГИС-проектов.",
     s1h3c: "Основные преимущества",
     p1h: "Бесплатный источник, высокий результат",
-    p1p: "Данные Sentinel-2A полностью бесплатны. GeoSolver LLC повышает их разрешение до 1 метра и предоставляет продукт коммерческого качества — <b>по цене, составляющей долю стоимости коммерческих спутников</b>.",
+    p1p: "Данные Sentinel-2 полностью бесплатны. ООО GeoSolver повышает их разрешение до 1 метра и предоставляет продукт коммерческого качества — <b>по цене, составляющей долю стоимости коммерческих спутников</b>.",
     p2h: "Глубокий архив",
-    p2p: "Весь архив Sentinel-2A <b>с 2015 года до сегодняшнего дня</b> может быть переведён в 1-метровый формат. Это означает анализ изменений за 10 лет, исследование прошлых событий и построение долгосрочных трендов.",
+    p2p: "Весь архив Sentinel-2 <b>с 2015 года до сегодняшнего дня</b> может быть переведён в 1-метровый формат. Это означает анализ изменений за 10 лет, исследование прошлых событий и построение долгосрочных трендов.",
     p3h: "Регулярное обновление",
-    p3p: "Sentinel-2A снимает Азербайджан <b>в среднем раз в 5 дней</b>. Такой периодичности достаточно для отслеживания динамических процессов — посева, орошения, строительства.",
+    p3p: "Группировка Sentinel-2 снимает Азербайджан <b>в среднем раз в 5 дней</b>, а в зонах перекрытия полос — чаще. Такой периодичности достаточно для отслеживания динамических процессов — посева, орошения, строительства.",
     p4h: "Единая спектральная основа",
-    p4p: "Продукт сохраняет четыре канала: B2, B3, B4, B8. Это позволяет рассчитывать NDVI, NDWI, естественные цвета, инфракрасные композиции и другие индексы <b>с детализацией 1 метр</b>.",
+    p4p: "Продукт сохраняет четыре канала: B2, B3, B4, B8. Это позволяет рассчитывать NDVI, NDWI, естественные цвета, инфракрасные композиции и другие индексы <b>на метровой сетке</b>.",
     p5h: "Соответствие условиям Азербайджана",
     p5p: "Мелкие и средние хозяйства, небольшие участки, сложный рельеф — метровая детализация особенно ценна в таких условиях. Качество одинаково независимо от размера участка.",
     p6h: "Гибкая поставка",
     p6p: "Продукт предоставляется в виде <b>GeoTIFF</b> (для ГИС-программ), <b>WMS</b> (веб-сервис) или через <b>API</b>. В любом формате, для любой территории.",
 
-    s3h2: "3 · Области применения",
+    s3h2: "2 · Области применения",
     s3p: "Метровая детализация особенно ценна в следующих областях:",
     a1h: "Сельское хозяйство",
     a1l1: "Точное построение границ участков",
@@ -958,47 +830,50 @@ const I18N = {
     a6l2: "Расчёт ущерба по площади",
     a6l3: "Отслеживание восстановительных работ",
 
-    s4h2: "4 · Sentinel-2A — справочная информация",
-    s4p1: "Источником 1-метрового продукта высокого разрешения, предоставляемого GeoSolver LLC, является спутник <b>Copernicus Sentinel-2A</b>. Ниже приведены основные технические характеристики.",
+    s4h2: "3 · Sentinel-2 — справочная информация",
+    s4p1: "Источником 1-метрового продукта, предоставляемого ООО GeoSolver, является миссия <b>Copernicus Sentinel-2</b>. Ниже приведены основные технические характеристики.",
     s4th1: "Параметр",
     s4th2: "Значение",
-    s4r1a: "Дата запуска",                  s4r1b: "23 июня 2015",
-    s4r2a: "Высота орбиты",                 s4r2b: "786 км",
-    s4r3a: "Ширина полосы съёмки",          s4r3b: "290 км",
-    s4r4a: "Цикл повторной съёмки (номинальный)", s4r4b: "10 дней",
-    s4r5a: "Фактический интервал для Азербайджана", s4r5b: "<b>~5 дней</b> (из-за перекрытия полос)",
-    s4r6a: "Спектральные каналы",           s4r6b: "13 (B2 синий, B3 зелёный, B4 красный, B8 БИК — 10 м)",
-    s4r7a: "Радиометрическое разрешение",   s4r7b: "12 бит (4096 уровней)",
-    s4r8a: "Лицензия",                      s4r8b: "Политика открытых данных Copernicus — полностью бесплатно",
-    s4p2: "<b>Четыре 10-метровых канала</b> (B2 синий, B3 зелёный, B4 красный, B8 БИК) являются входными данными 1-метровой модели повышения разрешения GeoSolver LLC. На выходе те же четыре канала предоставляются <b>на метровой сетке</b>.",
-    s4note: "Данные Sentinel-2A доступны в виде полного архива с 2015 года до сегодняшнего дня. GeoSolver LLC может подготовить 1-метровый продукт на любую дату.",
+    s4r1a: "Миссия",                          s4r1b: "Copernicus Sentinel-2 (2A, 2B, 2C)",
+    s4r2a: "Запуски спутников",               s4r2b: "2A — 23 июня 2015 · 2B — 7 марта 2017 · 2C — 5 сентября 2024",
+    s4r3a: "Высота орбиты",                   s4r3b: "786 км",
+    s4r4a: "Ширина полосы съёмки",            s4r4b: "290 км",
+    s4r5a: "Повторная съёмка одним спутником", s4r5b: "10 дней (номинально)",
+    s4r6a: "Повторная съёмка группировкой",   s4r6b: "<b>~5 дней</b> — чаще над Азербайджаном в зонах перекрытия полос",
+    s4r7a: "Спектральные каналы",             s4r7b: "13 (из них B2 синий, B3 зелёный, B4 красный, B8 БИК — 10 м)",
+    s4r8a: "Радиометрическое разрешение",     s4r8b: "12 бит (4096 уровней)",
+    s4r9a: "Начало архива",                   s4r9b: "2015 (регулярная съёмка с начала 2016, 5-дневный цикл с 2017)",
+    s4r10a: "Лицензия",                       s4r10b: "Политика открытых данных Copernicus — полностью бесплатно",
+    s4p2: "<b>Четыре 10-метровых канала</b> (B2 синий, B3 зелёный, B4 красный, B8 БИК) являются входными данными метровой модели ООО GeoSolver. На выходе те же четыре канала предоставляются <b>на метровой сетке</b>.",
+    s4note: "Примечание: 21 января 2025 года Sentinel-2C заменил Sentinel-2A в составе оперативной группировки, а сам Sentinel-2A в рамках продлённой кампании ведёт дополнительную съёмку до конца 2026 года. Продукт использует данные всех трёх спутников, поэтому ограничений по выбору даты нет.",
 
-    s5h2: "5 · Спектральные индексы — с детализацией 1 метр",
-    s5p: "Поскольку 1-метровый продукт сохраняет четыре канала (B2, B3, B4, B8), все основные спектральные индексы можно рассчитывать непосредственно на метровой сетке.",
+    s5h2: "4 · Спектральные индексы — с детализацией 1 метр",
+    s5p: "Поскольку 1-метровый продукт сохраняет четыре канала (B2, B3, B4, B8), все индексы на основе этих каналов можно рассчитывать непосредственно на метровой сетке.",
     s5th1: "Индекс", s5th2: "Формула", s5th3: "Назначение",
     s5r1: "Плотность растительности, мониторинг урожая",
     s5r2: "Водные объекты, паводки",
-    s5r3: "Влажность растительности, потребность в орошении",
+    s5r3: "Содержание хлорофилла, азотный статус",
     s5r4: "Снижает влияние почвенного фона при разреженной растительности",
     s5r5: "Без эффекта насыщения при густой растительности",
+    s5note: "Примечание: индексы коротковолнового инфракрасного диапазона (NDMI, NBR) требуют каналов B11/B12. У Sentinel-2 эти каналы имеют разрешение 20 м и не входят в состав 1-метрового продукта — они поставляются отдельно, на 20-метровой сетке.",
     s5hl: "<b>Основное преимущество:</b> по сравнению с 10-метровым индексом 1-метровый индекс даёт более точный результат <b>на границах участков, в смешанных пикселях и на мелких объектах</b>.",
 
-    s6h2: "6 · Технические рамки и ограничения",
+    s6h2: "5 · Технические рамки и ограничения",
     s6p: "Для правильного использования продукта важно знать его возможности и ограничения.",
     l1h: "Предел размера объекта",
     l1p: "Объект, не оставивший никакого следа на исходном снимке, восстановлен быть не может. Отдельные объекты <b>меньше 2 метров</b> (узкая тропа, одиночное дерево, малая постройка) надёжно не различаются. Объекты от 3–5 метров и больше читаются отчётливо.",
     l2h: "Зависимость от качества источника",
     l2p: "Облака, дымка и тени снижают качество исходного снимка. GeoSolver обрабатывает только <b>безоблачные сцены</b>. Если на запрошенную дату есть облачность, предлагается альтернативная близкая дата.",
     l3h: "Уровень точности",
-    l3p: "Продукт полностью надёжен для анализа <b>на уровне зон и участков</b>. Значение отдельного пикселя носит оценочный характер. В имущественных спорах он служит первичным показателем; для окончательного решения требуются наземные измерения.",
+    l3p: "Продукт надёжен для анализа <b>на уровне зон и участков</b>. Значение отдельного пикселя носит оценочный характер. В имущественных спорах он служит первичным показателем; для окончательного решения требуются наземные измерения.",
     l4h: "Чувствительность при анализе изменений",
-    l4p: "Минимальный порог надёжного обнаружения — около <b>~5–10 м²</b>. Изменения выше этого порога выявляются надёжно.",
+    l4p: "Порог обнаружения ограничен размером исходного пикселя: изменения <b>примерно от 100 м²</b> (один пиксель Sentinel-2) и крупнее выявляются надёжно. Высококонтрастные изменения — например, новое бетонное покрытие на голой почве — иногда заметны и на уровне <b>~25–50 м²</b>, но это не гарантируется для каждой сцены.",
 
-    s7h2: "7 · Рабочий процесс и поставка",
+    s7h2: "6 · Рабочий процесс и поставка",
     s7h3a: "Процесс заказа",
     s7o1: "<b>Определяется территория</b> — зона интереса (район, хозяйство или контур, нарисованный на карте)",
     s7o2: "<b>Выбирается дата или период</b> — одна дата, сезон или последовательные годы",
-    s7o3: "<b>Отбираются безоблачные сцены</b> — подбираются подходящие снимки Sentinel-2A",
+    s7o3: "<b>Отбираются безоблачные сцены</b> — подбираются подходящие снимки Sentinel-2",
     s7o4: "<b>Выполняется обработка сверхразрешения</b> — на выходе четыре канала по 1 метру",
     s7o5: "<b>По запросу рассчитываются индексы</b> — NDVI, NDWI, EVI и др.",
     s7o6: "<b>Продукт передаётся заказчику</b> — в нужном формате",
@@ -1011,10 +886,10 @@ const I18N = {
     s7r5a: "<b>Карты индексов</b>", s7r5b: "Цветные карты NDVI, NDWI и др.", s7r5c: "Анализ участков, поддержка решений",
     s7hl: "<b>Особые требования?</b> Свяжитесь с нами для индивидуальных заказов — любая территория, любая дата, любой формат.",
 
-    s8h2: "8 · Контакты",
+    s8h2: "7 · Контакты",
     s8p: "<b>Сообщите нам интересующую территорию, нужную дату и формат поставки. Мы направим вам подходящее предложение и образец продукта.</b>",
 
-    footSrc: "Источник: <b>Copernicus Sentinel-2A</b>, Европейское космическое агентство (ESA). Используется в рамках политики открытых данных.",
+    footSrc: "Источник: <b>Copernicus Sentinel-2</b>, Европейское космическое агентство (ESA). Используется в рамках политики открытых данных.",
     footBack: "Вернуться к карте сравнения"
   }
 };
@@ -1029,6 +904,7 @@ const I18N = {
 
   const switchEl = document.getElementById('langSwitch');
   const buttons = [...switchEl.querySelectorAll('button')];
+  const metaDesc = document.getElementById('metaDesc');
 
   function readStored() {
     try { return localStorage.getItem(STORE_KEY); } catch (e) { return null; }
@@ -1055,6 +931,7 @@ const I18N = {
 
     document.documentElement.lang = lang;
     if (dict.pageTitle) document.title = dict.pageTitle;
+    if (metaDesc && dict.metaDesc) metaDesc.setAttribute('content', dict.metaDesc);
 
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.getAttribute('data-i18n');
