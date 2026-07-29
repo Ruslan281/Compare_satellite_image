@@ -1,7 +1,8 @@
 /**
- * app.js — GeoSlice
+ * app.js — GeoSolver Satellite
  * ══════════════════════════════════════════════
- * Konfiqurasiya config.js faylındadır.
+ * Konfiqurasiya : config.js
+ * Dil lüğəti    : i18n.js
  * ══════════════════════════════════════════════
  */
 
@@ -22,12 +23,6 @@ function fail(title, detail) {
       <div class="err-box">${detail}</div>
     </div>`;
 }
-
-/* ── Mənbə başlıqları ─────────────────────── */
-document.getElementById("nameL").textContent = SOURCES.left.name;
-document.getElementById("metaL").textContent = SOURCES.left.meta;
-document.getElementById("nameR").textContent = SOURCES.right.name;
-document.getElementById("metaR").textContent = SOURCES.right.meta;
 
 /* ── AMD ──────────────────────────────────── */
 require([
@@ -83,23 +78,18 @@ require([
 
     const cx = (extent.xmin + extent.xmax) / 2;
     const cy = (extent.ymin + extent.ymax) / 2;
-    const t  = extent.clone();
-    t.xmin = cx - w/2; t.xmax = cx + w/2;
-    t.ymin = cy - h/2; t.ymax = cy + h/2;
+    const t2 = extent.clone();
+    t2.xmin = cx - w/2; t2.xmax = cx + w/2;
+    t2.ymin = cy - h/2; t2.ymax = cy + h/2;
 
     view.constraints.minScale = 0;
-    await view.goTo(t, { animate: !!animate });
+    await view.goTo(t2, { animate: !!animate });
 
-    // ── Qalıq boşluğu təmizlə ──────────────────────
-    // Zoom pilləsi və ya yuvarlaqlaşma səbəbindən kənarda
-    // ağ zolaq qalarsa, görünən sahə görüntünün içinə
-    // tam sığana qədər addım-addım yaxınlaşdır.
+    // Kənarda qalıq boşluğu təmizlə
     for (let i = 0; i < 6; i++) {
       const ve = view.extent;
       if (!ve) break;
-      const wide = ve.width  > extent.width;
-      const tall = ve.height > extent.height;
-      if (!wide && !tall) break;
+      if (ve.width <= extent.width && ve.height <= extent.height) break;
       await view.goTo({ scale: view.scale * 0.93 }, { animate: false });
     }
 
@@ -124,11 +114,11 @@ require([
   /* ── Lay yüklə ──────────────────────────── */
   async function mount(side) {
     const st = S[side], c = cfg(side);
-    loading(true, c.name, SOURCES[side].name);
+    loading(true, t(c.name), t(SOURCES[side].name));
 
     if (st.layer) { map.remove(st.layer); st.layer = null; }
 
-    const o = { url: c.url, title: c.name, opacity: 1 };
+    const o = { url: c.url, title: t(c.name), opacity: 1 };
     if (c.renderer) o.renderer = c.renderer;
     if (c.bandIds)  o.bandIds  = c.bandIds;
 
@@ -148,9 +138,8 @@ require([
       const m = err?.message || String(err);
       const auth = /token|auth|403|permission|not authorized/i.test(m);
       fail(
-        auth ? "Servis public deyil" : "Servis açılmadı",
-        (auth ? "Bu təbəqə ArcGIS Online-da 'Everyone (public)' kimi paylaşılmayıb.\nLay səhifəsi → Share → Everyone\n\n" : "") +
-        "URL:\n" + c.url + "\n\n" + m
+        auth ? t("errPublic") : t("errService"),
+        (auth ? t("errPublicMsg") : "") + "URL:\n" + c.url + "\n\n" + m
       );
       return;
     }
@@ -182,6 +171,12 @@ require([
 
   /* ── İnterfeys ──────────────────────────── */
   function render() {
+    // Mənbə başlıqları
+    document.getElementById("nameL").textContent = t(SOURCES.left.name);
+    document.getElementById("metaL").textContent = t(SOURCES.left.meta);
+    document.getElementById("nameR").textContent = t(SOURCES.right.name);
+    document.getElementById("metaR").textContent = t(SOURCES.right.meta);
+
     group("left",  "grpL", "optsL", "visL");
     group("right", "grpR", "optsR", "visR");
     baseChips();
@@ -201,7 +196,7 @@ require([
       b.className = "opt" + (c.id === st.id ? " on" : "");
       b.innerHTML = `
         <span class="opt-dot"></span>
-        <span class="opt-name">${c.name}</span>
+        <span class="opt-name">${t(c.name)}</span>
         <span class="opt-abbr">${c.abbr}</span>`;
       b.onclick = () => {
         if (c.id === st.id) return;
@@ -227,14 +222,14 @@ require([
 
     const off = document.createElement("button");
     off.className = "chip" + (!baseOn ? " on" : "");
-    off.textContent = "Yoxdur";
+    off.textContent = t("basemapNone");
     off.onclick = () => { baseOn = false; paintBase(false); baseChips(); };
     row.appendChild(off);
 
     BASEMAPS.forEach(bm => {
       const c = document.createElement("button");
       c.className = "chip" + (baseOn && bm.id === baseId ? " on" : "");
-      c.textContent = bm.label;
+      c.textContent = t(bm.labelKey);
       c.onclick = () => {
         baseId = bm.id; baseOn = true;
         map.basemap = bm.id;
@@ -244,6 +239,15 @@ require([
       row.appendChild(c);
     });
   }
+
+  /* ── Dil dəyişəndə yenidən çək ──────────── */
+  window.addEventListener("langchange", () => {
+    render();
+    const l = document.getElementById("load");
+    if (l && !l.classList.contains("hide") && !l.classList.contains("err")) {
+      loading(true, t("loading"), t("loadingSub"));
+    }
+  });
 
   /* ── Oxunuş ─────────────────────────────── */
   view.on("pointer-move", e => {
@@ -286,12 +290,12 @@ require([
   });
 
   /* ── Yüklənmə ───────────────────────────── */
-  function loading(show, t = "Yüklənir", s = "") {
+  function loading(show, a = null, b = null) {
     const el = document.getElementById("load");
-    const T = document.getElementById("loadT");
-    const B = document.getElementById("loadS");
-    if (T) T.textContent = t;
-    if (B) B.textContent = s;
+    const T  = document.getElementById("loadT");
+    const B  = document.getElementById("loadS");
+    if (T) T.textContent = a ?? t("loading");
+    if (B) B.textContent = b ?? t("loadingSub");
     el.classList.toggle("hide", !show);
   }
 
@@ -302,13 +306,12 @@ require([
     await mount("left");
     await mount("right");
   }, err => {
-    fail("Xəritə açılmadı", err?.message || String(err));
+    fail(t("errMap"), err?.message || String(err));
   });
 
 },
 function (err) {
-  fail(
-    "ArcGIS modulu yüklənmədi",
-    "Modullar: " + (err?.requireModules?.join(", ") || "?") + "\n\n" + (err?.message || String(err))
-  );
+  const title = (typeof t === "function") ? t("errModule") : "ArcGIS module failed";
+  const lbl   = (typeof t === "function") ? t("errModules") : "Modules";
+  fail(title, lbl + ": " + (err?.requireModules?.join(", ") || "?") + "\n\n" + (err?.message || String(err)));
 });
