@@ -121,7 +121,6 @@
   <nav class="toc" id="toc">
     <div class="toc-lbl">Mündəricat</div>
     <a href="#s1">GeoSolver 1 metrlik məhsul</a>
-    <a href="#s2">Kommersiya peykləri ilə müqayisə</a>
     <a href="#s3">Tətbiq sahələri</a>
     <a href="#s4">Sentinel-2A — fon</a>
     <a href="#s5">Spektral indekslər</a>
@@ -135,7 +134,7 @@
 
     <div class="doc-head">
       <span class="product-badge">✦ Kommersiya məhsulu</span>
-      <h1>GeoSolver 1 metrlik yüksək ayırdetməli peyk görüntüsü</h1>
+      <h1>eoSolver MMC – 1 m Yüksək Ayırdetməli Peyk Görüntüsü</h1>
       <p class="doc-lead">
         <b>Sentinel-2A</b> peykindən alınmış <b>pulsuz 10 metrlik</b> görüntüləri süni intellektlə
         <b>1 metr piksel ölçüsünə</b> qaldıran məhsul. Kommersiya 1 metrlik peyklərə xərcləmədən,
@@ -145,7 +144,7 @@
 
     <!-- ══════════ 1 ══════════ -->
     <section id="s1">
-      <h2>1 · GeoSolver 1 metrlik superrezolyusiya məhsulu</h2>
+      <h2>1 · 1 metrlik yüksək ayırdetməli görüntü məhsulu</h2>
 
       <p>
         <b>GeoSolver 1 metr</b> — Sentinel-2A peykinin 10 metrlik bandlarına tətbiq olunan
@@ -166,8 +165,7 @@
 
       <h3>Texniki əsas</h3>
       <p>
-        Model <b>dərin öyrənmə (deep learning)</b> arxitekturasına əsaslanır. Yüksək ayırdetməli
-        kommersiya peyk görüntüləri ilə eyni ərazinin Sentinel-2 görüntüləri üzərində öyrədilmişdir.
+        Model <b>dərin öyrənmə (deep learning)</b> arxitekturasına əsaslanır.
         Təlim prosesində model 10 metrlik görüntü ilə 1 metrlik görüntü arasındakı
         <b>mürəkkəb əlaqəni</b> öyrənir — sərhədlərin kəskinləşməsi, teksturaların bərpası,
         spektral dəyərlərin düzgün paylanması.
@@ -247,67 +245,6 @@
       </div>
     </section>
 
-    <!-- ══════════ 2 ══════════ -->
-    <section id="s2">
-      <h2>2 · Kommersiya peykləri ilə müqayisə</h2>
-
-      <p>
-        GeoSolver 1 metr məhsulunu kommersiya 1 metrlik peyk məhsulları ilə müqayisə etmək
-        onun dəyərini daha aydın göstərir.
-      </p>
-
-      <div class="comparison-grid">
-        <div class="comparison-item">
-          <div class="label">Xərc (1 km²)</div>
-          <div class="value">$0</div>
-          <div style="font-size:0.8rem;color:#868e96;">mənbə pulsuzdur</div>
-        </div>
-        <div class="comparison-item">
-          <div class="label">Kommersiya 1 m (1 km²)</div>
-          <div class="value red">$30–100</div>
-          <div style="font-size:0.8rem;color:#868e96;">WorldView, GeoEye, Pléiades</div>
-        </div>
-        <div class="comparison-item">
-          <div class="label">Arxiv dərinliyi</div>
-          <div class="value">2015 → bugün</div>
-          <div style="font-size:0.8rem;color:#868e96;">10 illik tam arxiv</div>
-        </div>
-        <div class="comparison-item">
-          <div class="label">Kommersiya arxivi</div>
-          <div class="value red">məhdud / yoxdur</div>
-          <div style="font-size:0.8rem;color:#868e96;">əlavə xərc tələb edir</div>
-        </div>
-        <div class="comparison-item">
-          <div class="label">Təkrar ölçmə</div>
-          <div class="value">5 gün</div>
-          <div style="font-size:0.8rem;color:#868e96;">Azərbaycan üçün orta</div>
-        </div>
-        <div class="comparison-item">
-          <div class="label">Kommersiya təkrarı</div>
-          <div class="value red">sifarişdən asılı</div>
-          <div style="font-size:0.8rem;color:#868e96;">müntəzəm arxiv yoxdur</div>
-        </div>
-      </div>
-
-      <h3>Əsas fərqlər</h3>
-
-      <table class="tbl">
-        <thead><tr><th>Xüsusiyyət</th><th>GeoSolver 1 m</th><th>Kommersiya 1 m</th></tr></thead>
-        <tbody>
-          <tr><td>Mənbə məlumatı</td><td>Sentinel-2A (pulsuz)</td><td>Öz peyki (bahalı)</td></tr>
-          <tr><td>Km² qiyməti</td><td>● 0 ●</td><td>$30–100</td></tr>
-          <tr><td>Arxiv (2015→bugün)</td><td class="ok">Tam, daxildir</td><td>Yoxdur / əlavə ödəniş</td></tr>
-          <tr><td>Təkrar ölçmə tezliyi</td><td>5 gün</td><td>Sifarişdən asılı</td></tr>
-          <tr><td>Geniş ərazi emalı</td><td class="ok">İqtisadi cəhətdən mümkün</td><td>Çox bahalı</td></tr>
-          <tr><td>NDVI / indekslər</td><td class="ok">1 m, daxildir</td><td>1 m, ayrıca emal</td></tr>
-          <tr><td>Zaman sırası analizi</td><td class="ok">Müntəzəm yenilənir</td><td>Məhdud</td></tr>
-        </tbody>
-      </table>
-
-      <div class="highlight-box">
-        <b>Xülasə:</b> GeoSolver 1 m eyni dəqiqlikdə, lakin <b>xeyli aşağı xərclə</b> və <b>daha zəngin zaman sırası</b> ilə məhsul təqdim edir.
-      </div>
-    </section>
 
     <!-- ══════════ 3 ══════════ -->
     <section id="s3">
@@ -320,7 +257,7 @@
       <div class="apps">
 
         <div class="app">
-          <h4>🌾 Kənd təsərrüfatı</h4>
+          <h4>Kənd təsərrüfatı</h4>
           <ul>
             <li>Sahə sərhədlərinin dəqiq çəkilməsi</li>
             <li>Məhsul növünün təsnifatı (taxıl, pambıq, qarğıdalı, üzüm)</li>
@@ -331,7 +268,7 @@
         </div>
 
         <div class="app">
-          <h4>🏛️ Kadastr və torpaq uçotu</h4>
+          <h4>Kadastr və torpaq uçotu</h4>
           <ul>
             <li>Sahə konturlarının faktiki vəziyyətlə yoxlanması</li>
             <li>Yeni bölünmələrin və tikililərin qeydiyyatı</li>
@@ -341,7 +278,7 @@
         </div>
 
         <div class="app">
-          <h4>🏗️ Şəhərsalma və infrastruktur</h4>
+          <h4>Şəhərsalma və infrastruktur</h4>
           <ul>
             <li>Tikinti fəaliyyətinin monitorinqi</li>
             <li>Yol şəbəkəsinin yenilənməsi</li>
@@ -351,7 +288,7 @@
         </div>
 
         <div class="app">
-          <h4>💧 Su təsərrüfatı</h4>
+          <h4>Su təsərrüfatı</h4>
           <ul>
             <li>Su anbarlarının səviyyə dinamikası</li>
             <li>Suvarma kanallarının vəziyyəti</li>
@@ -361,7 +298,7 @@
         </div>
 
         <div class="app">
-          <h4>🌳 Ekologiya və meşə</h4>
+          <h4>Ekologiya və meşə</h4>
           <ul>
             <li>Meşə örtüyünün sahəsi və sərhədləri</li>
             <li>Qanunsuz qırma hallarının aşkarlanması</li>
@@ -371,7 +308,7 @@
         </div>
 
         <div class="app">
-          <h4>⚠️ Fövqəladə hallar</h4>
+          <h4>Fövqəladə hallar</h4>
           <ul>
             <li>Daşqın və sürüşmə sahələrinin operativ xəritələşdirilməsi</li>
             <li>Zərərin sahə üzrə hesablanması</li>
@@ -406,8 +343,8 @@
       </table>
 
       <p>
-        <b>10 metrlik dörd band</b> (B2 mavi, B3 yaşıl, B4 qırmızı, B8 NIR) GeoSolver
-        superrezolyusiya modelinin giriş məlumatlarıdır. Çıxışda eyni dörd band <b>1 metrlik
+        <b>10 metrlik dörd band</b> (B2 mavi, B3 yaşıl, B4 qırmızı, B8 NIR) GeoSolver 1 metrlik
+        yüksək ayırdetmə modelinin giriş məlumatlarıdır. Çıxışda eyni dörd band <b>1 metrlik
         şəbəkədə</b> təqdim olunur.
       </p>
 
@@ -501,20 +438,6 @@
         </div>
 
       </div>
-
-      <table class="tbl tbl-use">
-        <thead><tr><th>İstifadə məqsədi</th><th>Uyğunluq</th></tr></thead>
-        <tbody>
-          <tr><td>Sahə sərhədinin çəkilməsi</td><td class="ok">✓ Yüksək</td></tr>
-          <tr><td>Vizual monitorinq və hesabat</td><td class="ok">✓ Yüksək</td></tr>
-          <tr><td>NDVI və indeks analizi</td><td class="ok">✓ Yüksək</td></tr>
-          <tr><td>Dəyişikliyin aşkarlanması</td><td class="ok">✓ Yüksək</td></tr>
-          <tr><td>Məhsul təsnifatı</td><td class="ok">✓ Yüksək</td></tr>
-          <tr><td>Bina və ağac sayılması</td><td class="mid">◌ Orta</td></tr>
-          <tr><td>2 metrdən kiçik obyektlər</td><td class="low">✗ Uyğun deyil</td></tr>
-          <tr><td>Santimetr dəqiqlikli ölçmə</td><td class="low">✗ Uyğun deyil</td></tr>
-        </tbody>
-      </table>
     </section>
 
     <!-- ══════════ 7 ══════════ -->
@@ -545,14 +468,6 @@
         </tbody>
       </table>
 
-      <h3>Nümunə istifadə ssenariləri</h3>
-
-      <ul>
-        <li><b>Bir rayon üzrə 2025-ci il yaz əkinlərinin NDVI xəritəsi</b> — 1 metr dəqiqlikdə</li>
-        <li><b>Təsərrüfat üzrə 2018–2025 sahə sərhədlərinin dəyişməsi</b> — illik müqayisə</li>
-        <li><b>Suvarma kanalı boyu 5 km zolaq</b> — 1 m görüntü, kanalın vəziyyəti</li>
-        <li><b>Yeni tikinti sahəsinin 2019 və 2025 müqayisəsi</b> — dəyişiklik aşkarlanması</li>
-      </ul>
 
       <div class="highlight-box">
         <b>Xüsusi tələblər?</b> Fərdi sifarişlər üçün bizimlə əlaqə saxlayın — istənilən ərazi,
@@ -571,23 +486,14 @@
           Biz sizə uyğun təklif və nümunə məhsul təqdim edəcəyik.
         </p>
         <a class="btn" href="https://geosolver.az/" target="_blank">geosolver.az</a>
-        <p class="sub">
-          Saytda əlaqə formu, ətraflı məlumat və əvvəlki layihələr haqqında məlumat tapa bilərsiniz.
-        </p>
       </div>
 
-      <p style="text-align:center;color:#868e96;font-size:0.9rem;">
-        GeoSolver — Azərbaycanda peyk məlumatlarının analizi və emalı.
-      </p>
     </section>
 
     <footer class="doc-foot">
       <p>
         Mənbə məlumatlar: <b>Copernicus Sentinel-2A</b>, Avropa Kosmik Agentliyi (ESA).
         Açıq məlumat siyasəti əsasında istifadə olunur.
-      </p>
-      <p>
-        Superrezolyusiya emalı, analiz və veb təqdimat — <b>GeoSolver</b>, Azərbaycan.
       </p>
       <div class="foot-btns">
         <a class="foot-back" href="index.html">
