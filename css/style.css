@@ -1,20 +1,16 @@
-/* ══════════════════════════════════════════════
-   GeoSlice — tünd cihaz paneli
-   Açıq xəritə · tünd idarə səthi · kəhrəba aksent
-══════════════════════════════════════════════ */
+
 :root {
-  /* Səthlər */
   --map-bg:   #F3F1ED;
   --chrome:   #17191D;
   --chrome-2: #1F2228;
   --chrome-3: #282C34;
 
-  /* Mətn */
+
   --w-1: #F4F5F7;
   --w-2: #A8AEB9;
   --w-3: #6E757F;
 
-  /* Aksent */
+
   --acc:      #F0B429;
   --acc-soft: rgba(240,180,41,0.14);
   --acc-line: rgba(240,180,41,0.30);
@@ -41,9 +37,7 @@ html, body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ══════════════════════════════════════════════
-   BAŞLIQ
-══════════════════════════════════════════════ */
+
 .hdr {
   position: fixed; inset: 0 0 auto 0;
   height: var(--hdr);
@@ -89,7 +83,7 @@ html, body {
   white-space: nowrap;
 }
 
-/* Məlumat düyməsi */
+
 .info-btn {
   display: inline-flex;
   align-items: center;
@@ -143,9 +137,6 @@ html, body {
 }
 
 
-/* ══════════════════════════════════════════════
-   DİL SEÇİMİ
-══════════════════════════════════════════════ */
 .lang {
   display: flex;
   gap: 2px;
@@ -174,9 +165,7 @@ html, body {
   box-shadow: inset 0 0 0 1px var(--acc-line);
 }
 
-/* ══════════════════════════════════════════════
-   XƏRİTƏ
-══════════════════════════════════════════════ */
+
 #viewDiv {
   position: fixed;
   inset: var(--hdr) 0 0 0;
@@ -204,7 +193,7 @@ html, body {
 }
 .esri-attribution a { color: var(--w-2) !important; }
 
-/* Swipe */
+
 .esri-swipe__container { border: none !important; }
 .esri-swipe__divider {
   width: 2px !important;
@@ -225,9 +214,7 @@ html, body {
 }
 .esri-swipe__handle:hover { transform: scale(1.1); }
 
-/* ══════════════════════════════════════════════
-   PANEL
-══════════════════════════════════════════════ */
+
 .panel {
   position: fixed;
   top: calc(var(--hdr) + 16px);
@@ -285,7 +272,7 @@ html, body {
 
 .p-body { overflow-y: auto; padding: 4px 0; }
 
-/* ── Qrup ── */
+
 .grp { padding: 16px 18px 15px; }
 .grp + .grp { border-top: 1px solid var(--hair); }
 
@@ -323,7 +310,7 @@ html, body {
   margin-bottom: 11px;
 }
 
-/* ── Keçid açarı ── */
+
 .sw {
   width: 42px; height: 24px;
   flex-shrink: 0;
@@ -346,7 +333,7 @@ html, body {
 .sw.on { background: var(--acc-soft); box-shadow: inset 0 0 0 1px var(--acc-line); }
 .sw.on::after { transform: translateX(18px); background: var(--acc); }
 
-/* ── Seçimlər ── */
+
 .opts { display: flex; flex-direction: column; gap: 3px; }
 
 .opt {
@@ -405,7 +392,7 @@ html, body {
 
 .grp.off .opts { opacity: .35; pointer-events: none; }
 
-/* ── Altlıq çipləri ── */
+
 .chips { display: flex; flex-wrap: wrap; gap: 6px; }
 .chip {
   padding: 8px 14px;
@@ -427,7 +414,7 @@ html, body {
   font-weight: 600;
 }
 
-/* ── Skrollbar ── */
+
 .p-body::-webkit-scrollbar { width: 5px; }
 .p-body::-webkit-scrollbar-track { background: transparent; }
 .p-body::-webkit-scrollbar-thumb {
@@ -435,9 +422,7 @@ html, body {
   border-radius: 3px;
 }
 
-/* ══════════════════════════════════════════════
-   YÜKLƏNMƏ
-══════════════════════════════════════════════ */
+
 .load {
   position: fixed; inset: 0;
   display: grid; place-items: center;
@@ -488,9 +473,7 @@ html, body {
   overflow: auto;
 }
 
-/* ══════════════════════════════════════════════
-   KİÇİK EKRAN
-══════════════════════════════════════════════ */
+
 @media (max-width: 1080px) {
   .brand-text { display: none; }
   .brand-sep  { display: none; }
