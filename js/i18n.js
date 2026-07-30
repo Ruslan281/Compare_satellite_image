@@ -1,12 +1,3 @@
-/**
- * i18n.js — DİL LÜĞƏTİ
- * ═══════════════════════════════════════════════════════
- * Yeni mətn əlavə etmək üçün hər üç dilə eyni açarı yaz.
- * HTML-də istifadə:  <span data-i18n="açar"></span>
- * Tooltip üçün:      <button data-i18n-title="açar">
- * ═══════════════════════════════════════════════════════
- */
-
 const I18N = {
 
   az: {
@@ -98,9 +89,6 @@ const I18N = {
 
 };
 
-/* ═══════════════════════════════════════════════════════
-   Aşağısını dəyişməyə ehtiyac yoxdur
-═══════════════════════════════════════════════════════ */
 
 const LANG_LIST = ["az", "en", "ru"];
 
@@ -113,11 +101,7 @@ let LANG = (function () {
   return LANG_LIST.includes(nav) ? nav : "az";
 })();
 
-/**
- * t() — mətn qaytarır
- *   t("panelTitle")                       → lüğətdən
- *   t({ az:"Sol", en:"Left", ru:"Лево" }) → obyektdən
- */
+
 function t(key) {
   if (key && typeof key === "object") {
     return key[LANG] || key.az || key.en || "";
