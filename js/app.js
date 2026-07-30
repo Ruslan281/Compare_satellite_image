@@ -30,7 +30,8 @@ require([
   "esri/views/MapView",
   "esri/layers/ImageryTileLayer",
   "esri/widgets/Swipe",
-], function (Map, MapView, ImageryTileLayer, Swipe) {
+  "esri/widgets/Home",
+], function (Map, MapView, ImageryTileLayer, Swipe, Home) {
 
   /* ── Vəziyyət ───────────────────────────── */
   const S = {
@@ -57,6 +58,14 @@ require([
     spatialReference: { wkid: 3857 },
     constraints: { snapToZoom: false, rotationEnabled: false },
   });
+
+  /* ── Esri-nin rəsmi Home widget-i ──────────
+     Zoom düymələrinin altında yerləşir.
+     Görüntü ilk dəfə çərçivəyə alındıqdan sonra
+     həmin görünüş "ev" nöqtəsi kimi yadda saxlanılır.
+  ────────────────────────────────────────── */
+  const homeWidget = new Home({ view });
+  view.ui.add(homeWidget, "top-left");
 
   function paintBase(on) {
     if (!map.basemap) return;
@@ -95,6 +104,9 @@ require([
 
     if (LOCK_ZOOM_OUT) view.constraints.minScale = view.scale;
     if (LOCK_PAN)      bindPan();
+
+    // Home widget bu görünüşə qaytarsın
+    if (homeWidget) homeWidget.viewpoint = view.viewpoint.clone();
   }
 
   function bindPan() {
@@ -288,182 +300,6 @@ require([
       if (e) frame(e, false);
     }, 240);
   });
-
-  /* ══════════════════════════════════════════
-     NAVİQASİYA PƏNCƏRƏSİ
-     Esri zoom düymələrinin altında.
-     4 ox + mərkəzdə "əraziyə qayıt".
-     PAN_STEP — hər klikdə nə qədər sürüşsün.
-  ══════════════════════════════════════════ */
-  const PAN_STEP = 0.16;   // 0.10 = çox kiçik · 0.16 = hazırkı · 0.30 = böyük
-
-  let padEl   = null;
-  let panBusy = false;
-
-  (function buildNavPad() {
-
-    const css = document.createElement("style");
-    css.textContent = `
-      .navpad {
-        display: grid;
-        grid-template-columns: repeat(3, 34px);
-        grid-template-rows: repeat(3, 34px);
-        gap: 1px;
-        background: rgba(23,25,29,.92);
-        backdrop-filter: blur(12px);
-        border-radius: 11px;
-        overflow: hidden;
-        box-shadow: 0 2px 10px rgba(0,0,0,.18);
-        margin-top: 8px;
-      }
-      .navpad button {
-        display: grid;
-        place-items: center;
-        border: none;
-        background: transparent;
-        color: var(--w-2);
-        cursor: pointer;
-        padding: 0;
-        transition: background .14s, color .14s, opacity .14s;
-      }
-      .navpad button:hover:not(.off) { background: rgba(255,255,255,.07); color: var(--acc); }
-      .navpad button:active:not(.off) { background: var(--acc-soft); }
-      .navpad button.off {
-        opacity: .22;
-        cursor: default;
-      }
-      .navpad .np-void { pointer-events: none; }
-      .navpad .np-home { color: var(--w-3); }
-      .navpad .np-home:hover { color: var(--acc); }
-
-      @media (max-width: 760px) {
-        .navpad { grid-template-columns: repeat(3, 38px); grid-template-rows: repeat(3, 38px); }
-      }
-    `;
-    document.head.appendChild(css);
-
-    const arrow = deg => `<svg width="14" height="14" viewBox="0 0 16 16" fill="none"
-        style="transform:rotate(${deg}deg)">
-        <path d="M8 3.2v9.6M4.4 6.8L8 3.2l3.6 3.6"
-              stroke="currentColor" stroke-width="1.5"
-              stroke-linecap="round" stroke-linejoin="round"/></svg>`;
-
-    const target = `<svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-        <circle cx="8" cy="8" r="2.6" stroke="currentColor" stroke-width="1.4"/>
-        <path d="M8 1v2.2M8 12.8V15M1 8h2.2M12.8 8H15"
-              stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>`;
-
-    const pad = document.createElement("div");
-    pad.className = "navpad";
-    padEl = pad;
-
-    const cells = [
-      { t: "void" },
-      { t: "pan", dx:  0, dy:  1, icon: arrow(0),   dir: "up" },
-      { t: "void" },
-      { t: "pan", dx: -1, dy:  0, icon: arrow(270), dir: "left" },
-      { t: "home" },
-      { t: "pan", dx:  1, dy:  0, icon: arrow(90),  dir: "right" },
-      { t: "void" },
-      { t: "pan", dx:  0, dy: -1, icon: arrow(180), dir: "down" },
-      { t: "void" },
-    ];
-
-    cells.forEach(c => {
-      if (c.t === "void") {
-        const d = document.createElement("div");
-        d.className = "np-void";
-        pad.appendChild(d);
-        return;
-      }
-      const b = document.createElement("button");
-      if (c.t === "home") {
-        b.className = "np-home";
-        b.innerHTML = target;
-        b.title = t("tipHome");
-        b.onclick = () => {
-          const e = S.left.layer?.fullExtent;
-          if (e) frame(e, true).then(updatePadState).catch(() => {});
-        };
-      } else {
-        b.innerHTML = c.icon;
-        b.dataset.dir = c.dir;
-        b.dataset.dx  = c.dx;
-        b.dataset.dy  = c.dy;
-        b.onclick = () => pan(c.dx, c.dy);
-      }
-      pad.appendChild(b);
-    });
-
-    view.ui.add(pad, "top-left");
-
-    window.addEventListener("langchange", () => {
-      const h = pad.querySelector(".np-home");
-      if (h) h.title = t("tipHome");
-    });
-
-    // Xəritə dayandıqda düymələrin vəziyyətini yenilə
-    view.watch("stationary", st => { if (st) updatePadState(); });
-    view.when(() => setTimeout(updatePadState, 400));
-  })();
-
-  /* ── İcazə verilən mərkəz sahəsi ── */
-  function panBounds() {
-    const g = view.constraints?.geometry;
-    if (g) return { xmin: g.xmin, xmax: g.xmax, ymin: g.ymin, ymax: g.ymax };
-    return null;
-  }
-
-  /* ── Sürüşdürmə ── */
-  function pan(dx, dy) {
-    const e = view.extent;
-    if (!e || !view.center || panBusy) return;
-
-    let tx = view.center.x + e.width  * PAN_STEP * dx;
-    let ty = view.center.y + e.height * PAN_STEP * dy;
-
-    // Sərhədi öz tərəfimizdən tətbiq et — goTo-nun gözlənilməz
-    // davranışının qarşısını alır
-    const b = panBounds();
-    if (b) {
-      tx = Math.max(b.xmin, Math.min(b.xmax, tx));
-      ty = Math.max(b.ymin, Math.min(b.ymax, ty));
-    }
-
-    // Faktiki dəyişiklik yoxdursa heç nə etmə
-    const eps = Math.max(e.width, e.height) * 1e-5;
-    if (Math.abs(tx - view.center.x) < eps && Math.abs(ty - view.center.y) < eps) {
-      updatePadState();
-      return;
-    }
-
-    panBusy = true;
-    view.goTo({ center: [tx, ty] }, { duration: 240, easing: "ease-out" })
-        .catch(() => {})                       // animasiya kəsilsə susdur
-        .finally(() => { panBusy = false; updatePadState(); });
-  }
-
-  /* ── Hansı istiqamətdə yer var ── */
-  function updatePadState() {
-    if (!padEl || !view.extent || !view.center) return;
-    const e = view.extent;
-    const b = panBounds();
-
-    padEl.querySelectorAll("button[data-dir]").forEach(btn => {
-      if (!b) { btn.classList.remove("off"); return; }
-
-      const dx = +btn.dataset.dx, dy = +btn.dataset.dy;
-      const eps = Math.max(e.width, e.height) * 1e-4;
-
-      let can;
-      if (dx > 0)      can = view.center.x < b.xmax - eps;
-      else if (dx < 0) can = view.center.x > b.xmin + eps;
-      else if (dy > 0) can = view.center.y < b.ymax - eps;
-      else             can = view.center.y > b.ymin + eps;
-
-      btn.classList.toggle("off", !can);
-    });
-  }
 
   /* ── Yüklənmə ───────────────────────────── */
   function loading(show, a = null, b = null) {
