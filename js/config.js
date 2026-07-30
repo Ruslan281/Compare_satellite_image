@@ -100,6 +100,6 @@ const BASEMAP_DEFAULT  = "gray-vector";
 const BASEMAP_ON_START = false;
 
 /* ── GÖRÜNÜŞ ─────────────────────────────────────────── */
-const COVER_ZOOM    = 1.0;
+const COVER_ZOOM    = 0.8;
 const LOCK_ZOOM_OUT = true;
 const LOCK_PAN      = true;
