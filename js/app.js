@@ -289,6 +289,120 @@ require([
     }, 240);
   });
 
+  /* ══════════════════════════════════════════
+     NAVİQASİYA PƏNCƏRƏSİ
+     Esri zoom düymələrinin altında yerləşir.
+     4 ox + mərkəzdə "əraziyə qayıt".
+     Addım ölçüsünü dəyişmək üçün PAN_STEP-i redaktə et.
+  ══════════════════════════════════════════ */
+  const PAN_STEP = 0.30;   // görünən sahənin nə qədər hissəsi qədər sürüşsün
+
+  (function buildNavPad() {
+
+    // ── Stillər ──
+    const css = document.createElement("style");
+    css.textContent = `
+      .navpad {
+        display: grid;
+        grid-template-columns: repeat(3, 34px);
+        grid-template-rows: repeat(3, 34px);
+        gap: 1px;
+        background: rgba(23,25,29,.92);
+        backdrop-filter: blur(12px);
+        border-radius: 11px;
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(0,0,0,.18);
+        margin-top: 8px;
+      }
+      .navpad button {
+        display: grid;
+        place-items: center;
+        border: none;
+        background: transparent;
+        color: var(--w-2);
+        cursor: pointer;
+        padding: 0;
+        transition: background .14s, color .14s;
+      }
+      .navpad button:hover { background: rgba(255,255,255,.07); color: var(--acc); }
+      .navpad button:active { background: var(--acc-soft); }
+      .navpad .np-void { pointer-events: none; }
+      .navpad .np-home { color: var(--w-3); }
+      .navpad .np-home:hover { color: var(--acc); }
+
+      @media (max-width: 760px) {
+        .navpad { grid-template-columns: repeat(3, 38px); grid-template-rows: repeat(3, 38px); }
+      }
+    `;
+    document.head.appendChild(css);
+
+    // ── SVG ikonlar ──
+    const arrow = deg => `<svg width="14" height="14" viewBox="0 0 16 16" fill="none"
+        style="transform:rotate(${deg}deg)">
+        <path d="M8 3.2v9.6M4.4 6.8L8 3.2l3.6 3.6"
+              stroke="currentColor" stroke-width="1.5"
+              stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+
+    const target = `<svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+        <circle cx="8" cy="8" r="2.6" stroke="currentColor" stroke-width="1.4"/>
+        <path d="M8 1v2.2M8 12.8V15M1 8h2.2M12.8 8H15"
+              stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>`;
+
+    // ── Qurulma ──
+    const pad = document.createElement("div");
+    pad.className = "navpad";
+
+    const cells = [
+      { t: "void" },                     { t: "pan", dx:  0, dy:  1, icon: arrow(0)   }, { t: "void" },
+      { t: "pan", dx: -1, dy: 0, icon: arrow(270) }, { t: "home" },                      { t: "pan", dx: 1, dy: 0, icon: arrow(90) },
+      { t: "void" },                     { t: "pan", dx:  0, dy: -1, icon: arrow(180) }, { t: "void" },
+    ];
+
+    cells.forEach(c => {
+      if (c.t === "void") {
+        const d = document.createElement("div");
+        d.className = "np-void";
+        pad.appendChild(d);
+        return;
+      }
+      const b = document.createElement("button");
+      if (c.t === "home") {
+        b.className = "np-home";
+        b.innerHTML = target;
+        b.title = t("tipHome");
+        b.onclick = () => {
+          const e = S.left.layer?.fullExtent;
+          if (e) frame(e, true);
+        };
+      } else {
+        b.innerHTML = c.icon;
+        b.onclick = () => pan(c.dx, c.dy);
+      }
+      pad.appendChild(b);
+    });
+
+    // Esri zoom widget-inin altına yerləşdir
+    view.ui.add(pad, "top-left");
+
+    // Dil dəyişəndə tooltip yenilənsin
+    window.addEventListener("langchange", () => {
+      const h = pad.querySelector(".np-home");
+      if (h) h.title = t("tipHome");
+    });
+  })();
+
+  // ── Sürüşdürmə ──
+  function pan(dx, dy) {
+    const e = view.extent;
+    if (!e || !view.center) return;
+    view.goTo({
+      center: [
+        view.center.x + e.width  * PAN_STEP * dx,
+        view.center.y + e.height * PAN_STEP * dy,
+      ],
+    }, { duration: 280, easing: "ease-out" });
+  }
+
   /* ── Yüklənmə ───────────────────────────── */
   function loading(show, a = null, b = null) {
     const el = document.getElementById("load");
