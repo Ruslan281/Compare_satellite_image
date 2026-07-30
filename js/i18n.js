@@ -10,7 +10,7 @@
 const I18N = {
 
   az: {
-    brand:        "GeoSolver Satellite (1 m / piksel)",
+    brand:        "GeoSolver SuperResolution (1 m / piksel)",
     info:         "Məlumat",
     tipHome:      "Görüntüyə qayıt",
     tipPanel:     "Panel",
@@ -39,7 +39,7 @@ const I18N = {
   },
 
   en: {
-    brand:        "GeoSolver Satellite (1 m / pixel)",
+    brand:        "GeoSolver SuperResolution (1 m / pixel)",
     info:         "Info",
     tipHome:      "Zoom to imagery",
     tipPanel:     "Panel",
@@ -68,7 +68,7 @@ const I18N = {
   },
 
   ru: {
-    brand:        "GeoSolver Satellite (1 м / пиксель)",
+    brand:        "GeoSolver SuperResolution (1 м / пиксель)",
     info:         "Информация",
     tipHome:      "Вернуться к снимку",
     tipPanel:     "Панель",
