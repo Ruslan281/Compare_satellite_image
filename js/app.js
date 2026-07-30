@@ -15,14 +15,12 @@ function fail(title, detail) {
     </div>`;
 }
 
-
 require([
   "esri/Map",
   "esri/views/MapView",
   "esri/layers/ImageryTileLayer",
   "esri/widgets/Swipe",
 ], function (Map, MapView, ImageryTileLayer, Swipe) {
-
 
   const S = {
     left:  { id: first("left"),  on: true, layer: null },
@@ -48,17 +46,12 @@ require([
     constraints: { snapToZoom: false, rotationEnabled: false },
   });
 
-
-  const homeWidget = new Home({ view });
-  view.ui.add(homeWidget, "top-left");
-
   function paintBase(on) {
     if (!map.basemap) return;
     map.basemap.baseLayers.forEach(l => l.visible = on);
     map.basemap.referenceLayers?.forEach(l => l.visible = on);
   }
 
-  
   async function frame(extent, animate) {
     if (!extent || !view.width || !view.height) return;
 
@@ -88,8 +81,6 @@ require([
 
     if (LOCK_ZOOM_OUT) view.constraints.minScale = view.scale;
     if (LOCK_PAN)      bindPan();
-
-    if (homeWidget) homeWidget.viewpoint = view.viewpoint.clone();
   }
 
   function bindPan() {
@@ -106,7 +97,6 @@ require([
   }
   view.watch("scale", () => { if (LOCK_PAN) bindPan(); });
 
-  
   async function mount(side) {
     const st = S[side], c = cfg(side);
     loading(true, t(c.name), t(SOURCES[side].name));
@@ -162,6 +152,7 @@ require([
     });
     view.ui.add(swipe);
   }
+
 
   function render() {
     document.getElementById("nameL").textContent = t(SOURCES.left.name);
