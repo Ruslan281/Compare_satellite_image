@@ -1,6 +1,3 @@
-/* ══════════════════════════════════════════════
-   GeoSolver — məlumat sənədi
-══════════════════════════════════════════════ */
 :root {
   --paper:   #FBFAF8;
   --paper-2: #F2EFEA;
@@ -49,7 +46,6 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ══════════ BAŞLIQ ══════════ */
 .hdr {
   position: sticky; top: 0;
   height: var(--hdr);
@@ -86,7 +82,6 @@ body {
 }
 .back-btn:hover { background: var(--chrome-2); color: var(--w-1); border-color: rgba(255,255,255,.24); }
 
-/* ══════════ LAYOUT ══════════ */
 .wrap {
   max-width: 1120px;
   margin: 0 auto;
@@ -97,7 +92,7 @@ body {
   align-items: start;
 }
 
-/* ══════════ MÜNDƏRİCAT ══════════ */
+
 .toc {
   position: sticky;
   top: calc(var(--hdr) + 28px);
@@ -128,7 +123,7 @@ body {
   font-weight: 500;
 }
 
-/* ══════════ SƏNƏD ══════════ */
+
 .doc { padding: 40px 0 80px; min-width: 0; }
 
 .doc-head { margin-bottom: 52px; }
@@ -202,7 +197,7 @@ code {
   white-space: nowrap;
 }
 
-/* ── Qeyd blokları ── */
+
 .note, .warn {
   border-radius: var(--r);
   padding: 14px 16px;
@@ -222,7 +217,7 @@ code {
   color: var(--ink-2);
 }
 
-/* ── Spesifikasiya şəbəkəsi ── */
+
 .specs {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(158px, 1fr));
@@ -241,7 +236,7 @@ code {
 .spec-k { font-size: 11px; color: var(--ink-3); letter-spacing: .01em; }
 .spec-v { font-family: var(--mono); font-size: 14px; font-weight: 500; color: var(--ink); }
 
-/* ── Cədvəllər ── */
+
 .tbl {
   width: 100%;
   border-collapse: collapse;
@@ -277,7 +272,7 @@ code {
 .tbl-use td.mid { color: var(--mid); font-weight: 500; }
 .tbl-use td.low { color: var(--low); font-weight: 500; }
 
-/* ── Kompozisiyalar ── */
+
 .comps {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(272px, 1fr));
@@ -303,7 +298,7 @@ code {
 }
 .comp p { font-size: 13.5px; color: var(--ink-2); margin: 0; line-height: 1.6; }
 
-/* ── Düstur ── */
+
 .formula {
   font-family: var(--mono);
   font-size: 16px;
@@ -317,7 +312,7 @@ code {
   letter-spacing: .01em;
 }
 
-/* ── GeoSolver bölməsi ── */
+
 .gs-section h2 {
   border-bottom-color: var(--acc-line);
 }
@@ -345,7 +340,7 @@ code {
 }
 .kpi-l { font-size: 11.5px; color: var(--w-3); }
 
-/* ── Tətbiq kartları ── */
+
 .apps {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(272px, 1fr));
@@ -362,7 +357,7 @@ code {
 .app ul { margin: 0 0 0 17px; }
 .app li { font-size: 13.5px; color: var(--ink-2); margin-bottom: 5px; }
 
-/* ── Məhdudiyyətlər ── */
+
 .lims { display: flex; flex-direction: column; gap: 10px; margin: 20px 0; }
 .lim {
   display: flex; gap: 15px;
@@ -383,7 +378,7 @@ code {
 .lim-b h4 { margin-bottom: 5px; }
 .lim-b p { font-size: 13.5px; color: var(--ink-2); margin: 0; line-height: 1.6; }
 
-/* ── Alt hissə ── */
+
 .doc-foot {
   margin-top: 64px;
   padding-top: 26px;
@@ -397,8 +392,6 @@ code {
 
 
 
-
-/* ── Üstünlük kartları ── */
 .pluses {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(292px, 1fr));
@@ -421,7 +414,7 @@ code {
   max-width: none;
 }
 
-/* ── Alt düymələr ── */
+
 .foot-btns {
   display: flex;
   flex-wrap: wrap;
@@ -457,7 +450,7 @@ code {
   transform: translateY(-1px);
 }
 
-/* ══════════ KİÇİK EKRAN ══════════ */
+
 @media (max-width: 900px) {
   .wrap { grid-template-columns: 1fr; gap: 0; padding: 0 18px; }
   .toc {
