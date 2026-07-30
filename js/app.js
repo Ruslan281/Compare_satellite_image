@@ -1,12 +1,3 @@
-/**
- * app.js — GeoSolver Satellite
- * ══════════════════════════════════════════════
- * Konfiqurasiya : config.js
- * Dil lüğəti    : i18n.js
- * ══════════════════════════════════════════════
- */
-
-/* ── Xəta ekranı ──────────────────────────── */
 function fail(title, detail) {
   const el = document.getElementById("load");
   el.classList.remove("hide");
@@ -24,16 +15,15 @@ function fail(title, detail) {
     </div>`;
 }
 
-/* ── AMD ──────────────────────────────────── */
+
 require([
   "esri/Map",
   "esri/views/MapView",
   "esri/layers/ImageryTileLayer",
   "esri/widgets/Swipe",
-  "esri/widgets/Home",
-], function (Map, MapView, ImageryTileLayer, Swipe, Home) {
+], function (Map, MapView, ImageryTileLayer, Swipe) {
 
-  /* ── Vəziyyət ───────────────────────────── */
+
   const S = {
     left:  { id: first("left"),  on: true, layer: null },
     right: { id: first("right"), on: true, layer: null },
@@ -46,7 +36,6 @@ require([
   let swipe  = null;
   let framed = false;
 
-  /* ── Xəritə ─────────────────────────────── */
   const map = new Map({ basemap: baseId });
 
   const view = new MapView({
@@ -59,11 +48,7 @@ require([
     constraints: { snapToZoom: false, rotationEnabled: false },
   });
 
-  /* ── Esri-nin rəsmi Home widget-i ──────────
-     Zoom düymələrinin altında yerləşir.
-     Görüntü ilk dəfə çərçivəyə alındıqdan sonra
-     həmin görünüş "ev" nöqtəsi kimi yadda saxlanılır.
-  ────────────────────────────────────────── */
+
   const homeWidget = new Home({ view });
   view.ui.add(homeWidget, "top-left");
 
@@ -73,7 +58,7 @@ require([
     map.basemap.referenceLayers?.forEach(l => l.visible = on);
   }
 
-  /* ── Ekranı doldur ──────────────────────── */
+  
   async function frame(extent, animate) {
     if (!extent || !view.width || !view.height) return;
 
@@ -94,7 +79,6 @@ require([
     view.constraints.minScale = 0;
     await view.goTo(t2, { animate: !!animate });
 
-    // Kənarda qalıq boşluğu təmizlə
     for (let i = 0; i < 6; i++) {
       const ve = view.extent;
       if (!ve) break;
@@ -105,7 +89,6 @@ require([
     if (LOCK_ZOOM_OUT) view.constraints.minScale = view.scale;
     if (LOCK_PAN)      bindPan();
 
-    // Home widget bu görünüşə qaytarsın
     if (homeWidget) homeWidget.viewpoint = view.viewpoint.clone();
   }
 
@@ -123,7 +106,7 @@ require([
   }
   view.watch("scale", () => { if (LOCK_PAN) bindPan(); });
 
-  /* ── Lay yüklə ──────────────────────────── */
+  
   async function mount(side) {
     const st = S[side], c = cfg(side);
     loading(true, t(c.name), t(SOURCES[side].name));
@@ -161,7 +144,6 @@ require([
     render();
   }
 
-  /* ── Swipe ──────────────────────────────── */
   function linkSwipe() {
     if (!S.left.layer || !S.right.layer) return;
     if (swipe) {
@@ -181,9 +163,7 @@ require([
     view.ui.add(swipe);
   }
 
-  /* ── İnterfeys ──────────────────────────── */
   function render() {
-    // Mənbə başlıqları
     document.getElementById("nameL").textContent = t(SOURCES.left.name);
     document.getElementById("metaL").textContent = t(SOURCES.left.meta);
     document.getElementById("nameR").textContent = t(SOURCES.right.name);
@@ -252,7 +232,6 @@ require([
     });
   }
 
-  /* ── Dil dəyişəndə yenidən çək ──────────── */
   window.addEventListener("langchange", () => {
     render();
     const l = document.getElementById("load");
@@ -261,7 +240,6 @@ require([
     }
   });
 
-  /* ── Oxunuş ─────────────────────────────── */
   view.on("pointer-move", e => {
     const p = view.toMap({ x: e.x, y: e.y });
     if (!p) return;
@@ -272,7 +250,6 @@ require([
     document.getElementById("cZoom").textContent = z.toFixed(1);
   });
 
-  /* ── Alətlər ────────────────────────────── */
   document.getElementById("btnHome").onclick = () => {
     const e = S.left.layer?.fullExtent;
     if (e) frame(e, true);
@@ -301,7 +278,6 @@ require([
     }, 240);
   });
 
-  /* ── Yüklənmə ───────────────────────────── */
   function loading(show, a = null, b = null) {
     const el = document.getElementById("load");
     const T  = document.getElementById("loadT");
@@ -311,7 +287,6 @@ require([
     el.classList.toggle("hide", !show);
   }
 
-  /* ── Başlanğıc ──────────────────────────── */
   view.when(async () => {
     paintBase(baseOn);
     render();
