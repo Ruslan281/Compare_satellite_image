@@ -1,12 +1,4 @@
-/**
- * config.js — KONFİQURASİYA
- * ═══════════════════════════════════════════════════════
- * Yalnız bu faylı dəyiş.
- * Mətnlər üç dildə verilir: az · en · ru
- * ═══════════════════════════════════════════════════════
- */
 
-/* ── MƏNBƏLƏR ────────────────────────────────────────── */
 const SOURCES = {
   left: {
     name: { az: "Sentinel-2A",     en: "Sentinel-2A",      ru: "Sentinel-2A" },
@@ -18,7 +10,6 @@ const SOURCES = {
   },
 };
 
-/* ── NDVI rəng rampası ───────────────────────────────── */
 const NDVI_RENDERER = {
   type: "raster-stretch",
   stretchType: "percent-clip",
@@ -34,7 +25,6 @@ const NDVI_RENDERER = {
   },
 };
 
-/* ── TƏBƏQƏLƏR ───────────────────────────────────────── */
 const LAYERS = {
 
   left: [
@@ -87,8 +77,6 @@ const LAYERS = {
 
 };
 
-/* ── ALTLIQ XƏRİTƏLƏR ────────────────────────────────── */
-// labelKey — i18n.js faylındakı açar
 const BASEMAPS = [
   { id: "satellite",   labelKey: "bmSatellite" },
   { id: "hybrid",      labelKey: "bmHybrid" },
@@ -98,8 +86,6 @@ const BASEMAPS = [
 
 const BASEMAP_DEFAULT  = "gray-vector";
 const BASEMAP_ON_START = false;
-
-/* ── GÖRÜNÜŞ ─────────────────────────────────────────── */
 const COVER_ZOOM    = 1.0;
 const LOCK_ZOOM_OUT = true;
 const LOCK_PAN      = true;
