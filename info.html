@@ -17,7 +17,6 @@
 
 <link rel="stylesheet" href="css/info.css"/>
 <style>
-  /* ═══ Əlavə stillər ═══ */
   .product-badge {
     display: inline-block;
     background: linear-gradient(135deg, #1a5e2a, #2d8f4a);
@@ -62,8 +61,7 @@
     background: #0f5a2a;
   }
 
-  /* ═══ BAŞLIQ SAĞ TƏRƏF + DİL SEÇİCİ ═══ */
-  /* info.css-dən asılı olmamaq üçün başlığın flex düzülüşü burada təsbit edilir */
+  
   .hdr {
     display: flex;
     align-items: center;
@@ -134,7 +132,6 @@
 </head>
 <body>
 
-<!-- ═══ BAŞLIQ ═══ -->
 <header class="hdr">
   <div class="brand">
     <a class="brand-logo" href="https://geosolver.az/" target="_blank" rel="noopener">
@@ -161,7 +158,6 @@
 
 <div class="wrap">
 
-  <!-- ═══ MÜNDƏRİCAT ═══ -->
   <nav class="toc" id="toc">
     <div class="toc-lbl" data-i18n="tocLabel">Mündəricat</div>
     <a href="#s1" data-i18n="toc1">GeoSolver 1 metrlik məhsul</a>
@@ -173,7 +169,6 @@
     <a href="#s8" data-i18n="toc8">Əlaqə</a>
   </nav>
 
-  <!-- ═══ MƏTN ═══ -->
   <main class="doc">
 
     <div class="doc-head">
@@ -185,7 +180,6 @@
       </p>
     </div>
 
-    <!-- ══════════ 1 ══════════ -->
     <section id="s1">
       <h2 data-i18n="s1h2">1 · GeoSolver 1 metrlik yüksək ayırdetməli görüntü məhsulu</h2>
 
@@ -237,7 +231,6 @@
     </section>
 
 
-    <!-- ══════════ 2 (id=s3) ══════════ -->
     <section id="s3">
       <h2 data-i18n="s3h2">2 · Tətbiq sahələri</h2>
 
@@ -308,7 +301,6 @@
       </div>
     </section>
 
-    <!-- ══════════ 3 (id=s4) ══════════ -->
     <section id="s4">
       <h2 data-i18n="s4h2">3 · Sentinel-2 — fon məlumatı</h2>
 
@@ -335,7 +327,6 @@
       <p class="note" data-i18n="s4note">Qeyd: 21 yanvar 2025-ci ildə əməliyyat konstelyasiyasında Sentinel-2A-nı Sentinel-2C əvəz etmişdir; Sentinel-2A isə uzadılmış kampaniya çərçivəsində 2026-cı ilin sonuna qədər əlavə çəkilişlər aparır. Məhsul üçün hər üç peykin məlumatı istifadə olunur, ona görə də tarix seçimində məhdudiyyət yoxdur.</p>
     </section>
 
-    <!-- ══════════ 4 (id=s5) ══════════ -->
     <section id="s5">
       <h2 data-i18n="s5h2">4 · Spektral indekslər — 1 metrlik dəqiqlikdə</h2>
 
@@ -357,7 +348,6 @@
       <div class="highlight-box" data-i18n="s5hl"><b>Əsas üstünlük:</b> 10 metrlik indekslə müqayisədə 1 metrlik indeks <b>sahə sərhədlərində, qarışıq piksellərdə və xırda obyektlərdə</b> daha dəqiq nəticə verir.</div>
     </section>
 
-    <!-- ══════════ 5 (id=s6) ══════════ -->
     <section id="s6">
       <h2 data-i18n="s6h2">5 · Texniki çərçivə və məhdudiyyətlər</h2>
 
@@ -383,7 +373,6 @@
       </div>
     </section>
 
-    <!-- ══════════ 6 (id=s7) ══════════ -->
     <section id="s7">
       <h2 data-i18n="s7h2">6 · İş axını və çatdırılma</h2>
 
@@ -414,7 +403,6 @@
       <div class="highlight-box" data-i18n="s7hl"><b>Xüsusi tələblər?</b> Fərdi sifarişlər üçün bizimlə əlaqə saxlayın — istənilən ərazi, istənilən tarix, istənilən format.</div>
     </section>
 
-    <!-- ══════════ 7 (id=s8) ══════════ -->
     <section id="s8">
       <h2 data-i18n="s8h2">7 · Əlaqə</h2>
 
@@ -446,14 +434,8 @@
 </div>
 
 <script>
-/* ══════════════════════════════════════════════════════════════
-   TƏRCÜMƏ LÜĞƏTİ — AZ / EN / RU
-   Yeni mətn üçün: HTML-də data-i18n="acar", sonra hər üç dilə
-   eyni açarı əlavə et.
-   ══════════════════════════════════════════════════════════════ */
 const I18N = {
 
-  /* ─────────────── AZƏRBAYCAN ─────────────── */
   az: {
     pageTitle: "GeoSolver 1 metr — Yüksək ayırdetməli peyk məhsulu",
     metaDesc: "Copernicus Sentinel-2 peyklərinin pulsuz 10 metrlik görüntülərini süni intellektlə 1 metr piksel ölçüsünə qaldıran GeoSolver məhsulu.",
@@ -600,7 +582,6 @@ const I18N = {
     footBack: "Müqayisə xəritəsinə qayıt"
   },
 
-  /* ─────────────── ENGLISH ─────────────── */
   en: {
     pageTitle: "GeoSolver 1 m — High-resolution satellite product",
     metaDesc: "GeoSolver product that uses AI to upscale free 10-meter Copernicus Sentinel-2 imagery to a 1-meter pixel size.",
@@ -747,7 +728,6 @@ const I18N = {
     footBack: "Back to the comparison map"
   },
 
-  /* ─────────────── РУССКИЙ ─────────────── */
   ru: {
     pageTitle: "GeoSolver 1 м — спутниковый продукт высокого разрешения",
     metaDesc: "Продукт GeoSolver, повышающий разрешение бесплатных 10-метровых снимков Copernicus Sentinel-2 до размера пикселя 1 метр.",
@@ -895,9 +875,6 @@ const I18N = {
   }
 };
 
-/* ══════════════════════════════════════════════════════════════
-   DİL DƏYİŞDİRİCİ
-   ══════════════════════════════════════════════════════════════ */
 (function () {
   const SUPPORTED = ['az', 'en', 'ru'];
   const DEFAULT_LANG = 'az';
@@ -958,9 +935,7 @@ const I18N = {
   applyLang(pickInitial());
 })();
 
-/* ══════════════════════════════════════════════════════════════
-   MÜNDƏRİCAT — aktiv bölmənin işarələnməsi
-   ══════════════════════════════════════════════════════════════ */
+
 const links = [...document.querySelectorAll('.toc a')];
 const secs  = links.map(a => document.querySelector(a.getAttribute('href')));
 const obs = new IntersectionObserver(entries => {
