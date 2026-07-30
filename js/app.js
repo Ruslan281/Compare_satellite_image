@@ -291,15 +291,17 @@ require([
 
   /* ══════════════════════════════════════════
      NAVİQASİYA PƏNCƏRƏSİ
-     Esri zoom düymələrinin altında yerləşir.
+     Esri zoom düymələrinin altında.
      4 ox + mərkəzdə "əraziyə qayıt".
-     Addım ölçüsünü dəyişmək üçün PAN_STEP-i redaktə et.
+     PAN_STEP — hər klikdə nə qədər sürüşsün.
   ══════════════════════════════════════════ */
-  const PAN_STEP = 0.30;   // görünən sahənin nə qədər hissəsi qədər sürüşsün
+  const PAN_STEP = 0.16;   // 0.10 = çox kiçik · 0.16 = hazırkı · 0.30 = böyük
+
+  let padEl   = null;
+  let panBusy = false;
 
   (function buildNavPad() {
 
-    // ── Stillər ──
     const css = document.createElement("style");
     css.textContent = `
       .navpad {
@@ -322,10 +324,14 @@ require([
         color: var(--w-2);
         cursor: pointer;
         padding: 0;
-        transition: background .14s, color .14s;
+        transition: background .14s, color .14s, opacity .14s;
       }
-      .navpad button:hover { background: rgba(255,255,255,.07); color: var(--acc); }
-      .navpad button:active { background: var(--acc-soft); }
+      .navpad button:hover:not(.off) { background: rgba(255,255,255,.07); color: var(--acc); }
+      .navpad button:active:not(.off) { background: var(--acc-soft); }
+      .navpad button.off {
+        opacity: .22;
+        cursor: default;
+      }
       .navpad .np-void { pointer-events: none; }
       .navpad .np-home { color: var(--w-3); }
       .navpad .np-home:hover { color: var(--acc); }
@@ -336,7 +342,6 @@ require([
     `;
     document.head.appendChild(css);
 
-    // ── SVG ikonlar ──
     const arrow = deg => `<svg width="14" height="14" viewBox="0 0 16 16" fill="none"
         style="transform:rotate(${deg}deg)">
         <path d="M8 3.2v9.6M4.4 6.8L8 3.2l3.6 3.6"
@@ -348,14 +353,20 @@ require([
         <path d="M8 1v2.2M8 12.8V15M1 8h2.2M12.8 8H15"
               stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>`;
 
-    // ── Qurulma ──
     const pad = document.createElement("div");
     pad.className = "navpad";
+    padEl = pad;
 
     const cells = [
-      { t: "void" },                     { t: "pan", dx:  0, dy:  1, icon: arrow(0)   }, { t: "void" },
-      { t: "pan", dx: -1, dy: 0, icon: arrow(270) }, { t: "home" },                      { t: "pan", dx: 1, dy: 0, icon: arrow(90) },
-      { t: "void" },                     { t: "pan", dx:  0, dy: -1, icon: arrow(180) }, { t: "void" },
+      { t: "void" },
+      { t: "pan", dx:  0, dy:  1, icon: arrow(0),   dir: "up" },
+      { t: "void" },
+      { t: "pan", dx: -1, dy:  0, icon: arrow(270), dir: "left" },
+      { t: "home" },
+      { t: "pan", dx:  1, dy:  0, icon: arrow(90),  dir: "right" },
+      { t: "void" },
+      { t: "pan", dx:  0, dy: -1, icon: arrow(180), dir: "down" },
+      { t: "void" },
     ];
 
     cells.forEach(c => {
@@ -372,35 +383,86 @@ require([
         b.title = t("tipHome");
         b.onclick = () => {
           const e = S.left.layer?.fullExtent;
-          if (e) frame(e, true);
+          if (e) frame(e, true).then(updatePadState).catch(() => {});
         };
       } else {
         b.innerHTML = c.icon;
+        b.dataset.dir = c.dir;
+        b.dataset.dx  = c.dx;
+        b.dataset.dy  = c.dy;
         b.onclick = () => pan(c.dx, c.dy);
       }
       pad.appendChild(b);
     });
 
-    // Esri zoom widget-inin altına yerləşdir
     view.ui.add(pad, "top-left");
 
-    // Dil dəyişəndə tooltip yenilənsin
     window.addEventListener("langchange", () => {
       const h = pad.querySelector(".np-home");
       if (h) h.title = t("tipHome");
     });
+
+    // Xəritə dayandıqda düymələrin vəziyyətini yenilə
+    view.watch("stationary", st => { if (st) updatePadState(); });
+    view.when(() => setTimeout(updatePadState, 400));
   })();
 
-  // ── Sürüşdürmə ──
+  /* ── İcazə verilən mərkəz sahəsi ── */
+  function panBounds() {
+    const g = view.constraints?.geometry;
+    if (g) return { xmin: g.xmin, xmax: g.xmax, ymin: g.ymin, ymax: g.ymax };
+    return null;
+  }
+
+  /* ── Sürüşdürmə ── */
   function pan(dx, dy) {
     const e = view.extent;
-    if (!e || !view.center) return;
-    view.goTo({
-      center: [
-        view.center.x + e.width  * PAN_STEP * dx,
-        view.center.y + e.height * PAN_STEP * dy,
-      ],
-    }, { duration: 280, easing: "ease-out" });
+    if (!e || !view.center || panBusy) return;
+
+    let tx = view.center.x + e.width  * PAN_STEP * dx;
+    let ty = view.center.y + e.height * PAN_STEP * dy;
+
+    // Sərhədi öz tərəfimizdən tətbiq et — goTo-nun gözlənilməz
+    // davranışının qarşısını alır
+    const b = panBounds();
+    if (b) {
+      tx = Math.max(b.xmin, Math.min(b.xmax, tx));
+      ty = Math.max(b.ymin, Math.min(b.ymax, ty));
+    }
+
+    // Faktiki dəyişiklik yoxdursa heç nə etmə
+    const eps = Math.max(e.width, e.height) * 1e-5;
+    if (Math.abs(tx - view.center.x) < eps && Math.abs(ty - view.center.y) < eps) {
+      updatePadState();
+      return;
+    }
+
+    panBusy = true;
+    view.goTo({ center: [tx, ty] }, { duration: 240, easing: "ease-out" })
+        .catch(() => {})                       // animasiya kəsilsə susdur
+        .finally(() => { panBusy = false; updatePadState(); });
+  }
+
+  /* ── Hansı istiqamətdə yer var ── */
+  function updatePadState() {
+    if (!padEl || !view.extent || !view.center) return;
+    const e = view.extent;
+    const b = panBounds();
+
+    padEl.querySelectorAll("button[data-dir]").forEach(btn => {
+      if (!b) { btn.classList.remove("off"); return; }
+
+      const dx = +btn.dataset.dx, dy = +btn.dataset.dy;
+      const eps = Math.max(e.width, e.height) * 1e-4;
+
+      let can;
+      if (dx > 0)      can = view.center.x < b.xmax - eps;
+      else if (dx < 0) can = view.center.x > b.xmin + eps;
+      else if (dy > 0) can = view.center.y < b.ymax - eps;
+      else             can = view.center.y > b.ymin + eps;
+
+      btn.classList.toggle("off", !can);
+    });
   }
 
   /* ── Yüklənmə ───────────────────────────── */
