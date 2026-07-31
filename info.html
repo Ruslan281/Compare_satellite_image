@@ -128,6 +128,164 @@
   @media (prefers-reduced-motion: reduce) {
     .lang-switch button { transition: none; }
   }
+
+  /* ══════ MÜQAYİSƏ QALEREYASI ══════ */
+  .samples {
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+    margin: 1.6rem 0;
+  }
+
+  .sample {
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+    background: var(--card);
+    box-shadow: 0 1px 2px rgba(20,22,26,.04);
+  }
+
+  .sample-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .75rem;
+    padding: .7rem 1rem;
+    border-bottom: 1px solid var(--line);
+    flex-wrap: wrap;
+  }
+
+  .sample-id {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    font-family: var(--mono);
+    font-size: .68rem;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .sample-id b {
+    display: grid;
+    place-items: center;
+    width: 20px; height: 20px;
+    border-radius: 6px;
+    background: var(--acc-soft);
+    color: var(--acc);
+    font-size: .7rem;
+    font-weight: 700;
+  }
+
+  .sample-tags { display: flex; align-items: center; gap: .4rem; }
+  .stag {
+    font-family: var(--mono);
+    font-size: .64rem;
+    font-weight: 500;
+    letter-spacing: .04em;
+    padding: .28rem .6rem;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .stag-b { background: var(--paper-2, #f2efea); color: var(--ink-2); border: 1px solid var(--line); }
+  .stag-a { background: var(--acc-soft); color: var(--acc); border: 1px solid var(--acc-line); }
+  .stag-arw { color: var(--ink-3); font-size: .7rem; }
+
+  /* Müqayisə sahəsi */
+  .cmp {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: #0e1013;
+    cursor: col-resize;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: none;
+  }
+  .cmp img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    pointer-events: none;
+    -webkit-user-drag: none;
+  }
+  /* Üstdəki "əvvəl" şəkli kəsilir */
+  .cmp .cmp-b {
+    clip-path: inset(0 var(--clip, 50%) 0 0);
+    z-index: 2;
+  }
+
+  /* Bölücü xətt + tutacaq */
+  .cmp-bar {
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 50%;
+    width: 2px;
+    margin-left: -1px;
+    background: #fff;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.28), 0 0 14px rgba(0,0,0,.35);
+    z-index: 3;
+    cursor: col-resize;
+  }
+  .cmp-knob {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 38px; height: 38px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.96);
+    box-shadow: 0 2px 12px rgba(0,0,0,.32);
+    display: grid;
+    place-items: center;
+    color: #14161a;
+    transition: transform .16s cubic-bezier(.34,1.4,.64,1);
+  }
+  .cmp:hover .cmp-knob { transform: translate(-50%, -50%) scale(1.09); }
+  .cmp-bar:focus-visible { outline: none; }
+  .cmp-bar:focus-visible .cmp-knob {
+    box-shadow: 0 0 0 3px var(--acc), 0 2px 12px rgba(0,0,0,.32);
+  }
+
+  /* Küncdəki etiketlər */
+  .cmp-lbl {
+    position: absolute;
+    bottom: .65rem;
+    z-index: 4;
+    font-family: var(--mono);
+    font-size: .62rem;
+    font-weight: 500;
+    letter-spacing: .06em;
+    padding: .3rem .6rem;
+    border-radius: 6px;
+    background: rgba(14,16,19,.72);
+    backdrop-filter: blur(6px);
+    color: #fff;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+  .cmp-lbl-l { left: .65rem; }
+  .cmp-lbl-r { right: .65rem; color: #ffd77a; }
+
+  .sample-hint {
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+    padding: .55rem 1rem;
+    border-top: 1px solid var(--line);
+    font-size: .72rem;
+    color: var(--ink-3);
+  }
+
+  @media (max-width: 640px) {
+    .sample-top { padding: .6rem .75rem; }
+    .cmp-knob { width: 34px; height: 34px; }
+    .cmp-lbl { font-size: .58rem; }
+  }
+
 </style>
 </head>
 <body>
@@ -161,6 +319,7 @@
   <nav class="toc" id="toc">
     <div class="toc-lbl" data-i18n="tocLabel">Mündəricat</div>
     <a href="#s1" data-i18n="toc1">GeoSolver 1 metrlik məhsul</a>
+    <a href="#s2" data-i18n="toc2">Nümunələr</a>
     <a href="#s3" data-i18n="toc3">Tətbiq sahələri</a>
     <a href="#s4" data-i18n="toc4">Sentinel-2 — fon</a>
     <a href="#s5" data-i18n="toc5">Spektral indekslər</a>
@@ -231,8 +390,205 @@
     </section>
 
 
+
+    <section id="s2">
+      <h2 data-i18n="s2h2">2 · Nümunələr — əvvəl və sonra</h2>
+
+      <p data-i18n="s2p">Aşağıdakı beş cütlük eyni ərazinin Sentinel-2 mənbə görüntüsünü və GeoSolver 1 metrlik nəticəsini göstərir. Bölücünü sürüşdürərək fərqi müqayisə edin.</p>
+
+      <div class="samples">
+
+        <div class="sample">
+          <div class="sample-top">
+            <span class="sample-id"><b>1</b><span data-i18n="smpN1">Nümunə 1</span></span>
+            <span class="sample-tags">
+              <span class="stag stag-b" data-i18n="smpB">Sentinel-2 · 10 m</span>
+              <span class="stag-arw">→</span>
+              <span class="stag stag-a" data-i18n="smpA">GeoSolver · 1 m</span>
+            </span>
+          </div>
+
+          <div class="cmp" data-cmp>
+            <img class="cmp-a" src="compare_image/after_1.png"  alt="GeoSolver 1 m" loading="lazy" decoding="async"/>
+            <img class="cmp-b" src="compare_image/before_1.png" alt="Sentinel-2 10 m" loading="lazy" decoding="async"/>
+            <div class="cmp-bar" role="slider" tabindex="0"
+                 aria-label="before / after" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+              <span class="cmp-knob">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M6.2 3.6L2.8 8l3.4 4.4M9.8 3.6L13.2 8l-3.4 4.4"
+                        stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </div>
+            <span class="cmp-lbl cmp-lbl-l" data-i18n="smpB">Sentinel-2 · 10 m</span>
+            <span class="cmp-lbl cmp-lbl-r" data-i18n="smpA">GeoSolver · 1 m</span>
+          </div>
+
+          <div class="sample-hint">
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M6.2 4.4L2.6 8l3.6 3.6M9.8 4.4L13.4 8l-3.6 3.6"
+                    stroke="currentColor" stroke-width="1.4"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span data-i18n="smpHint">Müqayisə üçün bölücünü sürüşdürün</span>
+          </div>
+        </div>
+
+        <div class="sample">
+          <div class="sample-top">
+            <span class="sample-id"><b>2</b><span data-i18n="smpN2">Nümunə 2</span></span>
+            <span class="sample-tags">
+              <span class="stag stag-b" data-i18n="smpB">Sentinel-2 · 10 m</span>
+              <span class="stag-arw">→</span>
+              <span class="stag stag-a" data-i18n="smpA">GeoSolver · 1 m</span>
+            </span>
+          </div>
+
+          <div class="cmp" data-cmp>
+            <img class="cmp-a" src="compare_image/after_2.png"  alt="GeoSolver 1 m" loading="lazy" decoding="async"/>
+            <img class="cmp-b" src="compare_image/before_2.png" alt="Sentinel-2 10 m" loading="lazy" decoding="async"/>
+            <div class="cmp-bar" role="slider" tabindex="0"
+                 aria-label="before / after" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+              <span class="cmp-knob">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M6.2 3.6L2.8 8l3.4 4.4M9.8 3.6L13.2 8l-3.4 4.4"
+                        stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </div>
+            <span class="cmp-lbl cmp-lbl-l" data-i18n="smpB">Sentinel-2 · 10 m</span>
+            <span class="cmp-lbl cmp-lbl-r" data-i18n="smpA">GeoSolver · 1 m</span>
+          </div>
+
+          <div class="sample-hint">
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M6.2 4.4L2.6 8l3.6 3.6M9.8 4.4L13.4 8l-3.6 3.6"
+                    stroke="currentColor" stroke-width="1.4"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span data-i18n="smpHint">Müqayisə üçün bölücünü sürüşdürün</span>
+          </div>
+        </div>
+
+        <div class="sample">
+          <div class="sample-top">
+            <span class="sample-id"><b>3</b><span data-i18n="smpN3">Nümunə 3</span></span>
+            <span class="sample-tags">
+              <span class="stag stag-b" data-i18n="smpB">Sentinel-2 · 10 m</span>
+              <span class="stag-arw">→</span>
+              <span class="stag stag-a" data-i18n="smpA">GeoSolver · 1 m</span>
+            </span>
+          </div>
+
+          <div class="cmp" data-cmp>
+            <img class="cmp-a" src="compare_image/after_3.png"  alt="GeoSolver 1 m" loading="lazy" decoding="async"/>
+            <img class="cmp-b" src="compare_image/before_3.png" alt="Sentinel-2 10 m" loading="lazy" decoding="async"/>
+            <div class="cmp-bar" role="slider" tabindex="0"
+                 aria-label="before / after" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+              <span class="cmp-knob">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M6.2 3.6L2.8 8l3.4 4.4M9.8 3.6L13.2 8l-3.4 4.4"
+                        stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </div>
+            <span class="cmp-lbl cmp-lbl-l" data-i18n="smpB">Sentinel-2 · 10 m</span>
+            <span class="cmp-lbl cmp-lbl-r" data-i18n="smpA">GeoSolver · 1 m</span>
+          </div>
+
+          <div class="sample-hint">
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M6.2 4.4L2.6 8l3.6 3.6M9.8 4.4L13.4 8l-3.6 3.6"
+                    stroke="currentColor" stroke-width="1.4"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span data-i18n="smpHint">Müqayisə üçün bölücünü sürüşdürün</span>
+          </div>
+        </div>
+
+        <div class="sample">
+          <div class="sample-top">
+            <span class="sample-id"><b>4</b><span data-i18n="smpN4">Nümunə 4</span></span>
+            <span class="sample-tags">
+              <span class="stag stag-b" data-i18n="smpB">Sentinel-2 · 10 m</span>
+              <span class="stag-arw">→</span>
+              <span class="stag stag-a" data-i18n="smpA">GeoSolver · 1 m</span>
+            </span>
+          </div>
+
+          <div class="cmp" data-cmp>
+            <img class="cmp-a" src="compare_image/after_4.png"  alt="GeoSolver 1 m" loading="lazy" decoding="async"/>
+            <img class="cmp-b" src="compare_image/before_4.png" alt="Sentinel-2 10 m" loading="lazy" decoding="async"/>
+            <div class="cmp-bar" role="slider" tabindex="0"
+                 aria-label="before / after" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+              <span class="cmp-knob">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M6.2 3.6L2.8 8l3.4 4.4M9.8 3.6L13.2 8l-3.4 4.4"
+                        stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </div>
+            <span class="cmp-lbl cmp-lbl-l" data-i18n="smpB">Sentinel-2 · 10 m</span>
+            <span class="cmp-lbl cmp-lbl-r" data-i18n="smpA">GeoSolver · 1 m</span>
+          </div>
+
+          <div class="sample-hint">
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M6.2 4.4L2.6 8l3.6 3.6M9.8 4.4L13.4 8l-3.6 3.6"
+                    stroke="currentColor" stroke-width="1.4"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span data-i18n="smpHint">Müqayisə üçün bölücünü sürüşdürün</span>
+          </div>
+        </div>
+
+        <div class="sample">
+          <div class="sample-top">
+            <span class="sample-id"><b>5</b><span data-i18n="smpN5">Nümunə 5</span></span>
+            <span class="sample-tags">
+              <span class="stag stag-b" data-i18n="smpB">Sentinel-2 · 10 m</span>
+              <span class="stag-arw">→</span>
+              <span class="stag stag-a" data-i18n="smpA">GeoSolver · 1 m</span>
+            </span>
+          </div>
+
+          <div class="cmp" data-cmp>
+            <img class="cmp-a" src="compare_image/after_5.png"  alt="GeoSolver 1 m" loading="lazy" decoding="async"/>
+            <img class="cmp-b" src="compare_image/before_5.png" alt="Sentinel-2 10 m" loading="lazy" decoding="async"/>
+            <div class="cmp-bar" role="slider" tabindex="0"
+                 aria-label="before / after" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+              <span class="cmp-knob">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M6.2 3.6L2.8 8l3.4 4.4M9.8 3.6L13.2 8l-3.4 4.4"
+                        stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </div>
+            <span class="cmp-lbl cmp-lbl-l" data-i18n="smpB">Sentinel-2 · 10 m</span>
+            <span class="cmp-lbl cmp-lbl-r" data-i18n="smpA">GeoSolver · 1 m</span>
+          </div>
+
+          <div class="sample-hint">
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M6.2 4.4L2.6 8l3.6 3.6M9.8 4.4L13.4 8l-3.6 3.6"
+                    stroke="currentColor" stroke-width="1.4"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span data-i18n="smpHint">Müqayisə üçün bölücünü sürüşdürün</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="highlight-box" data-i18n="s2hl"><b>Diqqət yetirin:</b> sahə sərhədləri, yollar və suvarma kanalları kəskinləşir; xırda obyektlərin konturu oxunaqlı olur.</div>
+    </section>
+
     <section id="s3">
-      <h2 data-i18n="s3h2">2 · Tətbiq sahələri</h2>
+      <h2 data-i18n="s3h2">3 · Tətbiq sahələri</h2>
 
       <p data-i18n="s3p">1 metrlik dəqiqlik aşağıdakı sahələrdə xüsusilə dəyərlidir:</p>
 
@@ -302,7 +658,7 @@
     </section>
 
     <section id="s4">
-      <h2 data-i18n="s4h2">3 · Sentinel-2 — fon məlumatı</h2>
+      <h2 data-i18n="s4h2">4 · Sentinel-2 — fon məlumatı</h2>
 
       <p data-i18n="s4p1">GeoSolver MMC-nin təqdim etdiyi 1 metrlik məhsulun mənbəyi <b>Copernicus Sentinel-2</b> missiyasıdır. Aşağıda əsas texniki xarakteristikalar verilir.</p>
 
@@ -328,7 +684,7 @@
     </section>
 
     <section id="s5">
-      <h2 data-i18n="s5h2">4 · Spektral indekslər — 1 metrlik dəqiqlikdə</h2>
+      <h2 data-i18n="s5h2">5 · Spektral indekslər — 1 metrlik dəqiqlikdə</h2>
 
       <p data-i18n="s5p">1 metrlik məhsul dörd bandı (B2, B3, B4, B8) saxladığı üçün bu bandlara əsaslanan bütün indekslər birbaşa 1 metrlik şəbəkədə hesablana bilər.</p>
 
@@ -348,7 +704,7 @@
     </section>
 
     <section id="s6">
-      <h2 data-i18n="s6h2">5 · Texniki çərçivə və məhdudiyyətlər</h2>
+      <h2 data-i18n="s6h2">6 · Texniki çərçivə və məhdudiyyətlər</h2>
 
       <p data-i18n="s6p">Məhsuldan düzgün istifadə üçün onun imkanlarını və məhdudiyyətlərini bilmək lazımdır.</p>
 
@@ -373,7 +729,7 @@
     </section>
 
     <section id="s7">
-      <h2 data-i18n="s7h2">6 · İş axını və çatdırılma</h2>
+      <h2 data-i18n="s7h2">7 · İş axını və çatdırılma</h2>
 
       <h3 data-i18n="s7h3a">Sifariş prosesi</h3>
 
@@ -403,7 +759,7 @@
     </section>
 
     <section id="s8">
-      <h2 data-i18n="s8h2">7 · Əlaqə</h2>
+      <h2 data-i18n="s8h2">8 · Əlaqə</h2>
 
       <div class="contact-block">
         <p style="color:#495057;max-width:600px;margin:0.5rem auto 1.5rem;" data-i18n="s8p"><b>Maraqlanan sahəni, istədiyiniz tarixi və çatdırılma formatını bizə bildirin. Biz sizə uyğun təklif və nümunə məhsul təqdim edəcəyik.</b></p>
@@ -484,8 +840,20 @@ const I18N = {
     p5p: "Kiçik və orta təsərrüfatlar, xırda sahələr, mürəkkəb relyef — 1 metrlik dəqiqlik bu şəraitdə xüsusilə dəyərlidir. Sahə ölçüsündən asılı olmayaraq keyfiyyət eynidir.",
     p6h: "Çevik çatdırılma",
     p6p: "Məhsul <b>GeoTIFF</b> (GIS proqramları üçün), <b>WMS</b> (veb servis) və ya <b>API</b> vasitəsilə təqdim olunur. İstənilən formatda, istənilən ərazi üçün.",
+    toc2: "Nümunələr",
+    s2h2: "2 · Nümunələr — əvvəl və sonra",
+    s2p: "Aşağıdakı beş cütlük eyni ərazinin Sentinel-2 mənbə görüntüsünü və GeoSolver 1 metrlik nəticəsini göstərir. Bölücünü sürüşdürərək fərqi müqayisə edin.",
+    s2hl: "<b>Diqqət yetirin:</b> sahə sərhədləri, yollar və suvarma kanalları kəskinləşir; xırda obyektlərin konturu oxunaqlı olur.",
+    smpB: "Sentinel-2 · 10 m",
+    smpA: "GeoSolver · 1 m",
+    smpHint: "Müqayisə üçün bölücünü sürüşdürün",
+    smpN1: "Nümunə 1",
+    smpN2: "Nümunə 2",
+    smpN3: "Nümunə 3",
+    smpN4: "Nümunə 4",
+    smpN5: "Nümunə 5",
 
-    s3h2: "2 · Tətbiq sahələri",
+    s3h2: "3 · Tətbiq sahələri",
     s3p: "1 metrlik dəqiqlik aşağıdakı sahələrdə xüsusilə dəyərlidir:",
     a1h: "Kənd təsərrüfatı",
     a1l1: "Sahə sərhədlərinin dəqiq çəkilməsi",
@@ -518,7 +886,7 @@ const I18N = {
     a6l2: "Zərərin sahə üzrə hesablanması",
     a6l3: "Bərpa işlərinin izlənməsi",
 
-    s4h2: "3 · Sentinel-2 — fon məlumatı",
+    s4h2: "4 · Sentinel-2 — fon məlumatı",
     s4p1: "GeoSolver MMC-nin təqdim etdiyi 1 metrlik məhsulun mənbəyi <b>Copernicus Sentinel-2</b> missiyasıdır. Aşağıda əsas texniki xarakteristikalar verilir.",
     s4th1: "Parametr",
     s4th2: "Dəyər",
@@ -535,7 +903,7 @@ const I18N = {
     s4p2: "<b>10 metrlik dörd band</b> (B2 mavi, B3 yaşıl, B4 qırmızı, B8 NIR) GeoSolver MMC-nin 1 metrlik modelinin giriş məlumatlarıdır. Çıxışda eyni dörd band <b>1 metrlik şəbəkədə</b> təqdim olunur.",
     s4note: "Qeyd: 21 yanvar 2025-ci ildə əməliyyat konstelyasiyasında Sentinel-2A-nı Sentinel-2C əvəz etmişdir; Sentinel-2A isə uzadılmış kampaniya çərçivəsində 2026-cı ilin sonuna qədər əlavə çəkilişlər aparır. Məhsul üçün hər üç peykin məlumatı istifadə olunur, ona görə də tarix seçimində məhdudiyyət yoxdur.",
 
-    s5h2: "4 · Spektral indekslər — 1 metrlik dəqiqlikdə",
+    s5h2: "5 · Spektral indekslər — 1 metrlik dəqiqlikdə",
     s5p: "1 metrlik məhsul dörd bandı (B2, B3, B4, B8) saxladığı üçün bu bandlara əsaslanan bütün indekslər birbaşa 1 metrlik şəbəkədə hesablana bilər.",
     s5th1: "İndeks", s5th2: "Düstur", s5th3: "Təyinat",
     s5r1: "Bitki sıxlığı, məhsul monitorinqi",
@@ -545,7 +913,7 @@ const I18N = {
     s5r5: "Sıx bitkidə doyma problemi olmadan",
     s5hl: "<b>Əsas üstünlük:</b> 10 metrlik indekslə müqayisədə 1 metrlik indeks <b>sahə sərhədlərində, qarışıq piksellərdə və xırda obyektlərdə</b> daha dəqiq nəticə verir.",
 
-    s6h2: "5 · Texniki çərçivə və məhdudiyyətlər",
+    s6h2: "6 · Texniki çərçivə və məhdudiyyətlər",
     s6p: "Məhsuldan düzgün istifadə üçün onun imkanlarını və məhdudiyyətlərini bilmək lazımdır.",
     l1h: "Obyekt ölçüsü həddi",
     l1p: "Mənbə görüntüdə heç bir izi olmayan obyekt bərpa oluna bilməz. <b>2 metrdən kiçik</b> tək obyektlər (dar cığır, tək ağac, kiçik tikili) etibarlı görünmür. 3–5 metr və daha böyük obyektlər aydın seçilir.",
@@ -556,7 +924,7 @@ const I18N = {
     l4h: "Dəyişiklik analizində həssaslıq",
     l4p: "Aşkarlama həddi mənbə pikselinin ölçüsü ilə məhdudlaşır: <b>təxminən 100 m²</b> (bir Sentinel-2 pikseli) və daha böyük dəyişikliklər etibarlı aşkarlanır. Kontrastı yüksək dəyişikliklər (məsələn, torpaq üzərində yeni beton örtük) bəzən <b>~25–50 m²</b> səviyyəsində də görünür, lakin bu, hər səhnədə təmin olunmur.",
 
-    s7h2: "6 · İş axını və çatdırılma",
+    s7h2: "7 · İş axını və çatdırılma",
     s7h3a: "Sifariş prosesi",
     s7o1: "<b>Ərazi müəyyən edilir</b> — maraq zonası (rayon, təsərrüfat, ya xəritədə çəkilmiş kontur)",
     s7o2: "<b>Tarix və ya dövr seçilir</b> — tək tarix, mövsüm, ya ardıcıl illər",
@@ -573,7 +941,7 @@ const I18N = {
     s7r5a: "<b>İndeks xəritələri</b>", s7r5b: "NDVI, NDWI və s. rəngli xəritə", s7r5c: "Sahə analizi, qərar dəstəyi",
     s7hl: "<b>Xüsusi tələblər?</b> Fərdi sifarişlər üçün bizimlə əlaqə saxlayın — istənilən ərazi, istənilən tarix, istənilən format.",
 
-    s8h2: "7 · Əlaqə",
+    s8h2: "8 · Əlaqə",
     s8p: "<b>Maraqlanan sahəni, istədiyiniz tarixi və çatdırılma formatını bizə bildirin. Biz sizə uyğun təklif və nümunə məhsul təqdim edəcəyik.</b>",
 
     footSrc: "Bu məhsul <b>dəyişdirilmiş Copernicus Sentinel məlumatlarını (2015–{Y})</b> ehtiva edir; superrezolyusiya emalı GeoSolver MMC tərəfindən aparılmışdır. Mənbə məlumat: Copernicus Sentinel-2, Avropa Kosmik Agentliyi (ESA) — Copernicus açıq məlumat siyasəti əsasında. İstifadə şərtləri: <a href=\"https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice\" target=\"_blank\" rel=\"noopener\">Copernicus Sentinel məlumatlarının istifadəsi haqqında hüquqi bildiriş</a> (Delegated Regulation (EU) No 1159/2013).",
@@ -629,8 +997,20 @@ const I18N = {
     p5p: "Small and medium farms, small parcels, complex terrain — 1-meter detail is especially valuable in these conditions. Quality is the same regardless of area size.",
     p6h: "Flexible delivery",
     p6p: "The product is delivered as <b>GeoTIFF</b> (for GIS software), <b>WMS</b> (web service) or via <b>API</b>. Any format, any area.",
+    toc2: "Examples",
+    s2h2: "2 · Examples — before and after",
+    s2p: "The five pairs below show the Sentinel-2 source image and the GeoSolver 1-meter result for the same area. Drag the divider to compare.",
+    s2hl: "<b>Look closely:</b> field boundaries, roads and irrigation canals become sharper; the outlines of small objects turn legible.",
+    smpB: "Sentinel-2 · 10 m",
+    smpA: "GeoSolver · 1 m",
+    smpHint: "Drag the divider to compare",
+    smpN1: "Sample 1",
+    smpN2: "Sample 2",
+    smpN3: "Sample 3",
+    smpN4: "Sample 4",
+    smpN5: "Sample 5",
 
-    s3h2: "2 · Applications",
+    s3h2: "3 · Applications",
     s3p: "1-meter detail is particularly valuable in the following areas:",
     a1h: "Agriculture",
     a1l1: "Precise delineation of field boundaries",
@@ -663,7 +1043,7 @@ const I18N = {
     a6l2: "Damage calculation by area",
     a6l3: "Monitoring of recovery works",
 
-    s4h2: "3 · Sentinel-2 — background",
+    s4h2: "4 · Sentinel-2 — background",
     s4p1: "The source for the 1-meter product delivered by GeoSolver LLC is the <b>Copernicus Sentinel-2</b> mission. Its main technical characteristics are given below.",
     s4th1: "Parameter",
     s4th2: "Value",
@@ -680,7 +1060,7 @@ const I18N = {
     s4p2: "The <b>four 10-meter bands</b> (B2 blue, B3 green, B4 red, B8 NIR) are the input to the 1-meter model of GeoSolver LLC. The output delivers the same four bands <b>on a 1-meter grid</b>.",
     s4note: "Note: on 21 January 2025 Sentinel-2C replaced Sentinel-2A in the operational constellation, while Sentinel-2A continues additional acquisitions under an extension campaign until the end of 2026. The product uses data from all three satellites, so there is no restriction on date selection.",
 
-    s5h2: "4 · Spectral indices — at 1-meter detail",
+    s5h2: "5 · Spectral indices — at 1-meter detail",
     s5p: "Because the 1-meter product keeps four bands (B2, B3, B4, B8), every index based on these bands can be computed directly on the 1-meter grid.",
     s5th1: "Index", s5th2: "Formula", s5th3: "Purpose",
     s5r1: "Vegetation density, crop monitoring",
@@ -690,7 +1070,7 @@ const I18N = {
     s5r5: "No saturation problem in dense vegetation",
     s5hl: "<b>Key advantage:</b> compared with a 10-meter index, a 1-meter index gives more accurate results <b>at field boundaries, in mixed pixels and on small objects</b>.",
 
-    s6h2: "5 · Technical scope and limitations",
+    s6h2: "6 · Technical scope and limitations",
     s6p: "To use the product correctly, it helps to know both what it can and cannot do.",
     l1h: "Object size limit",
     l1p: "An object with no trace at all in the source image cannot be reconstructed. Isolated objects <b>smaller than 2 meters</b> (a narrow path, a single tree, a small structure) are not reliably visible. Objects of 3–5 meters and larger stand out clearly.",
@@ -701,7 +1081,7 @@ const I18N = {
     l4h: "Sensitivity in change detection",
     l4p: "Detection is bounded by the source pixel size: changes of <b>about 100 m²</b> (one Sentinel-2 pixel) and larger are detected reliably. High-contrast changes — new concrete over bare soil, for example — are sometimes visible down to <b>~25–50 m²</b>, but this cannot be guaranteed for every scene.",
 
-    s7h2: "6 · Workflow and delivery",
+    s7h2: "7 · Workflow and delivery",
     s7h3a: "Ordering process",
     s7o1: "<b>The area is defined</b> — the area of interest (district, farm, or an outline drawn on the map)",
     s7o2: "<b>A date or period is chosen</b> — a single date, a season, or consecutive years",
@@ -718,7 +1098,7 @@ const I18N = {
     s7r5a: "<b>Index maps</b>", s7r5b: "Colored maps of NDVI, NDWI, etc.", s7r5c: "Field analysis, decision support",
     s7hl: "<b>Special requirements?</b> Contact us for custom orders — any area, any date, any format.",
 
-    s8h2: "7 · Contact",
+    s8h2: "8 · Contact",
     s8p: "<b>Tell us the area you are interested in, the date you need and the delivery format. We will send you a matching offer and a sample product.</b>",
 
     footSrc: "This product <b>contains modified Copernicus Sentinel data (2015–{Y})</b>; the super-resolution processing was carried out by GeoSolver LLC. Source data: Copernicus Sentinel-2, European Space Agency (ESA) — under the Copernicus open data policy. Terms of use: <a href=\"https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice\" target=\"_blank\" rel=\"noopener\">Legal notice on the use of Copernicus Sentinel data</a> (Delegated Regulation (EU) No 1159/2013).",
@@ -774,8 +1154,20 @@ const I18N = {
     p5p: "Мелкие и средние хозяйства, небольшие участки, сложный рельеф — метровая детализация особенно ценна в таких условиях. Качество одинаково независимо от размера участка.",
     p6h: "Гибкая поставка",
     p6p: "Продукт предоставляется в виде <b>GeoTIFF</b> (для ГИС-программ), <b>WMS</b> (веб-сервис) или через <b>API</b>. В любом формате, для любой территории.",
+    toc2: "Примеры",
+    s2h2: "2 · Примеры — до и после",
+    s2p: "Пять пар ниже показывают исходный снимок Sentinel-2 и метровый результат GeoSolver для одной и той же территории. Перетащите разделитель, чтобы сравнить.",
+    s2hl: "<b>Обратите внимание:</b> границы участков, дороги и оросительные каналы становятся резче; контуры мелких объектов читаются отчётливо.",
+    smpB: "Sentinel-2 · 10 м",
+    smpA: "GeoSolver · 1 м",
+    smpHint: "Перетащите разделитель для сравнения",
+    smpN1: "Образец 1",
+    smpN2: "Образец 2",
+    smpN3: "Образец 3",
+    smpN4: "Образец 4",
+    smpN5: "Образец 5",
 
-    s3h2: "2 · Области применения",
+    s3h2: "3 · Области применения",
     s3p: "Метровая детализация особенно ценна в следующих областях:",
     a1h: "Сельское хозяйство",
     a1l1: "Точное построение границ участков",
@@ -808,7 +1200,7 @@ const I18N = {
     a6l2: "Расчёт ущерба по площади",
     a6l3: "Отслеживание восстановительных работ",
 
-    s4h2: "3 · Sentinel-2 — справочная информация",
+    s4h2: "4 · Sentinel-2 — справочная информация",
     s4p1: "Источником 1-метрового продукта, предоставляемого ООО GeoSolver, является миссия <b>Copernicus Sentinel-2</b>. Ниже приведены основные технические характеристики.",
     s4th1: "Параметр",
     s4th2: "Значение",
@@ -825,7 +1217,7 @@ const I18N = {
     s4p2: "<b>Четыре 10-метровых канала</b> (B2 синий, B3 зелёный, B4 красный, B8 БИК) являются входными данными метровой модели ООО GeoSolver. На выходе те же четыре канала предоставляются <b>на метровой сетке</b>.",
     s4note: "Примечание: 21 января 2025 года Sentinel-2C заменил Sentinel-2A в составе оперативной группировки, а сам Sentinel-2A в рамках продлённой кампании ведёт дополнительную съёмку до конца 2026 года. Продукт использует данные всех трёх спутников, поэтому ограничений по выбору даты нет.",
 
-    s5h2: "4 · Спектральные индексы — с детализацией 1 метр",
+    s5h2: "5 · Спектральные индексы — с детализацией 1 метр",
     s5p: "Поскольку 1-метровый продукт сохраняет четыре канала (B2, B3, B4, B8), все индексы на основе этих каналов можно рассчитывать непосредственно на метровой сетке.",
     s5th1: "Индекс", s5th2: "Формула", s5th3: "Назначение",
     s5r1: "Плотность растительности, мониторинг урожая",
@@ -835,7 +1227,7 @@ const I18N = {
     s5r5: "Без эффекта насыщения при густой растительности",
     s5hl: "<b>Основное преимущество:</b> по сравнению с 10-метровым индексом 1-метровый индекс даёт более точный результат <b>на границах участков, в смешанных пикселях и на мелких объектах</b>.",
 
-    s6h2: "5 · Технические рамки и ограничения",
+    s6h2: "6 · Технические рамки и ограничения",
     s6p: "Для правильного использования продукта важно знать его возможности и ограничения.",
     l1h: "Предел размера объекта",
     l1p: "Объект, не оставивший никакого следа на исходном снимке, восстановлен быть не может. Отдельные объекты <b>меньше 2 метров</b> (узкая тропа, одиночное дерево, малая постройка) надёжно не различаются. Объекты от 3–5 метров и больше читаются отчётливо.",
@@ -846,7 +1238,7 @@ const I18N = {
     l4h: "Чувствительность при анализе изменений",
     l4p: "Порог обнаружения ограничен размером исходного пикселя: изменения <b>примерно от 100 м²</b> (один пиксель Sentinel-2) и крупнее выявляются надёжно. Высококонтрастные изменения — например, новое бетонное покрытие на голой почве — иногда заметны и на уровне <b>~25–50 м²</b>, но это не гарантируется для каждой сцены.",
 
-    s7h2: "6 · Рабочий процесс и поставка",
+    s7h2: "7 · Рабочий процесс и поставка",
     s7h3a: "Процесс заказа",
     s7o1: "<b>Определяется территория</b> — зона интереса (район, хозяйство или контур, нарисованный на карте)",
     s7o2: "<b>Выбирается дата или период</b> — одна дата, сезон или последовательные годы",
@@ -863,7 +1255,7 @@ const I18N = {
     s7r5a: "<b>Карты индексов</b>", s7r5b: "Цветные карты NDVI, NDWI и др.", s7r5c: "Анализ участков, поддержка решений",
     s7hl: "<b>Особые требования?</b> Свяжитесь с нами для индивидуальных заказов — любая территория, любая дата, любой формат.",
 
-    s8h2: "7 · Контакты",
+    s8h2: "8 · Контакты",
     s8p: "<b>Сообщите нам интересующую территорию, нужную дату и формат поставки. Мы направим вам подходящее предложение и образец продукта.</b>",
 
     footSrc: "Данный продукт <b>содержит изменённые данные Copernicus Sentinel (2015–{Y})</b>; обработка сверхразрешения выполнена ООО GeoSolver. Исходные данные: Copernicus Sentinel-2, Европейское космическое агентство (ESA) — в рамках политики открытых данных Copernicus. Условия использования: <a href=\"https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice\" target=\"_blank\" rel=\"noopener\">правовое уведомление об использовании данных Copernicus Sentinel</a> (Delegated Regulation (EU) No 1159/2013).",
@@ -943,6 +1335,50 @@ const obs = new IntersectionObserver(entries => {
   });
 }, { rootMargin: '-15% 0px -70% 0px' });
 secs.forEach(s => s && obs.observe(s));
+
+
+/* ══════ MÜQAYİSƏ SLAYDERİ ══════ */
+document.querySelectorAll('[data-cmp]').forEach(function (cmp) {
+  var before = cmp.querySelector('.cmp-b');
+  var bar    = cmp.querySelector('.cmp-bar');
+  var pos    = 50;
+  var drag   = false;
+
+  function set(p) {
+    pos = Math.max(0, Math.min(100, p));
+    before.style.setProperty('--clip', (100 - pos) + '%');
+    bar.style.left = pos + '%';
+    bar.setAttribute('aria-valuenow', Math.round(pos));
+  }
+
+  function fromEvent(e) {
+    var r = cmp.getBoundingClientRect();
+    if (!r.width) return;
+    set(((e.clientX - r.left) / r.width) * 100);
+  }
+
+  cmp.addEventListener('pointerdown', function (e) {
+    drag = true;
+    if (cmp.setPointerCapture) { try { cmp.setPointerCapture(e.pointerId); } catch (x) {} }
+    fromEvent(e);
+    e.preventDefault();
+  });
+  cmp.addEventListener('pointermove', function (e) { if (drag) fromEvent(e); });
+  ['pointerup', 'pointercancel', 'pointerleave'].forEach(function (ev) {
+    cmp.addEventListener(ev, function () { drag = false; });
+  });
+
+  bar.addEventListener('keydown', function (e) {
+    var step = e.shiftKey ? 10 : 2;
+    if (e.key === 'ArrowLeft')  { set(pos - step); e.preventDefault(); }
+    if (e.key === 'ArrowRight') { set(pos + step); e.preventDefault(); }
+    if (e.key === 'Home')       { set(0);   e.preventDefault(); }
+    if (e.key === 'End')        { set(100); e.preventDefault(); }
+  });
+
+  set(50);
+});
+
 </script>
 
 </body>
