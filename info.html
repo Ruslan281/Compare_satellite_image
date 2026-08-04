@@ -287,51 +287,6 @@
   }
 
 
-  /* ══════ DƏQİQLİK GÖSTƏRİCİLƏRİ ══════ */
-  .metrics {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 12px;
-    margin: 1.4rem 0;
-  }
-  .metric {
-    border: 1px solid var(--line);
-    border-left: 3px solid var(--acc);
-    border-radius: 12px;
-    background: var(--card);
-    padding: 1.1rem 1.2rem;
-  }
-  .metric-v {
-    font-family: var(--mono);
-    font-size: 2rem;
-    font-weight: 500;
-    letter-spacing: -.03em;
-    color: var(--acc);
-    line-height: 1;
-  }
-  .metric-v sup { font-size: .55em; top: -.6em; }
-  .metric-n {
-    font-size: .92rem;
-    font-weight: 600;
-    margin-top: .5rem;
-    color: var(--ink);
-  }
-  .metric-c {
-    font-family: var(--mono);
-    font-size: .66rem;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    color: var(--ink-3);
-    margin-top: .15rem;
-  }
-  .metric-p {
-    font-size: .84rem;
-    color: var(--ink-2);
-    line-height: 1.6;
-    margin: .7rem 0 0;
-    max-width: none;
-  }
-
   /* ══════ MÜQAYİSƏ CƏDVƏLİ ══════ */
   .vs {
     border: 1px solid var(--line);
@@ -538,7 +493,6 @@
     <a href="#s4"  data-i18n="toc4">Sentinel-2 — fon</a>
     <a href="#s5"  data-i18n="toc5">Spektral indekslər</a>
     <a href="#s6"  data-i18n="toc6">Texniki çərçivə</a>
-    <a href="#s9"  data-i18n="toc9">Dəqiqlik göstəriciləri</a>
     <a href="#s10" data-i18n="toc10">Müqayisə</a>
     <a href="#s7"  data-i18n="toc7">İş axını və çatdırılma</a>
     <a href="#s11" data-i18n="toc11">Qiymətləndirmə</a>
@@ -944,43 +898,8 @@
       </div>
     </section>
 
-    <section id="s9">
-      <h2 data-i18n="s9h2">7 · Dəqiqlik göstəriciləri və spektral bütövlük</h2>
-
-      <div class="metrics">
-        <div class="metric">
-          <div class="metric-v">92%<sup>+</sup></div>
-          <div class="metric-n" data-i18n="m1n">Spektral uyğunluq</div>
-          <div class="metric-c">Correlation</div>
-          <p class="metric-p" data-i18n="m1p">10 metrlik orijinal Sentinel-2 bandlarının spektral dəyərləri 1 metrlik şəbəkədə yüksək dəqiqliklə qorunur.</p>
-        </div>
-        <div class="metric">
-          <div class="metric-v">0.88<sup>+</sup></div>
-          <div class="metric-n" data-i18n="m2n">Struktur oxşarlığı</div>
-          <div class="metric-c">SSIM</div>
-          <p class="metric-p" data-i18n="m2p">Sərhədlərin, infrastrukturların və obyekt konturlarının strukturu dəqiqliklə bərpa olunur.</p>
-        </div>
-      </div>
-
-      <h3 data-i18n="s9h3">Çıxış bandları — sifarişə uyğun</h3>
-
-      <p data-i18n="s9p2">Model üç fərqli çıxış təqdim edir. Sifarişçinin tələbinə uyğun olaraq ayrı-ayrılıqda və ya birlikdə verilir.</p>
-
-      <table class="tbl">
-        <thead><tr><th data-i18n="s9th1">Çıxış</th><th data-i18n="s9th2">Bandların sayı</th><th data-i18n="s9th3">Məzmun</th></tr></thead>
-        <tbody>
-          <tr><td class="b">TCI</td><td data-i18n="s9r1b">4 band</td><td data-i18n="s9r1c">Təbii rəng — B2, B3, B4 və alfa kanalı</td></tr>
-          <tr><td class="b">IRP</td><td data-i18n="s9r2b">4 band</td><td data-i18n="s9r2c">İnfraqırmızı kompozisiya — B8 əsaslı</td></tr>
-          <tr><td class="b">MS</td><td data-i18n="s9r3b">10 band</td><td data-i18n="s9r3c">Çoxspektrli tam dəst</td></tr>
-        </tbody>
-      </table>
-
-      <div class="highlight-box" data-i18n="s9hl"><b>Nəticədə:</b> tam sifariş halında <b>10 banda qədər</b> 1 metrlik məlumat əldə edilir — spektral analiz imkanları xeyli genişlənir.</div>
-    </section>
-
-
     <section id="s10">
-      <h2 data-i18n="s10h2">8 · Kommersiya peykləri ilə müqayisə</h2>
+      <h2 data-i18n="s10h2">7 · Kommersiya peykləri ilə müqayisə</h2>
 
       <p data-i18n="s10p">Aşağıdakı cədvəl GeoSolver 1 metrlik məhsulunu ənənəvi yüksək ayırdetməli kommersiya peyk görüntüləri ilə müqayisə edir.</p>
 
@@ -1019,7 +938,7 @@
     </section>
 
     <section id="s7">
-      <h2 data-i18n="s7h2">9 · İş axını və çatdırılma</h2>
+      <h2 data-i18n="s7h2">8 · İş axını və çatdırılma</h2>
 
       <h3 data-i18n="s7h3a">Sifariş prosesi</h3>
 
@@ -1049,7 +968,7 @@
     </section>
 
     <section id="s11">
-      <h2 data-i18n="s11h2">10 · Qiymətləndirmə və tariflər</h2>
+      <h2 data-i18n="s11h2">9 · Qiymətləndirmə və tariflər</h2>
 
       <p data-i18n="s11p">Üç əsas sifariş modeli təklif olunur. Hər biri fərqli istifadə ssenarisinə uyğunlaşdırılıb.</p>
 
@@ -1099,7 +1018,7 @@
 
 
     <section id="s12">
-      <h2 data-i18n="s12h2">11 · Tez-tez verilən suallar</h2>
+      <h2 data-i18n="s12h2">10 · Tez-tez verilən suallar</h2>
 
         <details class="faq">
           <summary>
@@ -1143,7 +1062,7 @@
     </section>
 
     <section id="s8">
-      <h2 data-i18n="s8h2">12 · Əlaqə</h2>
+      <h2 data-i18n="s8h2">11 · Əlaqə</h2>
 
       <div class="contact-block">
         <p style="color:#495057;max-width:600px;margin:0.5rem auto 1.5rem;" data-i18n="s8p"><b>Maraqlanan sahəni, istədiyiniz tarixi və çatdırılma formatını bizə bildirin. Biz sizə uyğun təklif və nümunə məhsul təqdim edəcəyik.</b></p>
@@ -1310,7 +1229,7 @@ const I18N = {
     l4h: "Dəyişiklik analizində həssaslıq",
     l4p: "Aşkarlama həddi mənbə pikselinin ölçüsü ilə məhdudlaşır: <b>təxminən 100 m²</b> (bir Sentinel-2 pikseli) və daha böyük dəyişikliklər etibarlı aşkarlanır. Kontrastı yüksək dəyişikliklər (məsələn, torpaq üzərində yeni beton örtük) bəzən <b>~25–50 m²</b> səviyyəsində də görünür, lakin bu, hər səhnədə təmin olunmur.",
 
-    s7h2: "9 · İş axını və çatdırılma",
+    s7h2: "8 · İş axını və çatdırılma",
     s7h3a: "Sifariş prosesi",
     s7o1: "<b>Ərazi müəyyən edilir</b> — maraq zonası (rayon, təsərrüfat, ya xəritədə çəkilmiş kontur)",
     s7o2: "<b>Tarix və ya dövr seçilir</b> — tək tarix, mövsüm, ya ardıcıl illər",
@@ -1326,28 +1245,10 @@ const I18N = {
     s7r4a: "<b>Rəngli təsvir (PNG, JPEG)</b>", s7r4b: "Təbii rəng / infraqırmızı", s7r4c: "Hesabat, təqdimat, çap",
     s7r5a: "<b>İndeks xəritələri</b>", s7r5b: "NDVI, NDWI və s. rəngli xəritə", s7r5c: "Sahə analizi, qərar dəstəyi",
     s7hl: "<b>Xüsusi tələblər?</b> Fərdi sifarişlər üçün bizimlə əlaqə saxlayın — istənilən ərazi, istənilən tarix, istənilən format.",
-    toc9: "Dəqiqlik göstəriciləri",
     toc10: "Müqayisə",
     toc11: "Qiymətləndirmə",
     toc12: "Tez-tez verilən suallar",
-    s9h2: "7 · Dəqiqlik göstəriciləri və spektral bütövlük",
-    m1n: "Spektral uyğunluq",
-    m1p: "10 metrlik orijinal Sentinel-2 bandlarının spektral dəyərləri 1 metrlik şəbəkədə yüksək dəqiqliklə qorunur.",
-    m2n: "Struktur oxşarlığı",
-    m2p: "Sərhədlərin, infrastrukturların və obyekt konturlarının strukturu dəqiqliklə bərpa olunur.",
-    s9h3: "Çıxış bandları — sifarişə uyğun",
-    s9p2: "Model üç fərqli çıxış təqdim edir. Sifarişçinin tələbinə uyğun olaraq ayrı-ayrılıqda və ya birlikdə verilir.",
-    s9th1: "Çıxış",
-    s9th2: "Bandların sayı",
-    s9th3: "Məzmun",
-    s9r1b: "4 band",
-    s9r1c: "Təbii rəng — B2, B3, B4 və alfa kanalı",
-    s9r2b: "4 band",
-    s9r2c: "İnfraqırmızı kompozisiya — B8 əsaslı",
-    s9r3b: "10 band",
-    s9r3c: "Çoxspektrli tam dəst",
-    s9hl: "<b>Nəticədə:</b> tam sifariş halında <b>10 banda qədər</b> 1 metrlik məlumat əldə edilir — spektral analiz imkanları xeyli genişlənir.",
-    s10h2: "8 · Kommersiya peykləri ilə müqayisə",
+    s10h2: "7 · Kommersiya peykləri ilə müqayisə",
     s10p: "Aşağıdakı cədvəl GeoSolver 1 metrlik məhsulunu ənənəvi yüksək ayırdetməli kommersiya peyk görüntüləri ilə müqayisə edir.",
     vsA: "Kommersiya peykləri",
     vsB: "GeoSolver 1 m",
@@ -1366,7 +1267,7 @@ const I18N = {
     v5k: "Minimum sifariş sahəsi",
     v5a: "25–100 km² hədd",
     v5b: "Məhdudiyyət yoxdur",
-    s11h2: "10 · Qiymətləndirmə və tariflər",
+    s11h2: "9 · Qiymətləndirmə və tariflər",
     s11p: "Üç əsas sifariş modeli təklif olunur. Hər biri fərqli istifadə ssenarisinə uyğunlaşdırılıb.",
     t1n: "Bir dəfəlik sifariş",
     t1s: "Müəyyən ərazi və konkret tarix üçün",
@@ -1386,7 +1287,7 @@ const I18N = {
     t3b: "Cloud Optimized GeoTIFF (COG) və API çıxışı",
     t3c: "Arxiv məlumatlarının kütləvi çevrilməsi (2015-dən bəri)",
     t3d: "Fərdi inteqrasiya dəstəyi və zəmanətli SLA",
-    s12h2: "11 · Tez-tez verilən suallar",
+    s12h2: "10 · Tez-tez verilən suallar",
     q1: "Sifariş etdikdən sonra məhsul nə qədər vaxta təhvil verilir?",
     q1a: "Standart ərazilər üçün emal və çatdırılma 24 saat ərzində həyata keçirilir. Böyük həcmli arxiv sifarişləri üçün müddət fərdi razılaşdırılır.",
     q2: "Minimum sifariş sahəsi məhdudiyyəti varmı?",
@@ -1396,7 +1297,7 @@ const I18N = {
     q4: "Məhsulu öz CİS proqramımda (ArcGIS, QGIS) istifadə edə bilərəmmi?",
     q4a: "Bəli, təqdim olunan GeoTIFF faylları tam georeferensiyalıdır (koordinat bağlıdır) və bütün müasir CİS proqramları ilə tam uyğundur.",
 
-    s8h2: "12 · Əlaqə",
+    s8h2: "11 · Əlaqə",
     s8p: "<b>Maraqlanan sahəni, istədiyiniz tarixi və çatdırılma formatını bizə bildirin. Biz sizə uyğun təklif və nümunə məhsul təqdim edəcəyik.</b>",
 
     footSrc: "Bu məhsul <b>dəyişdirilmiş Copernicus Sentinel məlumatlarını (2015–{Y})</b> ehtiva edir; superrezolyusiya emalı GeoSolver MMC tərəfindən aparılmışdır. Mənbə məlumat: Copernicus Sentinel-2, Avropa Kosmik Agentliyi (ESA) — Copernicus açıq məlumat siyasəti əsasında. İstifadə şərtləri: <a href=\"https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice\" target=\"_blank\" rel=\"noopener\">Copernicus Sentinel məlumatlarının istifadəsi haqqında hüquqi bildiriş</a> (Delegated Regulation (EU) No 1159/2013).",
@@ -1534,7 +1435,7 @@ const I18N = {
     l4h: "Sensitivity in change detection",
     l4p: "Detection is bounded by the source pixel size: changes of <b>about 100 m²</b> (one Sentinel-2 pixel) and larger are detected reliably. High-contrast changes — new concrete over bare soil, for example — are sometimes visible down to <b>~25–50 m²</b>, but this cannot be guaranteed for every scene.",
 
-    s7h2: "9 · Workflow and delivery",
+    s7h2: "8 · Workflow and delivery",
     s7h3a: "Ordering process",
     s7o1: "<b>The area is defined</b> — the area of interest (district, farm, or an outline drawn on the map)",
     s7o2: "<b>A date or period is chosen</b> — a single date, a season, or consecutive years",
@@ -1550,28 +1451,10 @@ const I18N = {
     s7r4a: "<b>Color image (PNG, JPEG)</b>", s7r4b: "True color / infrared", s7r4c: "Reports, presentations, print",
     s7r5a: "<b>Index maps</b>", s7r5b: "Colored maps of NDVI, NDWI, etc.", s7r5c: "Field analysis, decision support",
     s7hl: "<b>Special requirements?</b> Contact us for custom orders — any area, any date, any format.",
-    toc9: "Accuracy metrics",
     toc10: "Comparison",
     toc11: "Pricing",
     toc12: "FAQ",
-    s9h2: "7 · Accuracy metrics and spectral integrity",
-    m1n: "Spectral correlation",
-    m1p: "The spectral values of the original 10-meter Sentinel-2 bands are preserved with high accuracy on the 1-meter grid.",
-    m2n: "Structural similarity",
-    m2p: "The structure of boundaries, infrastructure and object outlines is reconstructed accurately.",
-    s9h3: "Output bands — on request",
-    s9p2: "The model provides three distinct outputs. They can be delivered separately or together, according to the client's requirements.",
-    s9th1: "Output",
-    s9th2: "Band count",
-    s9th3: "Content",
-    s9r1b: "4 bands",
-    s9r1c: "Natural colour — B2, B3, B4 and alpha channel",
-    s9r2b: "4 bands",
-    s9r2c: "Infrared composite — B8 based",
-    s9r3b: "10 bands",
-    s9r3c: "Full multispectral set",
-    s9hl: "<b>In total:</b> a full order yields <b>up to 10 bands</b> of 1-meter data — considerably widening the scope of spectral analysis.",
-    s10h2: "8 · Comparison with commercial satellites",
+    s10h2: "7 · Comparison with commercial satellites",
     s10p: "The table below compares the GeoSolver 1-meter product with traditional high-resolution commercial satellite imagery.",
     vsA: "Commercial satellites",
     vsB: "GeoSolver 1 m",
@@ -1590,7 +1473,7 @@ const I18N = {
     v5k: "Minimum order area",
     v5a: "25–100 km² threshold",
     v5b: "No minimum",
-    s11h2: "10 · Pricing and plans",
+    s11h2: "9 · Pricing and plans",
     s11p: "Three main ordering models are offered, each tailored to a different use case.",
     t1n: "One-off order",
     t1s: "For a defined area and a specific date",
@@ -1610,7 +1493,7 @@ const I18N = {
     t3b: "Cloud Optimized GeoTIFF (COG) and API access",
     t3c: "Bulk conversion of archive data (since 2015)",
     t3d: "Custom integration support and guaranteed SLA",
-    s12h2: "11 · Frequently asked questions",
+    s12h2: "10 · Frequently asked questions",
     q1: "How long does delivery take after ordering?",
     q1a: "For standard areas, processing and delivery are completed within 24 hours. For large archive orders the timeline is agreed individually.",
     q2: "Is there a minimum order area?",
@@ -1620,7 +1503,7 @@ const I18N = {
     q4: "Can I use the product in my own GIS software (ArcGIS, QGIS)?",
     q4a: "Yes. The delivered GeoTIFF files are fully georeferenced and fully compatible with all modern GIS software.",
 
-    s8h2: "12 · Contact",
+    s8h2: "11 · Contact",
     s8p: "<b>Tell us the area you are interested in, the date you need and the delivery format. We will send you a matching offer and a sample product.</b>",
 
     footSrc: "This product <b>contains modified Copernicus Sentinel data (2015–{Y})</b>; the super-resolution processing was carried out by GeoSolver LLC. Source data: Copernicus Sentinel-2, European Space Agency (ESA) — under the Copernicus open data policy. Terms of use: <a href=\"https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice\" target=\"_blank\" rel=\"noopener\">Legal notice on the use of Copernicus Sentinel data</a> (Delegated Regulation (EU) No 1159/2013).",
@@ -1758,7 +1641,7 @@ const I18N = {
     l4h: "Чувствительность при анализе изменений",
     l4p: "Порог обнаружения ограничен размером исходного пикселя: изменения <b>примерно от 100 м²</b> (один пиксель Sentinel-2) и крупнее выявляются надёжно. Высококонтрастные изменения — например, новое бетонное покрытие на голой почве — иногда заметны и на уровне <b>~25–50 м²</b>, но это не гарантируется для каждой сцены.",
 
-    s7h2: "9 · Рабочий процесс и поставка",
+    s7h2: "8 · Рабочий процесс и поставка",
     s7h3a: "Процесс заказа",
     s7o1: "<b>Определяется территория</b> — зона интереса (район, хозяйство или контур, нарисованный на карте)",
     s7o2: "<b>Выбирается дата или период</b> — одна дата, сезон или последовательные годы",
@@ -1774,28 +1657,10 @@ const I18N = {
     s7r4a: "<b>Цветное изображение (PNG, JPEG)</b>", s7r4b: "Естественные цвета / инфракрасное", s7r4c: "Отчёты, презентации, печать",
     s7r5a: "<b>Карты индексов</b>", s7r5b: "Цветные карты NDVI, NDWI и др.", s7r5c: "Анализ участков, поддержка решений",
     s7hl: "<b>Особые требования?</b> Свяжитесь с нами для индивидуальных заказов — любая территория, любая дата, любой формат.",
-    toc9: "Показатели точности",
     toc10: "Сравнение",
     toc11: "Тарифы",
     toc12: "Часто задаваемые вопросы",
-    s9h2: "7 · Показатели точности и спектральная целостность",
-    m1n: "Спектральное соответствие",
-    m1p: "Спектральные значения исходных 10-метровых каналов Sentinel-2 сохраняются на метровой сетке с высокой точностью.",
-    m2n: "Структурное сходство",
-    m2p: "Структура границ, инфраструктуры и контуров объектов восстанавливается точно.",
-    s9h3: "Выходные каналы — по запросу",
-    s9p2: "Модель предоставляет три различных выхода. По требованию заказчика они поставляются отдельно или вместе.",
-    s9th1: "Выход",
-    s9th2: "Число каналов",
-    s9th3: "Содержание",
-    s9r1b: "4 канала",
-    s9r1c: "Естественный цвет — B2, B3, B4 и альфа-канал",
-    s9r2b: "4 канала",
-    s9r2c: "Инфракрасная композиция — на основе B8",
-    s9r3b: "10 каналов",
-    s9r3c: "Полный мультиспектральный набор",
-    s9hl: "<b>В итоге:</b> при полном заказе доступно <b>до 10 каналов</b> метровых данных — возможности спектрального анализа значительно расширяются.",
-    s10h2: "8 · Сравнение с коммерческими спутниками",
+    s10h2: "7 · Сравнение с коммерческими спутниками",
     s10p: "Таблица ниже сравнивает продукт GeoSolver 1 м с традиционными коммерческими спутниковыми снимками высокого разрешения.",
     vsA: "Коммерческие спутники",
     vsB: "GeoSolver 1 м",
@@ -1814,7 +1679,7 @@ const I18N = {
     v5k: "Минимальная площадь заказа",
     v5a: "Порог 25–100 км²",
     v5b: "Ограничений нет",
-    s11h2: "10 · Тарифы и стоимость",
+    s11h2: "9 · Тарифы и стоимость",
     s11p: "Предлагаются три основные модели заказа, каждая под свой сценарий использования.",
     t1n: "Разовый заказ",
     t1s: "Для заданной территории и конкретной даты",
@@ -1834,7 +1699,7 @@ const I18N = {
     t3b: "Cloud Optimized GeoTIFF (COG) и доступ через API",
     t3c: "Массовая конвертация архивных данных (с 2015 года)",
     t3d: "Индивидуальная поддержка интеграции и гарантированный SLA",
-    s12h2: "11 · Часто задаваемые вопросы",
+    s12h2: "10 · Часто задаваемые вопросы",
     q1: "Через какое время продукт передаётся после заказа?",
     q1a: "Для стандартных территорий обработка и поставка выполняются в течение 24 часов. Для крупных архивных заказов срок согласуется индивидуально.",
     q2: "Есть ли ограничение по минимальной площади заказа?",
@@ -1844,7 +1709,7 @@ const I18N = {
     q4: "Можно ли использовать продукт в своей ГИС-программе (ArcGIS, QGIS)?",
     q4a: "Да. Поставляемые файлы GeoTIFF полностью привязаны к координатам и совместимы со всеми современными ГИС-программами.",
 
-    s8h2: "12 · Контакты",
+    s8h2: "11 · Контакты",
     s8p: "<b>Сообщите нам интересующую территорию, нужную дату и формат поставки. Мы направим вам подходящее предложение и образец продукта.</b>",
 
     footSrc: "Данный продукт <b>содержит изменённые данные Copernicus Sentinel (2015–{Y})</b>; обработка сверхразрешения выполнена ООО GeoSolver. Исходные данные: Copernicus Sentinel-2, Европейское космическое агентство (ESA) — в рамках политики открытых данных Copernicus. Условия использования: <a href=\"https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice\" target=\"_blank\" rel=\"noopener\">правовое уведомление об использовании данных Copernicus Sentinel</a> (Delegated Regulation (EU) No 1159/2013).",
